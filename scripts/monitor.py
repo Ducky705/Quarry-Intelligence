@@ -200,8 +200,8 @@ def run_monitor():
         proc = eng.process()
         
         # === DIAGNOSTIC: Date range after feature engineering ===
-        print(f"📐 AFTER FEATURES: {len(df)} picks")
-        print(f"   Date range: {df['pick_date'].min().date()} to {df['pick_date'].max().date()}")
+        print(f"📐 AFTER FEATURES: {len(proc)} picks")
+        print(f"   Date range: {proc['pick_date'].min().date()} to {proc['pick_date'].max().date()}")
         
         # 2. Simulations
         sim = ModelSimulator(proc)

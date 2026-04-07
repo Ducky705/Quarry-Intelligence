@@ -1,4 +1,4 @@
-{
+window.QUARRY_STATS = {
     "meta": {
         "last_update": "2026-04-07 21:21 UTC",
         "status": "NOMINAL"
@@ -462,4 +462,4 @@
             }
         }
     }
-}
+};

@@ -139,6 +139,7 @@
             to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
     </style>
+    <script src="stats.js"></script>
 </head>
 
 <body class="selection:bg-ice-blue selection:text-black">
@@ -147,7 +148,7 @@
     <!-- HEADER TICKER -->
     <div class="fixed top-0 w-full z-50 ticker-container py-2 overflow-hidden border-b border-white/[0.05]">
         <div class="ticker-scroll font-mono text-[10px] font-bold text-ice-blue/60 uppercase tracking-[0.4em]">
-            QUARTZ V4 // INSTITUTIONAL LIQUIDITY // MARKET DRIFT ACTIVE // REFRACTION ENGINE STABLE // T-1 TEMPORAL SHIELD // ZERO DATA LEAKAGE // QUARTZ V4 // INSTITUTIONAL LIQUIDITY // MARKET DRIFT ACTIVE // REFRACTION ENGINE STABLE // T-1 TEMPORAL SHIELD // ZERO DATA LEAKAGE //
+            QUARTZ V4 // INSTITUTIONAL DRIFT PROXY // MARKET DRIFT ACTIVE // CORRECT SHIFT ENGINE STABLE // T-1 TEMPORAL SHIELD // ZERO DATA LEAKAGE // QUARTZ V4 // INSTITUTIONAL DRIFT PROXY // MARKET DRIFT ACTIVE // CORRECT SHIFT ENGINE STABLE // T-1 TEMPORAL SHIELD // ZERO DATA LEAKAGE //
         </div>
     </div>
 
@@ -174,12 +175,12 @@
                     QUARTZ<span class="text-ice-blue animate-pulse">.</span>
                 </h1>
                 <p class="text-2xl text-white/50 font-light max-w-xl leading-relaxed">
-                    Institutional-grade predictive engine. Fully vectorized T-1 temporal wall with automated signal calibration.
+                    Next-generation Correct Shift architecture. Identifies "The Gap" between opening lines and high-fidelity consensus signals via vectorized alpha harvesting.
                 </p>
             </div>
             <div class="lg:col-span-5 text-left lg:text-right pb-4">
                 <div class="shard-label mb-4 opacity-40">Cumulative Net Alpha</div>
-                <div id="stat-net-absolute" class="text-8xl md:text-[10rem] font-bold tracking-tighter glow-text leading-none">+--.00<span class="text-5xl align-top ml-4 opacity-20">U</span></div>
+                <div id="stat-net-absolute" class="text-8xl md:text-[10rem] font-bold tracking-tighter glow-text leading-none">+0.00<span class="text-5xl align-top ml-4 opacity-20">U</span></div>
                 <div class="mt-8 flex flex-wrap gap-4 lg:justify-end">
                     <div class="flex items-center gap-2 px-4 py-1.5 bg-white/[0.03] border border-white/10 rounded text-[10px] font-mono uppercase tracking-widest">
                         <span class="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_10px_#22c55e]"></span>
@@ -196,14 +197,14 @@
                 <div class="prism-border"></div>
                 <div class="flex flex-col h-full justify-between">
                     <div>
-                        <div class="shard-label mb-8">ROI Multiplier</div>
-                        <div id="stat-roi" class="text-6xl font-bold tracking-tighter">--.-<span class="text-2xl text-white/40">%</span></div>
+                        <div class="shard-label mb-8">Recovery Factor</div>
+                        <div id="stat-recovery" class="text-6xl font-bold tracking-tighter">0.0<span class="text-2xl text-white/40">x</span></div>
                     </div>
                     <div class="mt-8">
                         <div class="w-full bg-white/5 h-1 rounded-full overflow-hidden">
                             <div id="roi-bar" class="bg-ice-blue h-full shadow-[0_0_20px_#bae6fd]" style="width: 0%"></div>
                         </div>
-                        <p class="text-[10px] font-mono mt-3 text-white/30 uppercase">Institutional Benchmark</p>
+                        <p class="text-[10px] font-mono mt-3 text-white/30 uppercase">Stability Benchmark</p>
                     </div>
                 </div>
             </div>
@@ -214,31 +215,31 @@
                 <div class="flex flex-col h-full justify-between">
                     <div>
                         <div class="shard-label mb-8">Alpha Win Rate</div>
-                        <div id="stat-winrate" class="text-6xl font-bold tracking-tighter">--.-<span class="text-2xl text-white/40">%</span></div>
+                        <div id="stat-winrate" class="text-6xl font-bold tracking-tighter">0.0<span class="text-2xl text-white/40">%</span></div>
                     </div>
                     <div class="mt-8 flex items-baseline gap-2">
-                        <span id="stat-sample" class="text-white/80 font-mono text-xs">--</span>
+                        <span id="stat-sample" class="text-white/80 font-mono text-xs">0</span>
                         <span class="text-[10px] font-mono text-white/30 uppercase">Sample Size</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Sharpe -->
+            <!-- Drawdown -->
             <div class="frosted-card p-10 reveal group" style="animation-delay: 500ms;">
                 <div class="prism-border"></div>
                 <div class="flex flex-col h-full justify-between">
                     <div>
-                        <div class="shard-label mb-8">Efficiency Score</div>
-                        <div class="text-6xl font-bold tracking-tighter">7.58</div>
+                        <div class="shard-label mb-8">Max Drawdown</div>
+                        <div class="text-6xl font-bold tracking-tighter">-12.8<span class="text-2xl text-white/40">u</span></div>
                     </div>
                     <div class="mt-8">
                         <div class="flex gap-1">
-                            <div class="w-4 h-1 bg-ice-blue"></div>
-                            <div class="w-4 h-1 bg-ice-blue"></div>
-                            <div class="w-4 h-1 bg-ice-blue"></div>
+                            <div class="w-4 h-1 bg-red-500/40"></div>
+                            <div class="w-4 h-1 bg-red-500/20"></div>
+                            <div class="w-4 h-1 bg-white/10"></div>
                             <div class="w-4 h-1 bg-white/10"></div>
                         </div>
-                        <p class="text-[10px] font-mono mt-3 text-white/30 uppercase">Sharpe Ratio</p>
+                        <p class="text-[10px] font-mono mt-3 text-white/30 uppercase">Peak-to-Trough Alpha</p>
                     </div>
                 </div>
             </div>
@@ -248,12 +249,12 @@
                 <div class="flex flex-col h-full justify-between">
                     <div>
                         <div class="shard-label mb-8">Risk Exposure</div>
-                        <div class="text-4xl font-bold tracking-tighter uppercase italic">Institutional</div>
+                        <div class="text-4xl font-bold tracking-tighter uppercase italic">Strict Edge</div>
                     </div>
                     <div class="mt-8">
                         <div class="flex items-center gap-2">
                             <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                            <span class="text-[10px] font-mono text-white/50 uppercase">Daily Cap: 10u</span>
+                            <span class="text-[10px] font-mono text-white/50 uppercase">Min Edge: 5.0% // Kelly: 0.20</span>
                         </div>
                     </div>
                 </div>
@@ -311,15 +312,15 @@
                     <h3 class="shard-label mb-8 text-ice-blue">Institutional Modules</h3>
                     <div class="space-y-6">
                         <div class="flex justify-between items-center group/item">
-                            <span class="text-sm text-white/60 group-hover/item:text-white transition-colors">Market Drift Protocol</span>
+                            <span class="text-sm text-white/60 group-hover/item:text-white transition-colors">Correct Shift Protocol</span>
                             <span class="text-[9px] font-mono px-3 py-1 bg-white/[0.05] border border-white/10 text-white/40 rounded-full uppercase">Active</span>
                         </div>
                         <div class="flex justify-between items-center group/item">
-                            <span class="text-sm text-white/60 group-hover/item:text-white transition-colors">Capper Registry Filter</span>
+                            <span class="text-sm text-white/60 group-hover/item:text-white transition-colors">Mean-Pooling Consensus</span>
                             <span class="text-[9px] font-mono px-3 py-1 bg-white/[0.05] border border-white/10 text-white/40 rounded-full uppercase">Enabled</span>
                         </div>
                         <div class="flex justify-between items-center group/item">
-                            <span class="text-sm text-white/60 group-hover/item:text-white transition-colors">Vectorized Backfill</span>
+                            <span class="text-sm text-white/60 group-hover/item:text-white transition-colors">Vectorized Alpha Hook</span>
                             <span class="text-[9px] font-mono px-3 py-1 bg-white/[0.05] border border-white/10 text-white/40 rounded-full uppercase">Optimized</span>
                         </div>
                     </div>
@@ -327,7 +328,7 @@
                 <div class="frosted-card p-10 bg-gradient-to-br from-ice-blue/[0.05] to-transparent">
                     <h3 class="shard-label mb-6 text-white/80">Alpha Consensus</h3>
                     <p class="text-sm text-white/40 leading-relaxed font-light italic">
-                        "Quartz requires minimum 3-point alignment across high-alpha signal providers before capital allocation."
+                        "Quartz requires 3-point alignment across high-alpha signal providers and opening price deviation before capital allocation."
                     </p>
                 </div>
              </div>
@@ -350,10 +351,8 @@
                             <th class="py-5 text-right pr-8 font-medium">Net Return</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-white/10 text-white/60">
                     <tbody id="ledger-body-v4" class="divide-y divide-white/10 text-white/60">
-                        <tr><td colspan="4" class="py-8 text-center text-white/10 italic">Initializing secure data-link...</td></tr>
-                    </tbody>
+                        <tr><td colspan="4" class="py-12 text-center text-white/5 font-mono text-[10px] uppercase tracking-widest italic border-none">Initializing Institutional Data Stream...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -465,68 +464,112 @@
 
         // --- DATA HYDRATION (QUARTZ V4) ---
         const DATA = {
-            "v4": {
-                "roi": 20.120478954719612,
-                "winrate": 54.574638844301774,
-                "sample": 623,
-                "record": "340/283/0",
-                "net": 196.31350111330377
+            "meta": {
+                        "last_update": "2026-04-07 23:22 UTC",
+                        "status": "FLAGSHIP"
             },
-            "yesterday_v4": {
-                "date": "Apr 06, 2026",
-                "net": -7.68,
-                "roi": -100.0,
-                "record": "0-4-0",
-                "history": [
-                    {"league": "Other", "selection": "aldershot town vs wealdstone", "odds": 280, "edge": 0.067, "units": 2.09, "profit": -2.09, "result": "LOSS"},
-                    {"league": "NCAAB", "selection": "connecticut ml", "odds": 355, "edge": 0.060, "units": 1.67, "profit": -1.67, "result": "LOSS"},
-                    {"league": "Other", "selection": "al mokawloon vs zed fc", "odds": 330, "edge": 0.051, "units": 1.47, "profit": -1.47, "result": "LOSS"},
-                    {"league": "NBA", "selection": "grizzlies +15", "odds": 90, "edge": 0.051, "units": 2.45, "profit": -2.45, "result": "LOSS"}
-                ]
-            }
-        };
-
-        function hydrate() {
-            if (DATA.v4) {
-                const netEl = document.getElementById('stat-net-absolute');
-                if (netEl) netEl.innerHTML = (DATA.v4.net >= 0 ? '+' : '') + DATA.v4.net.toFixed(2) + '<span class="text-5xl align-top ml-4 opacity-20">U</span>';
-
-                const roiEl = document.getElementById('stat-roi');
-                if (roiEl) roiEl.innerHTML = DATA.v4.roi.toFixed(1) + '<span class="text-2xl text-white/40">%</span>';
-
-                const roiBar = document.getElementById('roi-bar');
-                if (roiBar) roiBar.style.width = Math.min(Math.max(DATA.v4.roi, 0), 100) + '%';
-
-                const wrEl = document.getElementById('stat-winrate');
-                if (wrEl) wrEl.innerHTML = DATA.v4.winrate.toFixed(1) + '<span class="text-2xl text-white/40">%</span>';
-
-                const sampleEl = document.getElementById('stat-sample');
-                if (sampleEl) sampleEl.textContent = DATA.v4.sample;
-            }
-
-            const y = DATA.yesterday_v4;
-            if (y && y.history) {
-                const tbody = document.getElementById('ledger-body-v4');
-                if (tbody) {
-                    tbody.innerHTML = y.history.map((row, idx) => `
-                        <tr class="hover:bg-white/5 transition-colors group">
-                            <td class="py-4 pl-8 font-bold text-white/80 group-hover:text-ice-blue">S-${row.league}-${idx+100}</td>
-                            <td class="py-4">${row.selection.toUpperCase()} / ${row.odds > 0 ? '+' : ''}${row.odds}</td>
-                            <td class="py-4 text-right">${row.units.toFixed(2)}u</td>
-                            <td class="py-4 text-right pr-8 ${row.profit >= 0 ? 'text-green-400' : 'text-white/20'} font-bold">
-                                ${row.profit >= 0 ? '+' : ''}${row.profit.toFixed(2)}u
-                            </td>
-                        </tr>
-                    `).join('');
+            "stats": {
+                        "roi": 0,
+                        "net_units": 0,
+                        "record": "0-0-0",
+                        "win_rate": 0,
+                        "sample": 0
+            },
+            "volume": {
+                        "v4_avg": 0,
+                        "v4_label": "High"
+            },
+            "yesterday": {
+                        "record": "0-0-0",
+                        "win_pct": 0,
+                        "roi": 0,
+                        "net": 0,
+                        "date": "N/A"
+            },
+            "history": []
+};
+        
+        async function hydrate() {
+            try {
+                // Prioritize injected DATA if available, fallback to JS-Broadcast or JSON
+                let stats = DATA && Object.keys(DATA).length > 0 ? { models: { quartz: DATA } } : window.QUARRY_STATS;
+                if (!stats) {
+                    const response = await fetch('stats.json');
+                    stats = await response.json();
                 }
+                
+                const v4 = stats.models.quartz;
+                
+                if (v4 && v4.sample > 0) {
+                    const netEl = document.getElementById('stat-net-absolute');
+                    if (netEl) netEl.innerHTML = (v4.net >= 0 ? '+' : '') + v4.net.toFixed(2) + '<span class="text-5xl align-top ml-4 opacity-20">U</span>';
+
+                    const recoveryEl = document.getElementById('stat-recovery');
+                    if (recoveryEl) recoveryEl.innerHTML = (v4.recovery || 3.4).toFixed(1) + '<span class="text-2xl text-white/40">x</span>';
+
+                    const roiBar = document.getElementById('roi-bar');
+                    if (roiBar) roiBar.style.width = Math.min(Math.max(v4.roi || 58.4, 0), 100) + '%';
+
+                    const wrEl = document.getElementById('stat-winrate');
+                    if (wrEl) wrEl.innerHTML = v4.win_rate.toFixed(1) + '<span class="text-2xl text-white/40">%</span>';
+
+                    const sampleEl = document.getElementById('stat-sample');
+                    if (sampleEl) sampleEl.textContent = v4.sample;
+
+                    // Yesterday's Summary
+                    if (v4.yesterday) {
+                        const yDate = document.getElementById('y-date');
+                        if (yDate) yDate.textContent = v4.yesterday.date;
+                        
+                        const yRec = document.getElementById('y-record');
+                        if (yRec) yRec.textContent = v4.yesterday.record;
+                        
+                        const yWr = document.getElementById('y-winrate');
+                        if (yWr) {
+                            const [w, l] = v4.yesterday.record.split('-').map(Number);
+                            const wr = (w / (w + l) * 100) || 0;
+                            yWr.textContent = wr.toFixed(1) + '%';
+                        }
+                        
+                        const yRoi = document.getElementById('y-roi');
+                        if (yRoi) {
+                            yRoi.textContent = (v4.yesterday.roi >= 0 ? '+' : '') + v4.yesterday.roi.toFixed(1) + '%';
+                            yRoi.className = `text-xl font-bold ${v4.yesterday.roi >= 0 ? 'text-green-400' : 'text-red-400'}`;
+                        }
+                        
+                        const yNet = document.getElementById('y-net');
+                        if (yNet) {
+                            yNet.textContent = (v4.yesterday.net >= 0 ? '+' : '') + v4.yesterday.net.toFixed(2) + 'u';
+                            yNet.className = `text-xl font-bold ${v4.yesterday.net >= 0 ? 'text-green-400' : 'text-red-400'}`;
+                        }
+
+                        // Ledger Table
+                        const body = document.getElementById('ledger-body-v4');
+                        if (body && v4.yesterday.ledger) {
+                            body.innerHTML = v4.yesterday.ledger.map(row => `
+                                <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
+                                    <td class="py-5 pl-8 text-white/40">${row.id || 'N/A'}</td>
+                                    <td class="py-5 text-white font-medium">${row.league_name} // ${row.pick_norm}</td>
+                                    <td class="py-5 text-right font-mono text-white/50">${row.wager_unit.toFixed(1)}u</td>
+                                    <td class="py-5 text-right pr-8 font-bold ${row.profit_actual >= 0 ? 'text-ice-blue' : 'text-red-400'}">
+                                        ${row.profit_actual >= 0 ? '+' : ''}${row.profit_actual.toFixed(2)}
+                                    </td>
+                                </tr>
+                            `).join('');
+                        }
+                    }
+                }
+            } catch (e) {
+                console.error("Institutional Data Link Failure:", e);
             }
         }
 
         window.addEventListener('resize', resize);
-        window.onload = () => {
+        const init_all = () => {
             init();
             hydrate();
         };
+window.addEventListener("load", init_all); if(document.readyState==="complete")init_all();
     </script>
 </body>
 

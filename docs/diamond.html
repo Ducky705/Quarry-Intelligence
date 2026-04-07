@@ -203,6 +203,7 @@
             cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 4L16 11M16 28L16 21M4 16L11 16M28 16L21 16" stroke="%23E0FFFF" stroke-width="2" stroke-linecap="square"/><circle cx="16" cy="16" r="2" fill="%23E0FFFF"/></svg>') 16 16, pointer;
         }
     </style>
+    <script src="stats.js"></script>
 </head>
 
 <body class="min-h-screen relative overflow-x-hidden selection:bg-diamond-blue selection:text-black">
@@ -595,76 +596,484 @@
             createSparkle(panel);
         }, 800);
 
-        // --- DATA BINDING (PRESERVED) ---
+        // --- DATA HYDRATION (DIAMOND V2) ---
         const DATA = {
             "meta": {
-                "last_update": "2026-04-07 17:04 UTC",
-                "status": "NOMINAL"
+                        "last_update": "2026-04-07 23:22 UTC",
+                        "status": "NOMINAL"
             },
             "stats": {
-                "roi": 6.827201661317775,
-                "net_units": 90.4126316008313,
-                "record": "2330-1877-0",
-                "win_rate": 55.38388400285239,
-                "sample": 4207
+                        "roi": 1.7,
+                        "net_units": 20.76,
+                        "record": "1952-1785-0",
+                        "win_rate": 52.2
+            },
+            "volume": {
+                        "v1_avg": 39.5,
+                        "v2_avg": 29.9,
+                        "v1_label": "High",
+                        "v2_label": "Medium"
             },
             "yesterday": {
-                "date": "Apr 06, 2026",
-                "record": "14-7-0",
-                "win_pct": 37.15798764342452,
-                "roi": 37.15798764342452,
-                "net": 3.827272727272727
+                        "record": "17-14-0",
+                        "win_pct": 54.8,
+                        "roi": -5.6,
+                        "net": -0.56,
+                        "date": "Apr 06, 2026"
             },
             "history": [
-                {"date": "04/06", "league": "NBA", "selection": "cavs -13", "odds": 90, "units": 0.5, "result": "WIN", "profit": 0.45},
-                {"date": "04/06", "league": "NCAAB", "selection": "michigan -7", "odds": 90, "units": 0.5, "result": "LOSS", "profit": -0.5},
-                {"date": "04/06", "league": "NCAAB", "selection": "connecticut vs michigan total under 144.5", "odds": 90, "units": 0.5, "result": "WIN", "profit": 0.45},
-                {"date": "04/06", "league": "NBA", "selection": "portland trail blazers vs denver nuggets total over 239.5", "odds": 90, "units": 0.5, "result": "WIN", "profit": 0.45},
-                {"date": "04/06", "league": "NBA", "selection": "76ers +8.5", "odds": 95, "units": 0.5, "result": "LOSS", "profit": -0.5},
-                {"date": "04/06", "league": "NBA", "selection": "cleveland cavaliers -14.5", "odds": 90, "units": 0.5, "result": "WIN", "profit": 0.45},
-                {"date": "04/06", "league": "NCAAB", "selection": "connecticut +7", "odds": 90, "units": 0.5, "result": "WIN", "profit": 0.45},
-                {"date": "04/06", "league": "NCAAB", "selection": "connecticut vs michigan under 145", "odds": 90, "units": 0.5, "result": "WIN", "profit": 0.45},
-                {"date": "04/06", "league": "NBA", "selection": "cavs -15", "odds": 90, "units": 0.4, "result": "WIN", "profit": 0.36},
-                {"date": "04/06", "league": "NCAAB", "selection": "connecticut +7", "odds": 90, "units": 0.4, "result": "WIN", "profit": 0.36},
-                {"date": "04/06", "league": "NCAAB", "selection": "connecticut vs michigan over 144", "odds": 90, "units": 0.4, "result": "LOSS", "profit": -0.4},
-                {"date": "04/06", "league": "NCAAB", "selection": "michigan -6.5", "odds": 89, "units": 0.4, "result": "LOSS", "profit": -0.4},
-                {"date": "04/06", "league": "NBA", "selection": "pistons vs magic over 222.5", "odds": 90, "units": 0.3, "result": "WIN", "profit": 0.27},
-                {"date": "04/06", "league": "NCAAB", "selection": "connecticut vs michigan over 144", "odds": 90, "units": 0.3, "result": "LOSS", "profit": -0.3},
-                {"date": "04/06", "league": "NBA", "selection": "mikal bridges under 16.5 total points +assists", "odds": 87, "units": 0.3, "result": "LOSS", "profit": -0.3}
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Connecticut vs Michigan Under 146",
+                                    "odds": -110,
+                                    "edge": 0.07793087618691574,
+                                    "units": 0.5,
+                                    "wager": 0.5,
+                                    "profit": 0.45,
+                                    "result": "WIN",
+                                    "match": "Connecticut vs Michigan Under 146"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Connecticut vs Michigan Under 146",
+                                    "odds": -110,
+                                    "edge": 0.060517418952215296,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": 0.36,
+                                    "result": "WIN",
+                                    "match": "Connecticut vs Michigan Under 146"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Under 144.5",
+                                    "odds": -110,
+                                    "edge": 0.05444775876544772,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": 0.36,
+                                    "result": "WIN",
+                                    "match": "Under 144.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Connecticut +7",
+                                    "odds": -110,
+                                    "edge": 0.060517418952215296,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": 0.36,
+                                    "result": "WIN",
+                                    "match": "Connecticut +7"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Connecticut +7",
+                                    "odds": -110,
+                                    "edge": 0.06266519285383676,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": 0.36,
+                                    "result": "WIN",
+                                    "match": "Connecticut +7"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Under 6.5",
+                                    "odds": -110,
+                                    "edge": 0.06123066799981247,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": 0.27,
+                                    "result": "WIN",
+                                    "match": "Under 6.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Michigan Under 75.5 Total Pts",
+                                    "odds": -110,
+                                    "edge": 0.03934533255440842,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": 0.27,
+                                    "result": "WIN",
+                                    "match": "Michigan Under 75.5 Total Pts"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Under 6.5",
+                                    "odds": -110,
+                                    "edge": 0.06123066799981247,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": 0.27,
+                                    "result": "WIN",
+                                    "match": "Under 6.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Under 144.5",
+                                    "odds": -110,
+                                    "edge": 0.0435182139987037,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": 0.27,
+                                    "result": "WIN",
+                                    "match": "Under 144.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Connecticut vs Michigan: Total Under 144.5",
+                                    "odds": -110,
+                                    "edge": 0.03555640436354135,
+                                    "units": 0.2,
+                                    "wager": 0.2,
+                                    "profit": 0.18,
+                                    "result": "WIN",
+                                    "match": "Connecticut vs Michigan: Total Under 144.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Cavs -15",
+                                    "odds": -110,
+                                    "edge": 0.030640392076401457,
+                                    "units": 0.2,
+                                    "wager": 0.2,
+                                    "profit": 0.18,
+                                    "result": "WIN",
+                                    "match": "Cavs -15"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Connecticut vs Michigan: Total Under 144.5",
+                                    "odds": -110,
+                                    "edge": 0.03555640436354135,
+                                    "units": 0.2,
+                                    "wager": 0.2,
+                                    "profit": 0.18,
+                                    "result": "WIN",
+                                    "match": "Connecticut vs Michigan: Total Under 144.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Michigan Under 75.5 Total Pts",
+                                    "odds": -110,
+                                    "edge": 0.03420469022932504,
+                                    "units": 0.2,
+                                    "wager": 0.2,
+                                    "profit": 0.18,
+                                    "result": "WIN",
+                                    "match": "Michigan Under 75.5 Total Pts"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Pistons vs Magic Over 222.5",
+                                    "odds": -110,
+                                    "edge": 0.032296626340775236,
+                                    "units": 0.2,
+                                    "wager": 0.2,
+                                    "profit": 0.18,
+                                    "result": "WIN",
+                                    "match": "Pistons vs Magic Over 222.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Cavs -15",
+                                    "odds": -110,
+                                    "edge": 0.030640392076401457,
+                                    "units": 0.2,
+                                    "wager": 0.2,
+                                    "profit": 0.18,
+                                    "result": "WIN",
+                                    "match": "Cavs -15"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Sam Merrill Over 14.5 Total Points",
+                                    "odds": -113,
+                                    "edge": 0.03619010627549579,
+                                    "units": 0.2,
+                                    "wager": 0.2,
+                                    "profit": 0.18,
+                                    "result": "WIN",
+                                    "match": "Sam Merrill Over 14.5 Total Points"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Sam Merrill Over 14.5 Total Points",
+                                    "odds": -113,
+                                    "edge": 0.03619010627549579,
+                                    "units": 0.2,
+                                    "wager": 0.2,
+                                    "profit": 0.18,
+                                    "result": "WIN",
+                                    "match": "Sam Merrill Over 14.5 Total Points"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Atlanta -1.5",
+                                    "odds": -109,
+                                    "edge": 0.040208960168859886,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": -0.3,
+                                    "result": "LOSS",
+                                    "match": "Atlanta -1.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Atlanta -1.5",
+                                    "odds": -109,
+                                    "edge": 0.040208960168859886,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": -0.3,
+                                    "result": "LOSS",
+                                    "match": "Atlanta -1.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Michigan -7",
+                                    "odds": -110,
+                                    "edge": 0.05030112323306857,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": -0.3,
+                                    "result": "LOSS",
+                                    "match": "Michigan -7"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Nuggets -8",
+                                    "odds": -110,
+                                    "edge": 0.0443364466939653,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": -0.3,
+                                    "result": "LOSS",
+                                    "match": "Nuggets -8"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "76ers +8.5",
+                                    "odds": -105,
+                                    "edge": 0.04440429637102572,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": -0.3,
+                                    "result": "LOSS",
+                                    "match": "76ers +8.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "76ers +8.5",
+                                    "odds": -105,
+                                    "edge": 0.04440429637102572,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": -0.3,
+                                    "result": "LOSS",
+                                    "match": "76ers +8.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Michigan -7",
+                                    "odds": -110,
+                                    "edge": 0.05030112323306857,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": -0.3,
+                                    "result": "LOSS",
+                                    "match": "Michigan -7"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Nuggets -8",
+                                    "odds": -110,
+                                    "edge": 0.05030112323306857,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": -0.3,
+                                    "result": "LOSS",
+                                    "match": "Nuggets -8"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Rangers ML",
+                                    "odds": 108,
+                                    "edge": 0.09929538384462022,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.4,
+                                    "result": "LOSS",
+                                    "match": "Rangers ML"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Rangers ML",
+                                    "odds": 108,
+                                    "edge": 0.09929538384462022,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.4,
+                                    "result": "LOSS",
+                                    "match": "Rangers ML"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Rangers ML",
+                                    "odds": 110,
+                                    "edge": 0.10387413842337478,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.4,
+                                    "result": "LOSS",
+                                    "match": "Rangers ML"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Rangers ML",
+                                    "odds": 110,
+                                    "edge": 0.10387413842337478,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.4,
+                                    "result": "LOSS",
+                                    "match": "Rangers ML"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Rangers ML",
+                                    "odds": 103,
+                                    "edge": 0.11780215758212487,
+                                    "units": 0.5,
+                                    "wager": 0.5,
+                                    "profit": -0.5,
+                                    "result": "LOSS",
+                                    "match": "Rangers ML"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Rangers ML",
+                                    "odds": 103,
+                                    "edge": 0.11780215758212487,
+                                    "units": 0.5,
+                                    "wager": 0.5,
+                                    "profit": -0.5,
+                                    "result": "LOSS",
+                                    "match": "Rangers ML"
+                        }
             ]
-        };
+};
 
-        function hydrate() {
-            // Stats
-            document.getElementById('stats-roi').textContent = DATA.stats.roi.toFixed(1) + '%';
-            document.getElementById('header-net').textContent = (DATA.stats.net_units >= 0 ? '+' : '') + DATA.stats.net_units.toFixed(2) + 'u';
-            document.getElementById('stats-winrate').textContent = DATA.stats.win_rate.toFixed(1) + '%';
-            document.getElementById('stats-record').textContent = DATA.stats.record.replace(/-/g, '/');
+        async function hydrate() {
+            try {
+                // Prioritize injected DATA if available, fallback to JS-Broadcast or JSON
+                let stats = DATA && Object.keys(DATA).length > 0 ? { models: { diamond: DATA } } : window.QUARRY_STATS;
+                if (!stats) {
+                    const response = await fetch('stats.json');
+                    stats = await response.json();
+                }
+                
+                const v2 = stats.models.diamond;
+                
+                if (v2) {
+                    // Header & KPIs
+                    const roiEl = document.getElementById('stats-roi');
+                    if (roiEl) roiEl.textContent = v2.roi.toFixed(1) + '%';
+                    
+                    const netEl = document.getElementById('header-net');
+                    if (netEl) netEl.textContent = (v2.net >= 0 ? '+' : '') + v2.net.toFixed(2) + 'u';
+                    
+                    const wrEl = document.getElementById('stats-winrate');
+                    if (wrEl) wrEl.textContent = v2.win_rate.toFixed(1) + '%';
+                    
+                    const recEl = document.getElementById('stats-record');
+                    if (recEl) recEl.textContent = v2.record.replace(/-/g, '/');
 
-            // Yesterday
-            document.getElementById('y-date-label').textContent = DATA.yesterday.date;
-            document.getElementById('y-record').textContent = DATA.yesterday.record;
-            document.getElementById('y-winpct').textContent = DATA.yesterday.win_pct.toFixed(1) + '%';
-            document.getElementById('y-roi').textContent = (DATA.yesterday.roi >= 0 ? '+' : '') + DATA.yesterday.roi.toFixed(1) + '%';
-            document.getElementById('y-net').textContent = (DATA.yesterday.net >= 0 ? '+' : '') + DATA.yesterday.net.toFixed(2) + 'u';
+                    // Yesterday's Summary
+                    if (v2.yesterday) {
+                        const yDate = document.getElementById('y-date-label');
+                        if (yDate) yDate.textContent = v2.yesterday.date;
+                        
+                        const yRec = document.getElementById('y-record');
+                        if (yRec) yRec.textContent = v2.yesterday.record;
+                        
+                        const yWr = document.getElementById('y-winpct');
+                        if (yWr) yWr.textContent = ((parseFloat(v2.yesterday.record.split('-')[0]) / 
+                                   (parseFloat(v2.yesterday.record.split('-')[0]) + parseFloat(v2.yesterday.record.split('-')[1]))) * 100 || 0).toFixed(1) + '%';
+                        
+                        const yRoi = document.getElementById('y-roi');
+                        if (yRoi) {
+                            yRoi.textContent = (v2.yesterday.roi >= 0 ? '+' : '') + v2.yesterday.roi.toFixed(1) + '%';
+                            yRoi.className = `text-xl font-bold ${v2.yesterday.roi >= 0 ? 'text-green-400' : 'text-red-400'}`;
+                        }
+                        
+                        const yNet = document.getElementById('y-net');
+                        if (yNet) {
+                            yNet.textContent = (v2.yesterday.net >= 0 ? '+' : '') + v2.yesterday.net.toFixed(2) + 'u';
+                            yNet.className = `text-xl font-bold ${v2.yesterday.net >= 0 ? 'text-green-400' : 'text-red-400'}`;
+                        }
 
-            // Ledger
-            const tbody = document.getElementById('ledger-body');
-            tbody.innerHTML = DATA.history.map(row => `
-                <tr class="group hover:bg-zinc-900/80 transition-colors">
-                    <td class="py-3 pl-4 text-zinc-500 text-xs">${row.date} <span class="text-zinc-600">${row.league}</span></td>
-                    <td class="py-3 font-medium text-white group-hover:text-diamond-blue transition-colors">${row.selection}</td>
-                    <td class="py-3 text-right text-zinc-400">${row.odds > 0 ? '+' + row.odds : row.odds}</td>
-                    <td class="py-3 pl-8 text-zinc-500">${row.units.toFixed(1)}u</td>
-                    <td class="py-3 text-right font-bold ${row.result === 'WIN' ? 'text-diamond-blue' : 'text-warning-orange'}">${row.result}</td>
-                    <td class="py-3 text-right pr-4 font-bold ${row.profit > 0 ? 'text-white' : 'text-zinc-600'}">
-                        ${row.profit > 0 ? '+' : ''}${row.profit.toFixed(2)}u
-                    </td>
-                </tr>
-            `).join('');
+                        // Ledger Table
+                        const body = document.getElementById('ledger-body');
+                        if (body && v2.yesterday.ledger) {
+                            body.innerHTML = v2.yesterday.ledger.map(row => `
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="py-4 pl-4 text-zinc-500">${row.pick_date}</td>
+                                    <td class="py-4 text-white font-medium">${row.league_name} // ${row.pick_norm}</td>
+                                    <td class="py-4 text-right text-zinc-500">${row.decimal_odds.toFixed(2)}</td>
+                                    <td class="py-4 pl-8 text-zinc-300">${row.wager_unit.toFixed(1)}u</td>
+                                    <td class="py-4 text-right">
+                                        <span class="px-2 py-0.5 rounded-sm text-[9px] font-bold ${row.result === 'WIN' ? 'bg-green-500/10 text-green-400' : (row.result === 'LOSS' ? 'bg-red-500/10 text-red-400' : 'bg-zinc-800 text-zinc-400')}">
+                                            ${row.result}
+                                        </span>
+                                    </td>
+                                    <td class="py-4 text-right pr-4 font-bold ${row.profit_actual >= 0 ? 'text-green-400' : 'text-red-400'}">
+                                        ${row.profit_actual >= 0 ? '+' : ''}${row.profit_actual.toFixed(2)}
+                                    </td>
+                                </tr>
+                            `).join('');
+                        }
+                    }
+                }
+            } catch (e) {
+                console.error("Institutional Data Link Failure:", e);
+            }
         }
 
-        window.onload = hydrate;
+        window.addEventListener("load", hydrate); if(document.readyState==="complete")hydrate();
     </script>
 </body>
 

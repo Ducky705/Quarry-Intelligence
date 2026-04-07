@@ -43,8 +43,8 @@ class ModelSimulator:
         # Standards
         # RELEASE DATES (Tracking starts Day-After-Release)
         self.V1_RELEASE = '2025-11-20'
-        self.V2_RELEASE = '2025-11-20'
-        self.V3_RELEASE = '2025-11-20'
+        self.V2_RELEASE = '2025-11-30'
+        self.V3_RELEASE = '2025-12-27'
         self.V4_RELEASE = '2026-04-06'
         
         # ACTIVE TRACKING STARTS
@@ -328,10 +328,5 @@ class ModelSimulator:
             return pd.DataFrame()
 
     def run_backtest_all(self):
-        """Helper for comparison graphs - ignores the institutional 'tracking' start dates."""
-        old_v4 = self.V4_START
-        self.V4_START = '2025-11-20' # Full backtest scope
-        try:
-            return self.run_v4_quartz()
-        finally:
-            self.V4_START = old_v4
+        """Helper for comparison graphs - honors the institutional 'tracking' start dates."""
+        return self.run_v4_quartz()

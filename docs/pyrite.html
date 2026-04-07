@@ -179,6 +179,7 @@
             cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 4L16 11M16 28L16 21M4 16L11 16M28 16L21 16" stroke="%23FFD700" stroke-width="2" stroke-linecap="square"/><circle cx="16" cy="16" r="2" fill="%23FFD700"/></svg>') 16 16, pointer;
         }
     </style>
+    <script src="stats.js"></script>
 </head>
 
 <body class="min-h-screen relative overflow-x-hidden selection:bg-pyrite-gold selection:text-black">
@@ -495,1111 +496,955 @@
 
         initEmbers();
 
-        // --- DATA HYDRATION (PRESERVED) ---
+        // --- DATA HYDRATION (PYRITE V1) ---
         const DATA = {
             "meta": {
-                "last_update": "2026-04-07 17:04 UTC",
-                "status": "LEGACY"
+                        "last_update": "2026-04-07 23:22 UTC",
+                        "status": "LEGACY"
             },
             "stats": {
-                "roi": 73.79148927390537,
-                "net_units": 984.7876545334948,
-                "record": "1495-1771-0",
-                "win_rate": 45.774647887323944,
-                "sample": 3266
+                        "roi": 36.1,
+                        "net_units": 490.84,
+                        "record": "2482-2930-0",
+                        "win_rate": 45.9
+            },
+            "volume": {
+                        "v1_avg": 39.5,
+                        "v2_avg": 0,
+                        "v1_label": "High",
+                        "v2_label": "Medium"
             },
             "yesterday": {
-                "date": "Apr 06, 2026",
-                "record": "6-19-0",
-                "roi": -35.08925222717375,
-                "net": -3.5089252227173753
+                        "record": "21-49-0",
+                        "win_pct": 30.0,
+                        "roi": -24.8,
+                        "net": -2.48,
+                        "date": "Apr 06, 2026"
             },
             "history": [
+                        {
+                                    "date": "04/06",
+                                    "league": "MLB",
+                                    "selection": "Nationals ML",
+                                    "odds": 103,
+                                    "edge": 0.22809622146813158,
+                                    "units": 0.7,
+                                    "wager": 0.7,
+                                    "profit": 0.7,
                                     "result": "WIN",
-                                    "match": "Marlins ML"
+                                    "match": "Nationals ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "MLB",
-                                    "selection": "Orioles vs White Sox Under 9",
-                                    "odds": -115,
-                                    "edge": 0.041430072728977585,
-                                    "units": 2.2,
-                                    "wager": 2.2,
-                                    "profit": 1.94,
+                                    "selection": "Nationals ML",
+                                    "odds": 103,
+                                    "edge": 0.22809622146813158,
+                                    "units": 0.7,
+                                    "wager": 0.7,
+                                    "profit": 0.7,
                                     "result": "WIN",
-                                    "match": "Orioles vs White Sox Under 9"
+                                    "match": "Nationals ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "MLB",
-                                    "selection": "Twins ML",
-                                    "odds": -115,
-                                    "edge": 0.03926666254221001,
-                                    "units": 2.1,
-                                    "wager": 2.1,
-                                    "profit": 1.84,
+                                    "selection": "Nationals ML",
+                                    "odds": 103,
+                                    "edge": 0.22108212568489793,
+                                    "units": 0.7,
+                                    "wager": 0.7,
+                                    "profit": 0.68,
                                     "result": "WIN",
-                                    "match": "Twins ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Connecticut vs Michigan Under 146",
-                                    "odds": -110,
-                                    "edge": 0.03745779253187631,
-                                    "units": 2.0,
-                                    "wager": 2.0,
-                                    "profit": 1.79,
-                                    "result": "WIN",
-                                    "match": "Connecticut vs Michigan Under 146"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Michael Wacha (RHP), Tanner Bibee (RHP) Must Start",
-                                    "odds": 100,
-                                    "edge": 0.0355989933013916,
-                                    "units": 1.8,
-                                    "wager": 1.8,
-                                    "profit": 1.78,
-                                    "result": "WIN",
-                                    "match": "Michael Wacha (RHP), Tanner Bibee (RHP) Must Start"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Philadelphia Phillies -112 Action ML",
-                                    "odds": -112,
-                                    "edge": 0.034189708952633846,
-                                    "units": 1.8,
-                                    "wager": 1.8,
-                                    "profit": 1.62,
-                                    "result": "WIN",
-                                    "match": "Philadelphia Phillies -112 Action ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Detroit Pistons vs Orlando Magic: Total Over 222",
-                                    "odds": -110,
-                                    "edge": 0.03385105587187265,
-                                    "units": 1.8,
-                                    "wager": 1.8,
-                                    "profit": 1.62,
-                                    "result": "WIN",
-                                    "match": "Detroit Pistons vs Orlando Magic: Total Over 222"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Blazers +8",
-                                    "odds": -115,
-                                    "edge": 0.03391768211542168,
-                                    "units": 1.8,
-                                    "wager": 1.8,
-                                    "profit": 1.59,
-                                    "result": "WIN",
-                                    "match": "Blazers +8"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Connecticut vs Michigan: Total Under 145.5",
-                                    "odds": -110,
-                                    "edge": 0.031125216257004484,
-                                    "units": 1.6,
-                                    "wager": 1.6,
-                                    "profit": 1.49,
-                                    "result": "WIN",
-                                    "match": "Connecticut vs Michigan: Total Under 145.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Cleveland Cavaliers -14.5",
-                                    "odds": -110,
-                                    "edge": 0.029528169404892668,
-                                    "units": 1.6,
-                                    "wager": 1.6,
-                                    "profit": 1.41,
-                                    "result": "WIN",
-                                    "match": "Cleveland Cavaliers -14.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Portland Trail Blazers +7.5",
-                                    "odds": -110,
-                                    "edge": 0.02740314460936044,
-                                    "units": 1.4,
-                                    "wager": 1.4,
-                                    "profit": 1.31,
-                                    "result": "WIN",
-                                    "match": "Portland Trail Blazers +7.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Angels ML",
-                                    "odds": 135,
-                                    "edge": 0.0221897154412371,
-                                    "units": 1.0,
-                                    "wager": 1.0,
-                                    "profit": 1.3,
-                                    "result": "WIN",
-                                    "match": "Angels ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Astros vs Rockies",
-                                    "odds": 136,
-                                    "edge": 0.019547830193729798,
-                                    "units": 0.8,
-                                    "wager": 0.8,
-                                    "profit": 1.15,
-                                    "result": "WIN",
-                                    "match": "Astros vs Rockies"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Orioles vs White Sox Under 9",
-                                    "odds": -115,
-                                    "edge": 0.021664397661075974,
-                                    "units": 1.2,
-                                    "wager": 1.2,
-                                    "profit": 1.01,
-                                    "result": "WIN",
-                                    "match": "Orioles vs White Sox Under 9"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Magic +2",
-                                    "odds": -110,
-                                    "edge": 0.02026101804914926,
-                                    "units": 1.1,
-                                    "wager": 1.1,
-                                    "profit": 0.97,
-                                    "result": "WIN",
-                                    "match": "Magic +2"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Rays ML",
-                                    "odds": 135,
-                                    "edge": 0.012492486771116862,
-                                    "units": 0.5,
-                                    "wager": 0.5,
-                                    "profit": 0.73,
-                                    "result": "WIN",
-                                    "match": "Rays ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Connecticut vs Michigan Under 144.5",
-                                    "odds": -216,
-                                    "edge": 0.018839631654039235,
-                                    "units": 1.5,
-                                    "wager": 1.5,
-                                    "profit": 0.69,
-                                    "result": "WIN",
-                                    "match": "Connecticut vs Michigan Under 144.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "Other",
-                                    "selection": "AGF Aarhus -0.25 vs Viborg FF",
-                                    "odds": -110,
-                                    "edge": 0.009412078630356535,
-                                    "units": 0.5,
-                                    "wager": 0.5,
-                                    "profit": 0.45,
-                                    "result": "WIN",
-                                    "match": "AGF Aarhus -0.25 vs Viborg FF"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "Soccer",
-                                    "selection": "Derby County ML",
-                                    "odds": -110,
-                                    "edge": 0.008487729799179777,
-                                    "units": 0.4,
-                                    "wager": 0.4,
-                                    "profit": 0.41,
-                                    "result": "WIN",
-                                    "match": "Derby County ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "Other",
-                                    "selection": "Bodo Glimt -2 vs Kristiansund",
-                                    "odds": -110,
-                                    "edge": 0.007461695444016203,
-                                    "units": 0.4,
-                                    "wager": 0.4,
-                                    "profit": 0.36,
-                                    "result": "WIN",
-                                    "match": "Bodo Glimt -2 vs Kristiansund"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Chicago Cubs vs Tampa Bay Rays: Total Over 7.5 (-120) Jameson Taillon (RHP), Shane McClanahan (LHP) Must Start",
-                                    "odds": -120,
-                                    "edge": 0.0076497955755754354,
-                                    "units": 0.4,
-                                    "wager": 0.4,
-                                    "profit": 0.35,
-                                    "result": "WIN",
-                                    "match": "Chicago Cubs vs Tampa Bay Rays: Total Over 7.5 (-120) Jameson Taillon (RHP), Shane McClanahan (LHP) Must Start"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Connecticut vs Michigan: Total Under 146.5",
-                                    "odds": -110,
-                                    "edge": 0.007039813768295988,
-                                    "units": 0.4,
-                                    "wager": 0.4,
-                                    "profit": 0.34,
-                                    "result": "WIN",
-                                    "match": "Connecticut vs Michigan: Total Under 146.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "Other",
-                                    "selection": "Tromso -0.75",
-                                    "odds": -110,
-                                    "edge": 0.00688060976210092,
-                                    "units": 0.4,
-                                    "wager": 0.4,
-                                    "profit": 0.33,
-                                    "result": "WIN",
-                                    "match": "Tromso -0.75"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Astros vs Rockies Over 10",
-                                    "odds": -110,
-                                    "edge": 0.0061974213236853926,
-                                    "units": 0.3,
-                                    "wager": 0.3,
-                                    "profit": 0.3,
-                                    "result": "WIN",
-                                    "match": "Astros vs Rockies Over 10"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Spurs -8.5",
-                                    "odds": -110,
-                                    "edge": 0.005606620084671721,
-                                    "units": 0.3,
-                                    "wager": 0.3,
-                                    "profit": 0.27,
-                                    "result": "WIN",
-                                    "match": "Spurs -8.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Rays ML",
-                                    "odds": -120,
-                                    "edge": 0.005459742112593258,
-                                    "units": 0.3,
-                                    "wager": 0.3,
-                                    "profit": 0.25,
-                                    "result": "WIN",
-                                    "match": "Rays ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Los Angeles Dodgers -140 Action ML",
-                                    "odds": -140,
-                                    "edge": 0.0038945476214091723,
-                                    "units": 0.2,
-                                    "wager": 0.2,
-                                    "profit": 0.17,
-                                    "result": "WIN",
-                                    "match": "Los Angeles Dodgers -140 Action ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "San Antonio Spurs -8.5",
-                                    "odds": -110,
-                                    "edge": 0.0028632567042395918,
-                                    "units": 0.2,
-                                    "wager": 0.2,
-                                    "profit": 0.14,
-                                    "result": "WIN",
-                                    "match": "San Antonio Spurs -8.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NHL",
-                                    "selection": "Seattle Mariners vs Texas Rangers: Total Under 7.5 (-110) Action",
-                                    "odds": -110,
-                                    "edge": 0.00284775949659799,
-                                    "units": 0.1,
-                                    "wager": 0.1,
-                                    "profit": 0.14,
-                                    "result": "WIN",
-                                    "match": "Seattle Mariners vs Texas Rangers: Total Under 7.5 (-110) Action"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Rays ML",
-                                    "odds": -120,
-                                    "edge": 0.0023496909575029257,
-                                    "units": 0.1,
-                                    "wager": 0.1,
-                                    "profit": 0.11,
-                                    "result": "WIN",
-                                    "match": "Rays ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Cavs -13",
-                                    "odds": -110,
-                                    "edge": 0.002035228979019865,
-                                    "units": 0.1,
-                                    "wager": 0.1,
-                                    "profit": 0.1,
-                                    "result": "WIN",
-                                    "match": "Cavs -13"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Portland Trail Blazers vs Denver Nuggets: Total Over 239.5",
-                                    "odds": -110,
-                                    "edge": 0.002035228979019865,
-                                    "units": 0.1,
-                                    "wager": 0.1,
-                                    "profit": 0.1,
-                                    "result": "WIN",
-                                    "match": "Portland Trail Blazers vs Denver Nuggets: Total Over 239.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Detroit Pistons vs Orlando Magic: Total Over 224.5",
-                                    "odds": -110,
-                                    "edge": 0.0015204236620948164,
-                                    "units": 0.1,
-                                    "wager": 0.1,
-                                    "profit": 0.07,
-                                    "result": "WIN",
-                                    "match": "Detroit Pistons vs Orlando Magic: Total Over 224.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Angels +1.5",
-                                    "odds": -110,
-                                    "edge": 0.0009465501421973554,
-                                    "units": 0.0,
-                                    "wager": 0.0,
-                                    "profit": 0.05,
-                                    "result": "WIN",
-                                    "match": "Angels +1.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Connecticut vs Michigan Under 146",
-                                    "odds": -110,
-                                    "edge": 0.0005057141894385664,
-                                    "units": 0.0,
-                                    "wager": 0.0,
-                                    "profit": 0.02,
-                                    "result": "WIN",
-                                    "match": "Connecticut vs Michigan Under 146"
+                                    "match": "Nationals ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "MLB",
                                     "selection": "Rays ML",
                                     "odds": -102,
-                                    "edge": 0.0002979919461920666,
-                                    "units": 0.0,
-                                    "wager": 0.0,
-                                    "profit": 0.01,
+                                    "edge": 0.049993364527674,
+                                    "units": 0.2,
+                                    "wager": 0.2,
+                                    "profit": 0.15,
                                     "result": "WIN",
                                     "match": "Rays ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "MLB",
-                                    "selection": "Pirates ML",
-                                    "odds": -135,
-                                    "edge": 0.0006978423037427017,
-                                    "units": 0.0,
-                                    "wager": 0.0,
-                                    "profit": -0.04,
-                                    "result": "LOSS",
-                                    "match": "Pirates ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Mikal Bridges Under 16.5 Total Points + Assists",
-                                    "odds": -114,
-                                    "edge": 0.0012188888041773094,
-                                    "units": 0.1,
-                                    "wager": 0.1,
-                                    "profit": -0.07,
-                                    "result": "LOSS",
-                                    "match": "Mikal Bridges Under 16.5 Total Points + Assists"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Grizzlies +15",
-                                    "odds": -110,
-                                    "edge": 0.0013193771952674238,
-                                    "units": 0.1,
-                                    "wager": 0.1,
-                                    "profit": -0.07,
-                                    "result": "LOSS",
-                                    "match": "Grizzlies +15"
+                                    "selection": "Rays ML",
+                                    "odds": -102,
+                                    "edge": 0.049993364527674,
+                                    "units": 0.2,
+                                    "wager": 0.2,
+                                    "profit": 0.15,
+                                    "result": "WIN",
+                                    "match": "Rays ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "MLB",
-                                    "selection": "Toronto Blue Jays ML",
-                                    "odds": 123,
-                                    "edge": 0.002085313401414657,
+                                    "selection": "Guardians ML",
+                                    "odds": 103,
+                                    "edge": 0.045692418596427475,
                                     "units": 0.1,
                                     "wager": 0.1,
-                                    "profit": -0.09,
-                                    "result": "LOSS",
-                                    "match": "Toronto Blue Jays ML"
+                                    "profit": 0.14,
+                                    "result": "WIN",
+                                    "match": "Guardians ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "MLB",
-                                    "selection": "Blue Jays ML",
-                                    "odds": 120,
-                                    "edge": 0.0024372772736983017,
+                                    "selection": "Guardians ML",
+                                    "odds": 103,
+                                    "edge": 0.045692418596427475,
                                     "units": 0.1,
                                     "wager": 0.1,
-                                    "profit": -0.11,
-                                    "result": "LOSS",
-                                    "match": "Blue Jays ML"
+                                    "profit": 0.14,
+                                    "result": "WIN",
+                                    "match": "Guardians ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NBA",
-                                    "selection": "Detroit Pistons vs Orlando Magic: Total Under 225.5",
-                                    "odds": -110,
-                                    "edge": 0.0028632567042395918,
-                                    "units": 0.2,
-                                    "wager": 0.2,
-                                    "profit": -0.15,
-                                    "result": "LOSS",
-                                    "match": "Detroit Pistons vs Orlando Magic: Total Under 225.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Pirates ML",
-                                    "odds": -125,
-                                    "edge": 0.0034725930955674666,
-                                    "units": 0.2,
-                                    "wager": 0.2,
-                                    "profit": -0.2,
-                                    "result": "LOSS",
-                                    "match": "Pirates ML"
+                                    "selection": "Magic +3",
+                                    "odds": -105,
+                                    "edge": 0.0474819424675732,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": 0.14,
+                                    "result": "WIN",
+                                    "match": "Magic +3"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NBA",
-                                    "selection": "Hawks ML",
-                                    "odds": -115,
-                                    "edge": 0.0037757324617961885,
-                                    "units": 0.2,
-                                    "wager": 0.2,
-                                    "profit": -0.2,
-                                    "result": "LOSS",
-                                    "match": "Hawks ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Grizzlies +15",
-                                    "odds": -110,
-                                    "edge": 0.004608957540421232,
-                                    "units": 0.2,
-                                    "wager": 0.2,
-                                    "profit": -0.24,
-                                    "result": "LOSS",
-                                    "match": "Grizzlies +15"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Michigan Total Over 75.5",
-                                    "odds": -118,
-                                    "edge": 0.004966297280897813,
-                                    "units": 0.3,
-                                    "wager": 0.3,
-                                    "profit": -0.27,
-                                    "result": "LOSS",
-                                    "match": "Michigan Total Over 75.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Connecticut vs Michigan Over 144",
-                                    "odds": -110,
-                                    "edge": 0.005291549932389006,
-                                    "units": 0.3,
-                                    "wager": 0.3,
-                                    "profit": -0.28,
-                                    "result": "LOSS",
-                                    "match": "Connecticut vs Michigan Over 144"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Pirates ML",
-                                    "odds": -129,
-                                    "edge": 0.004951488763484391,
-                                    "units": 0.3,
-                                    "wager": 0.3,
-                                    "profit": -0.28,
-                                    "result": "LOSS",
-                                    "match": "Pirates ML"
+                                    "selection": "Magic +3",
+                                    "odds": -105,
+                                    "edge": 0.0474819424675732,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": 0.14,
+                                    "result": "WIN",
+                                    "match": "Magic +3"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NHL",
-                                    "selection": "Kings ML",
-                                    "odds": 120,
-                                    "edge": 0.008105738596482726,
-                                    "units": 0.4,
-                                    "wager": 0.4,
-                                    "profit": -0.37,
-                                    "result": "LOSS",
-                                    "match": "Kings ML"
+                                    "selection": "Regulation Winnipeg Jets ML",
+                                    "odds": -105,
+                                    "edge": 0.03611873417365841,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": 0.11,
+                                    "result": "WIN",
+                                    "match": "Regulation Winnipeg Jets ML"
                         },
                         {
                                     "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Guardians -1.5",
-                                    "odds": -110,
-                                    "edge": 0.0077023789996192304,
-                                    "units": 0.4,
-                                    "wager": 0.4,
-                                    "profit": -0.4,
-                                    "result": "LOSS",
-                                    "match": "Guardians -1.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Pirates ML",
-                                    "odds": -125,
-                                    "edge": 0.007659163739946129,
-                                    "units": 0.4,
-                                    "wager": 0.4,
-                                    "profit": -0.43,
-                                    "result": "LOSS",
-                                    "match": "Pirates ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NBA",
-                                    "selection": "Nuggets -7.5",
-                                    "odds": -108,
-                                    "edge": 0.008517457888676638,
-                                    "units": 0.4,
-                                    "wager": 0.4,
-                                    "profit": -0.44,
-                                    "result": "LOSS",
-                                    "match": "Nuggets -7.5"
+                                    "league": "NHL",
+                                    "selection": "Regulation Winnipeg Jets ML",
+                                    "odds": -105,
+                                    "edge": 0.03611873417365841,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": 0.11,
+                                    "result": "WIN",
+                                    "match": "Regulation Winnipeg Jets ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "Other",
-                                    "selection": "IK Start vs Sarpsborg 08 -0.75",
+                                    "selection": "Club Rubio Nu vs Sportivo Trinidense",
+                                    "odds": 105,
+                                    "edge": 0.030210387416002182,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": 0.09,
+                                    "result": "WIN",
+                                    "match": "Club Rubio Nu vs Sportivo Trinidense"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "Other",
+                                    "selection": "Club Rubio Nu vs Sportivo Trinidense",
+                                    "odds": 105,
+                                    "edge": 0.030210387416002182,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": 0.09,
+                                    "result": "WIN",
+                                    "match": "Club Rubio Nu vs Sportivo Trinidense"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Magic +3",
+                                    "odds": -105,
+                                    "edge": 0.025222587876203573,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": 0.07,
+                                    "result": "WIN",
+                                    "match": "Magic +3"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Magic +3",
+                                    "odds": -105,
+                                    "edge": 0.025222587876203573,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": 0.07,
+                                    "result": "WIN",
+                                    "match": "Magic +3"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Connecticut vs Michigan Under 145",
                                     "odds": -110,
-                                    "edge": 0.009412078630356535,
-                                    "units": 0.5,
-                                    "wager": 0.5,
-                                    "profit": -0.49,
+                                    "edge": 0.023271887075333342,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": 0.07,
+                                    "result": "WIN",
+                                    "match": "Connecticut vs Michigan Under 145"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Connecticut vs Michigan Under 145",
+                                    "odds": -110,
+                                    "edge": 0.023271887075333342,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": 0.07,
+                                    "result": "WIN",
+                                    "match": "Connecticut vs Michigan Under 145"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Orlando Magic ML",
+                                    "odds": 108,
+                                    "edge": 0.01089628155414879,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": 0.03,
+                                    "result": "WIN",
+                                    "match": "Orlando Magic ML"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Orlando Magic ML",
+                                    "odds": 108,
+                                    "edge": 0.01089628155414879,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": 0.03,
+                                    "result": "WIN",
+                                    "match": "Orlando Magic ML"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Connecticut +7",
+                                    "odds": -110,
+                                    "edge": 0.010942308675675139,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": 0.03,
+                                    "result": "WIN",
+                                    "match": "Connecticut +7"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Connecticut +7",
+                                    "odds": -110,
+                                    "edge": 0.010942308675675139,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": 0.03,
+                                    "result": "WIN",
+                                    "match": "Connecticut +7"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Connecticut vs Michigan: Total Over 144.5",
+                                    "odds": -102,
+                                    "edge": 0.002397029116602223,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.01,
                                     "result": "LOSS",
-                                    "match": "IK Start vs Sarpsborg 08 -0.75"
+                                    "match": "Connecticut vs Michigan: Total Over 144.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Connecticut vs Michigan: Total Over 144.5",
+                                    "odds": -102,
+                                    "edge": 0.002397029116602223,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.01,
+                                    "result": "LOSS",
+                                    "match": "Connecticut vs Michigan: Total Over 144.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Grizzlies +15.5",
+                                    "odds": -115,
+                                    "edge": 0.004167931024418259,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.01,
+                                    "result": "LOSS",
+                                    "match": "Grizzlies +15.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Grizzlies +15.5",
+                                    "odds": -115,
+                                    "edge": 0.004167931024418259,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.01,
+                                    "result": "LOSS",
+                                    "match": "Grizzlies +15.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "MLB",
+                                    "selection": "Detroit Tigers vs Minnesota Twins: Total Under 7 (-102) Casey Mize (RHP), Joe Ryan (RHP) Must Start",
+                                    "odds": -102,
+                                    "edge": 0.0073928520230963635,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.02,
+                                    "result": "LOSS",
+                                    "match": "Detroit Tigers vs Minnesota Twins: Total Under 7 (-102) Casey Mize (RHP), Joe Ryan (RHP) Must Start"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "MLB",
+                                    "selection": "Detroit Tigers vs Minnesota Twins: Total Under 7 (-102) Casey Mize (RHP), Joe Ryan (RHP) Must Start",
+                                    "odds": -102,
+                                    "edge": 0.0073928520230963635,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.02,
+                                    "result": "LOSS",
+                                    "match": "Detroit Tigers vs Minnesota Twins: Total Under 7 (-102) Casey Mize (RHP), Joe Ryan (RHP) Must Start"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NHL",
-                                    "selection": "Predators vs Kings Over 5.5",
-                                    "odds": -125,
-                                    "edge": 0.010918524530198814,
-                                    "units": 0.6,
-                                    "wager": 0.6,
-                                    "profit": -0.61,
+                                    "selection": "Seattle Kraken vs Winnipeg Jets: Total Under 5.5",
+                                    "odds": -104,
+                                    "edge": 0.010059147488837183,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.03,
                                     "result": "LOSS",
-                                    "match": "Predators vs Kings Over 5.5"
+                                    "match": "Seattle Kraken vs Winnipeg Jets: Total Under 5.5"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NHL",
-                                    "selection": "Nashville Predators ML",
-                                    "odds": 113,
-                                    "edge": 0.014318214056077694,
-                                    "units": 0.7,
-                                    "wager": 0.7,
-                                    "profit": -0.67,
+                                    "selection": "Seattle Kraken vs Winnipeg Jets: Total Under 5.5",
+                                    "odds": -104,
+                                    "edge": 0.010059147488837183,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.03,
                                     "result": "LOSS",
-                                    "match": "Nashville Predators ML"
+                                    "match": "Seattle Kraken vs Winnipeg Jets: Total Under 5.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Michigan -6.5",
+                                    "odds": -105,
+                                    "edge": 0.010645735554578817,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.03,
+                                    "result": "LOSS",
+                                    "match": "Michigan -6.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Michigan -6.5",
+                                    "odds": -105,
+                                    "edge": 0.010645735554578817,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.03,
+                                    "result": "LOSS",
+                                    "match": "Michigan -6.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Hawks -1.5",
+                                    "odds": -108,
+                                    "edge": 0.011998309538914675,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.04,
+                                    "result": "LOSS",
+                                    "match": "Hawks -1.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Hawks -1.5",
+                                    "odds": -108,
+                                    "edge": 0.011998309538914675,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.04,
+                                    "result": "LOSS",
+                                    "match": "Hawks -1.5"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NBA",
                                     "selection": "76ers +8.5",
                                     "odds": -105,
-                                    "edge": 0.013983059220197713,
-                                    "units": 0.7,
-                                    "wager": 0.7,
-                                    "profit": -0.72,
+                                    "edge": 0.012557256512525594,
+                                    "units": 0.0,
+                                    "wager": 0.0,
+                                    "profit": -0.04,
                                     "result": "LOSS",
                                     "match": "76ers +8.5"
                         },
                         {
                                     "date": "04/06",
-                                    "league": "Soccer",
-                                    "selection": "Cardiff vs Peterborough: Total Over 3",
-                                    "odds": -140,
-                                    "edge": 0.01451055208841967,
-                                    "units": 0.9,
-                                    "wager": 0.9,
-                                    "profit": -0.87,
+                                    "league": "NHL",
+                                    "selection": "Mariners vs Rangers Over 7.5",
+                                    "odds": -105,
+                                    "edge": 0.016560602478864705,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.05,
                                     "result": "LOSS",
-                                    "match": "Cardiff vs Peterborough: Total Over 3"
+                                    "match": "Mariners vs Rangers Over 7.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Mariners vs Rangers Over 7.5",
+                                    "odds": -105,
+                                    "edge": 0.016560602478864705,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.05,
+                                    "result": "LOSS",
+                                    "match": "Mariners vs Rangers Over 7.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Chicago Blackhawks vs San Jose Sharks: Total Over 6.5",
+                                    "odds": -100,
+                                    "edge": 0.018376410007476807,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.06,
+                                    "result": "LOSS",
+                                    "match": "Chicago Blackhawks vs San Jose Sharks: Total Over 6.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Chicago Blackhawks vs San Jose Sharks: Total Over 6.5",
+                                    "odds": -100,
+                                    "edge": 0.018376410007476807,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.06,
+                                    "result": "LOSS",
+                                    "match": "Chicago Blackhawks vs San Jose Sharks: Total Over 6.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "MLB",
+                                    "selection": "Reds vs Marlins Over 8",
+                                    "odds": -105,
+                                    "edge": 0.0181276681946545,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.06,
+                                    "result": "LOSS",
+                                    "match": "Reds vs Marlins Over 8"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "MLB",
+                                    "selection": "Reds vs Marlins Over 8",
+                                    "odds": -105,
+                                    "edge": 0.0181276681946545,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.06,
+                                    "result": "LOSS",
+                                    "match": "Reds vs Marlins Over 8"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "MLB",
+                                    "selection": "Blue Jays ML",
+                                    "odds": 131,
+                                    "edge": 0.021717186614032435,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.06,
+                                    "result": "LOSS",
+                                    "match": "Blue Jays ML"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "MLB",
+                                    "selection": "Blue Jays ML",
+                                    "odds": 131,
+                                    "edge": 0.021717186614032435,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.06,
+                                    "result": "LOSS",
+                                    "match": "Blue Jays ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NCAAB",
-                                    "selection": "California vs San Francisco: Total Over 12.5",
-                                    "odds": -115,
-                                    "edge": 0.017487959806309128,
-                                    "units": 0.9,
-                                    "wager": 0.9,
-                                    "profit": -0.94,
+                                    "selection": "Connecticut vs Michigan: Total Over 144.5",
+                                    "odds": -102,
+                                    "edge": 0.020239798739404957,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.06,
                                     "result": "LOSS",
-                                    "match": "California vs San Francisco: Total Over 12.5"
+                                    "match": "Connecticut vs Michigan: Total Over 144.5"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NCAAB",
-                                    "selection": "Michigan -6.5",
-                                    "odds": -110,
-                                    "edge": 0.019294469129471525,
-                                    "units": 1.0,
-                                    "wager": 1.0,
-                                    "profit": -1.01,
+                                    "selection": "Connecticut vs Michigan: Total Over 144.5",
+                                    "odds": -102,
+                                    "edge": 0.020239798739404957,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.06,
                                     "result": "LOSS",
-                                    "match": "Michigan -6.5"
+                                    "match": "Connecticut vs Michigan: Total Over 144.5"
                         },
                         {
                                     "date": "04/06",
-                                    "league": "Other",
-                                    "selection": "AC Milan vs Napoli Over 2.25",
-                                    "odds": -110,
-                                    "edge": 0.0209729955309913,
-                                    "units": 1.1,
-                                    "wager": 1.1,
-                                    "profit": -1.1,
+                                    "league": "NBA",
+                                    "selection": "Hawks -1.5",
+                                    "odds": -108,
+                                    "edge": 0.02375073616321277,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.08,
                                     "result": "LOSS",
-                                    "match": "AC Milan vs Napoli Over 2.25"
+                                    "match": "Hawks -1.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Hawks -1.5",
+                                    "odds": -108,
+                                    "edge": 0.02375073616321277,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.08,
+                                    "result": "LOSS",
+                                    "match": "Hawks -1.5"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NHL",
                                     "selection": "Nashville Predators ML",
                                     "odds": 113,
-                                    "edge": 0.027412430641236996,
-                                    "units": 1.3,
-                                    "wager": 1.3,
-                                    "profit": -1.29,
+                                    "edge": 0.031012700197282528,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.09,
                                     "result": "LOSS",
                                     "match": "Nashville Predators ML"
                         },
                         {
                                     "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Pirates ML",
-                                    "odds": -135,
-                                    "edge": 0.023464015189637477,
-                                    "units": 1.4,
-                                    "wager": 1.4,
-                                    "profit": -1.38,
+                                    "league": "NHL",
+                                    "selection": "Nashville Predators ML",
+                                    "odds": 113,
+                                    "edge": 0.031012700197282528,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.09,
                                     "result": "LOSS",
-                                    "match": "Pirates ML"
+                                    "match": "Nashville Predators ML"
                         },
                         {
                                     "date": "04/06",
-                                    "league": "Other",
-                                    "selection": "Birmingham City vs Ipswich Town -1",
-                                    "odds": -110,
-                                    "edge": 0.027106432687668547,
-                                    "units": 1.4,
-                                    "wager": 1.4,
-                                    "profit": -1.42,
+                                    "league": "NHL",
+                                    "selection": "Rangers ML",
+                                    "odds": 103,
+                                    "edge": 0.030524526617209946,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.09,
                                     "result": "LOSS",
-                                    "match": "Birmingham City vs Ipswich Town -1"
+                                    "match": "Rangers ML"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Rangers ML",
+                                    "odds": 103,
+                                    "edge": 0.030524526617209946,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.09,
+                                    "result": "LOSS",
+                                    "match": "Rangers ML"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Nuggets -7.5",
+                                    "odds": -108,
+                                    "edge": 0.031102611468388552,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.1,
+                                    "result": "LOSS",
+                                    "match": "Nuggets -7.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Nuggets -7.5",
+                                    "odds": -108,
+                                    "edge": 0.031102611468388552,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.1,
+                                    "result": "LOSS",
+                                    "match": "Nuggets -7.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Rangers ML",
+                                    "odds": 108,
+                                    "edge": 0.03379456813518822,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.1,
+                                    "result": "LOSS",
+                                    "match": "Rangers ML"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Rangers ML",
+                                    "odds": 108,
+                                    "edge": 0.03379456813518822,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.1,
+                                    "result": "LOSS",
+                                    "match": "Rangers ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NCAAB",
                                     "selection": "Michigan -6.5",
                                     "odds": -105,
-                                    "edge": 0.033770191960218465,
-                                    "units": 1.7,
-                                    "wager": 1.7,
-                                    "profit": -1.73,
+                                    "edge": 0.03556989460456661,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.11,
+                                    "result": "LOSS",
+                                    "match": "Michigan -6.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NCAAB",
+                                    "selection": "Michigan -6.5",
+                                    "odds": -105,
+                                    "edge": 0.03556989460456661,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.11,
                                     "result": "LOSS",
                                     "match": "Michigan -6.5"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NBA",
-                                    "selection": "Pistons vs Magic Under 225.5",
-                                    "odds": -110,
-                                    "edge": 0.03368088461103891,
-                                    "units": 1.8,
-                                    "wager": 1.8,
-                                    "profit": -1.77,
+                                    "selection": "Denver Nuggets -8.5",
+                                    "odds": -105,
+                                    "edge": 0.03752427130210689,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.12,
                                     "result": "LOSS",
-                                    "match": "Pistons vs Magic Under 225.5"
+                                    "match": "Denver Nuggets -8.5"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NBA",
+                                    "selection": "Denver Nuggets -8.5",
+                                    "odds": -105,
+                                    "edge": 0.03752427130210689,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.12,
+                                    "result": "LOSS",
+                                    "match": "Denver Nuggets -8.5"
                         },
                         {
                                     "date": "04/06",
                                     "league": "MLB",
-                                    "selection": "St. Louis Cardinals -115 Action ML",
-                                    "odds": -115,
-                                    "edge": 0.03346206421075859,
-                                    "units": 1.8,
-                                    "wager": 1.8,
-                                    "profit": -1.8,
+                                    "selection": "Reds vs Marlins Over 8",
+                                    "odds": -105,
+                                    "edge": 0.042168367199781454,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.13,
                                     "result": "LOSS",
-                                    "match": "St. Louis Cardinals -115 Action ML"
+                                    "match": "Reds vs Marlins Over 8"
                         },
                         {
                                     "date": "04/06",
                                     "league": "MLB",
-                                    "selection": "Angels ML",
-                                    "odds": -160,
-                                    "edge": 0.027946793116055968,
-                                    "units": 1.8,
-                                    "wager": 1.8,
-                                    "profit": -1.82,
+                                    "selection": "Reds vs Marlins Over 8",
+                                    "odds": -105,
+                                    "edge": 0.042168367199781454,
+                                    "units": 0.1,
+                                    "wager": 0.1,
+                                    "profit": -0.13,
                                     "result": "LOSS",
-                                    "match": "Angels ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Red Sox ML",
-                                    "odds": 108,
-                                    "edge": 0.04198090846721947,
-                                    "units": 2.0,
-                                    "wager": 2.0,
-                                    "profit": -2.02,
-                                    "result": "LOSS",
-                                    "match": "Red Sox ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Braves vs Angels Under 8",
-                                    "odds": -110,
-                                    "edge": 0.04938891388121103,
-                                    "units": 2.6,
-                                    "wager": 2.6,
-                                    "profit": -2.59,
-                                    "result": "LOSS",
-                                    "match": "Braves vs Angels Under 8"
+                                    "match": "Reds vs Marlins Over 8"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NHL",
-                                    "selection": "Sharks ML",
-                                    "odds": 148,
-                                    "edge": 0.06283965995234825,
-                                    "units": 2.6,
-                                    "wager": 2.6,
-                                    "profit": -2.63,
+                                    "selection": "Nashville Predators ML",
+                                    "odds": 113,
+                                    "edge": 0.0575896960468919,
+                                    "units": 0.2,
+                                    "wager": 0.2,
+                                    "profit": -0.16,
                                     "result": "LOSS",
-                                    "match": "Sharks ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Michigan -6.5",
-                                    "odds": -112,
-                                    "edge": 0.05236072135421466,
-                                    "units": 2.8,
-                                    "wager": 2.8,
-                                    "profit": -2.78,
-                                    "result": "LOSS",
-                                    "match": "Pirates ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Angels ML",
-                                    "odds": -165,
-                                    "edge": 0.06544416580560064,
-                                    "units": 4.3,
-                                    "wager": 4.3,
-                                    "profit": -4.34,
-                                    "result": "LOSS",
-                                    "match": "Angels ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Michigan -6.5",
-                                    "odds": -112,
-                                    "edge": 0.05236072135421466,
-                                    "units": 2.8,
-                                    "wager": 2.8,
-                                    "profit": -2.78,
-                                    "result": "LOSS",
-                                    "match": "Michigan -6.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Michigan -6.5",
-                                    "odds": -112,
-                                    "edge": 0.05236072135421466,
-                                    "units": 2.8,
-                                    "wager": 2.8,
-                                    "profit": -2.78,
-                                    "result": "LOSS",
-                                    "match": "Michigan -6.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Blue Jays ML",
-                                    "odds": 135,
-                                    "edge": 0.06712342196322502,
-                                    "units": 2.9,
-                                    "wager": 2.9,
-                                    "profit": -2.92,
-                                    "result": "LOSS",
-                                    "match": "Blue Jays ML"
+                                    "match": "Nashville Predators ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "NHL",
-                                    "selection": "San Jose Sharks Total Over 3.5",
-                                    "odds": -110,
-                                    "edge": 0.06661113954725717,
-                                    "units": 3.5,
-                                    "wager": 3.5,
-                                    "profit": -3.5,
+                                    "selection": "Nashville Predators ML",
+                                    "odds": 113,
+                                    "edge": 0.0575896960468919,
+                                    "units": 0.2,
+                                    "wager": 0.2,
+                                    "profit": -0.16,
                                     "result": "LOSS",
-                                    "match": "San Jose Sharks Total Over 3.5"
+                                    "match": "Nashville Predators ML"
                         },
                         {
                                     "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Michigan -6.5",
-                                    "odds": -105,
-                                    "edge": 0.06915758877265743,
-                                    "units": 3.5,
-                                    "wager": 3.5,
-                                    "profit": -3.54,
+                                    "league": "NHL",
+                                    "selection": "Rangers ML",
+                                    "odds": 110,
+                                    "edge": 0.088791222799392,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": -0.26,
                                     "result": "LOSS",
-                                    "match": "Michigan -6.5"
+                                    "match": "Rangers ML"
+                        },
+                        {
+                                    "date": "04/06",
+                                    "league": "NHL",
+                                    "selection": "Rangers ML",
+                                    "odds": 110,
+                                    "edge": 0.088791222799392,
+                                    "units": 0.3,
+                                    "wager": 0.3,
+                                    "profit": -0.26,
+                                    "result": "LOSS",
+                                    "match": "Rangers ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "MLB",
-                                    "selection": "Pirates ML",
-                                    "odds": -135,
-                                    "edge": 0.06453131741665774,
-                                    "units": 3.8,
-                                    "wager": 3.8,
-                                    "profit": -3.79,
+                                    "selection": "Twins ML",
+                                    "odds": 112,
+                                    "edge": 0.1377545516445952,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.4,
                                     "result": "LOSS",
-                                    "match": "Pirates ML"
+                                    "match": "Twins ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "MLB",
-                                    "selection": "San Francisco Giants ML",
-                                    "odds": 100,
-                                    "edge": 0.08576595783233643,
-                                    "units": 4.3,
-                                    "wager": 4.3,
-                                    "profit": -4.29,
+                                    "selection": "Twins ML",
+                                    "odds": 112,
+                                    "edge": 0.1377545516445952,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.4,
                                     "result": "LOSS",
-                                    "match": "San Francisco Giants ML"
+                                    "match": "Twins ML"
                         },
                         {
                                     "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Michigan -6.5",
+                                    "league": "MLB",
+                                    "selection": "Nationals ML",
                                     "odds": -112,
-                                    "edge": 0.08744330001327227,
-                                    "units": 4.6,
-                                    "wager": 4.6,
-                                    "profit": -4.63,
+                                    "edge": 0.14638305497619342,
+                                    "units": 0.5,
+                                    "wager": 0.5,
+                                    "profit": -0.47,
                                     "result": "LOSS",
-                                    "match": "Michigan -6.5"
+                                    "match": "Nationals ML"
                         },
                         {
                                     "date": "04/06",
                                     "league": "MLB",
-                                    "selection": "Giants ML",
-                                    "odds": 105,
-                                    "edge": 0.09572483272087279,
-                                    "units": 4.7,
-                                    "wager": 4.7,
-                                    "profit": -4.67,
-                                    "result": "LOSS",
-                                    "match": "Blue Jays ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Michigan -6.5",
-                                    "odds": -105,
-                                    "edge": 0.11681335001457027,
-                                    "units": 6.0,
-                                    "wager": 6.0,
-                                    "profit": -5.99,
-                                    "result": "LOSS",
-                                    "match": "Michigan -6.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Michigan -6.5",
-                                    "odds": -110,
-                                    "edge": 0.11655947424116586,
-                                    "units": 6.1,
-                                    "wager": 6.1,
-                                    "profit": -6.12,
-                                    "result": "LOSS",
-                                    "match": "Michigan -6.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Michigan -6.5",
-                                    "odds": -115,
-                                    "edge": 0.1300158070963482,
-                                    "units": 7.0,
-                                    "wager": 7.0,
-                                    "profit": -6.99,
-                                    "result": "LOSS",
-                                    "match": "Michigan -6.5"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "MLB",
-                                    "selection": "Angels ML",
-                                    "odds": -165,
-                                    "edge": 0.11328446302773809,
-                                    "units": 7.5,
-                                    "wager": 7.5,
-                                    "profit": -7.51,
-                                    "result": "LOSS",
-                                    "match": "Angels ML"
-                        },
-                        {
-                                    "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Michigan -6.5",
+                                    "selection": "Nationals ML",
                                     "odds": -112,
-                                    "edge": 0.14698774409743975,
-                                    "units": 7.8,
-                                    "wager": 7.8,
-                                    "profit": -7.79,
+                                    "edge": 0.14638305497619342,
+                                    "units": 0.5,
+                                    "wager": 0.5,
+                                    "profit": -0.47,
                                     "result": "LOSS",
-                                    "match": "Michigan -6.5"
+                                    "match": "Nationals ML"
                         },
                         {
                                     "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Michigan -6.5",
-                                    "odds": -110,
-                                    "edge": 0.16868987537565683,
-                                    "units": 8.9,
-                                    "wager": 8.9,
-                                    "profit": -8.86,
+                                    "league": "MLB",
+                                    "selection": "Nationals ML",
+                                    "odds": -108,
+                                    "edge": 0.18303723518665027,
+                                    "units": 0.6,
+                                    "wager": 0.6,
+                                    "profit": -0.58,
                                     "result": "LOSS",
-                                    "match": "Michigan -6.5"
+                                    "match": "Nationals ML"
                         },
                         {
                                     "date": "04/06",
-                                    "league": "NCAAB",
-                                    "selection": "Michigan -6.5",
-                                    "odds": -105,
-                                    "edge": 0.25698374538886837,
-                                    "units": 13.2,
-                                    "wager": 13.2,
-                                    "profit": -13.17,
+                                    "league": "MLB",
+                                    "selection": "Nationals ML",
+                                    "odds": -108,
+                                    "edge": 0.18303723518665027,
+                                    "units": 0.6,
+                                    "wager": 0.6,
+                                    "profit": -0.58,
                                     "result": "LOSS",
-                                    "match": "Michigan -6.5"
+                                    "match": "Nationals ML"
                         }
             ]
 };
 
+          async function hydrate() {
+            try {
+                // Prioritize injected DATA if available, fallback to JS-Broadcast or JSON
+                let stats = DATA && Object.keys(DATA).length > 0 ? { models: { pyrite: DATA } } : window.QUARRY_STATS;
+                if (!stats) {
+                    const response = await fetch('stats.json');
+                    stats = await response.json();
+                }
+                
+                const v1 = stats.models.pyrite;
+                
+                if (v1) {
+                    // Header & KPIs
+                    const roiEl = document.getElementById('stats-roi');
+                    if (roiEl) roiEl.textContent = (v1.roi >= 0 ? '+' : '') + v1.roi.toFixed(1) + '%';
+                    
+                    const netEl = document.getElementById('header-net');
+                    if (netEl) netEl.textContent = (v1.net >= 0 ? '+' : '') + v1.net.toFixed(2) + 'u';
+                    
+                    const wrEl = document.getElementById('stats-winrate');
+                    if (wrEl) wrEl.textContent = v1.win_rate.toFixed(1) + '%';
+                    
+                    const recEl = document.getElementById('stats-record');
+                    if (recEl) recEl.textContent = v1.record.replace(/-/g, '/');
 
+                    // Yesterday's Summary
+                    if (v1.yesterday) {
+                        const yDate = document.getElementById('y-date-label');
+                        if (yDate) yDate.textContent = v1.yesterday.date;
+                        
+                        const yRec = document.getElementById('y-record');
+                        if (yRec) yRec.textContent = v1.yesterday.record;
+                        
+                        const yWr = document.getElementById('y-winrate');
+                        if (yWr) {
+                            const [w, l] = v1.yesterday.record.split('-').map(Number);
+                            const wr = (w / (w + l) * 100) || 0;
+                            yWr.textContent = wr.toFixed(1) + '%';
+                        }
+                        
+                        const yRoi = document.getElementById('y-roi');
+                        if (yRoi) {
+                            yRoi.textContent = (v1.yesterday.roi >= 0 ? '+' : '') + v1.yesterday.roi.toFixed(1) + '%';
+                            yRoi.className = `font-bold ${v1.yesterday.roi >= 0 ? 'text-pyrite-gold' : 'text-red-400'}`;
+                        }
+                        
+                        const yNet = document.getElementById('y-net');
+                        if (yNet) {
+                            yNet.textContent = (v1.yesterday.net >= 0 ? '+' : '') + v1.yesterday.net.toFixed(1) + 'u';
+                            yNet.className = `font-bold ${v1.yesterday.net >= 0 ? 'text-pyrite-gold' : 'text-red-400'}`;
+                        }
 
-        function hydrate() {
-            // Stats
-            document.getElementById('stats-roi').textContent = (DATA.stats.roi >= 0 ? '+' : '') + DATA.stats.roi.toFixed(1) + '%';
-
-            // Fix: Add ID to HTML above or use existing. existing ID is 'header-net'
-            document.getElementById('header-net').textContent = (DATA.stats.net_units >= 0 ? '+' : '') + DATA.stats.net_units.toFixed(2) + 'u';
-
-            document.getElementById('stats-record').textContent = DATA.stats.record.replace(/-/g, '/');
-            document.getElementById('stats-winrate').textContent = DATA.stats.win_rate.toFixed(1) + '%';
-
-            // Yesterday
-            document.getElementById('y-date-label').textContent = DATA.yesterday.date;
-            document.getElementById('y-record').textContent = DATA.yesterday.record;
-            document.getElementById('y-net').textContent = (DATA.yesterday.net >= 0 ? '+' : '') + DATA.yesterday.net.toFixed(2) + 'u';
-            document.getElementById('y-roi').textContent = (DATA.yesterday.roi >= 0 ? '+' : '') + DATA.yesterday.roi.toFixed(1) + '%';
-
-            // Ledger
-            const tbody = document.getElementById('ledger-body');
-            tbody.innerHTML = DATA.history.map(row => `
-                <tr class="group hover:bg-zinc-900/80 transition-colors">
-                    <td class="py-3 pl-4 text-zinc-500 text-xs">${row.date} <span class="text-zinc-600">${row.league}</span></td>
-                    <td class="py-3 font-medium text-zinc-300 group-hover:text-pyrite-gold transition-colors">${row.selection}</td>
-                    <td class="py-3 text-right text-zinc-400">${row.odds > 0 ? '+' + row.odds : row.odds}</td>
-                    <td class="py-3 pl-8 text-zinc-500">${row.units.toFixed(1)}u</td>
-                    <td class="py-3 text-right font-bold ${row.result === 'WIN' ? 'text-green-500' : 'text-red-500'}">${row.result}</td>
-                    <td class="py-3 text-right pr-4 font-bold ${row.profit > 0 ? 'text-pyrite-gold' : 'text-zinc-600'}">
-                        ${row.profit > 0 ? '+' : ''}${row.profit.toFixed(2)}u
-                    </td>
-                </tr>
-            `).join('');
+                        // Ledger Table
+                        const body = document.getElementById('ledger-body');
+                        if (body && v1.yesterday.ledger) {
+                            body.innerHTML = v1.yesterday.ledger.map(row => `
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="py-4 pl-4 text-zinc-500">${row.pick_date}</td>
+                                    <td class="py-4 text-white font-medium">${row.league_name} // ${row.pick_norm}</td>
+                                    <td class="py-4 text-right text-zinc-500">${row.decimal_odds.toFixed(2)}</td>
+                                    <td class="py-4 pl-8 text-zinc-300">${row.wager_unit.toFixed(1)}u</td>
+                                    <td class="py-4 text-right">
+                                        <span class="px-2 py-0.5 rounded-sm text-[9px] font-bold ${row.result === 'WIN' ? 'bg-green-500/10 text-green-400' : (row.result === 'LOSS' ? 'bg-red-500/10 text-red-400' : 'bg-zinc-800 text-zinc-400')}">
+                                            ${row.result}
+                                        </span>
+                                    </td>
+                                    <td class="py-4 text-right pr-4 font-bold ${row.profit_actual >= 0 ? 'text-green-400' : 'text-red-400'}">
+                                        ${row.profit_actual >= 0 ? '+' : ''}${row.profit_actual.toFixed(2)}
+                                    </td>
+                                </tr>
+                            `).join('');
+                        }
+                    }
+                }
+            } catch (e) {
+                console.error("Institutional Data Link Failure:", e);
+            }
         }
 
-        window.onload = hydrate;
+        window.addEventListener("load", hydrate); if(document.readyState==="complete")hydrate();
     </script>
 </body>
 

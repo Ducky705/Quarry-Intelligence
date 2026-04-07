@@ -40,8 +40,20 @@ def generate_comparison_chart():
 
     # Extract Cumulative Series
     def get_series(res_df, label):
-        if res_df.empty: return pd.Series()
-        series = res_df.groupby('pick_date')['profit_actual'].sum().cumsum()
+        if res_df.empty: return pd.Series(dtype=float)
+        
+        # FIX: Normalize to DATE to prevent intra-day vertical jumps/jitter
+        # We sum all profits for a specific day before calculating cumsum
+        res_df = res_df.copy()
+        res_df['pick_day'] = res_df['pick_date'].dt.normalize()
+        series = res_df.groupby('pick_day')['profit_actual'].sum().cumsum()
+        
+        # Institutional Alignment: Prepend 0 at the start of the tracking period
+        if not series.empty:
+            start_date = series.index.min() - pd.Timedelta(days=1)
+            series[start_date] = 0
+            series = series.sort_index()
+            
         series.name = label
         return series
 
@@ -53,11 +65,13 @@ def generate_comparison_chart():
     # Merge and FIX: Explicitly name and SORT
     bench = pd.concat([q_series, o_series, d_series, p_series], axis=1)
     bench.columns = ['v4 Quartz', 'v3 Obsidian', 'v2 Diamond', 'v1 Pyrite']
-    bench = bench.ffill().fillna(0).sort_index()
+    # FIX: Remove fillfill(0). NaNs will prevent the line from starting too early.
+    bench = bench.ffill().sort_index()
 
     print("\n📈 CURRENT PERFORMANCE BENCHMARKS:")
     for col in bench.columns:
-        print(f"  {col}: {bench[col].iloc[-1]:.2f}u")
+        val = bench[col].dropna().iloc[-1] if not bench[col].dropna().empty else 0
+        print(f"  {col}: {val:.2f}u")
     
     colors = {
         'v1 Pyrite': '#ffdd00',      # Gold/Pyrite
@@ -89,58 +103,47 @@ def generate_comparison_chart():
             series_name = str(col)
             is_focus = (series_name == focus_label)
             
+            # Drop NaNs for current model for clean start
+            curr_series = bench[col].dropna()
+            if curr_series.empty: continue
+
             color = colors.get(series_name, '#ffffff')
             if not is_focus:
-                alpha = 0.20 # Reduced for better focus
-                lw = 1.5
+                alpha = 0.15 # Further reduced for focus
+                lw = 1.0
                 zorder = 1
             else:
                 alpha = 0.95
-                lw = 3.5
+                lw = 4.0 # Thicker for flagship feel
                 zorder = 100
             
-            # Plot line
-            ax.plot(bench.index, bench[col], color=color, linewidth=lw, alpha=alpha, zorder=zorder)
+            # Plot line using its specific non-null range
+            ax.plot(curr_series.index, curr_series.values, color=color, linewidth=lw, alpha=alpha, zorder=zorder)
             
             if is_focus:
                 # Add inner glow for focus
                 for i in range(1, 4): 
-                    ax.plot(bench.index, bench[col], color=color, linewidth=lw + i*3, alpha=0.015, zorder=zorder-1)
+                    ax.plot(curr_series.index, curr_series.values, color=color, linewidth=lw + i*3, alpha=0.012, zorder=zorder-1)
 
         # --- DYNAMIC Hero-SCALING (Absolute Minimal Voids) ---
-        focus_series = bench[focus_label]
-        f_min, f_max = focus_series.min(), focus_series.max()
-        
-        # Strict Anchor: Start exactly at f_min (or slightly below for breathing)
-        delta = f_max - f_min
-        if delta < 10:
-            ax.set_ylim(f_min - 2, f_max + 10)
+        focus_series = bench[focus_label].dropna()
+        if focus_series.empty:
+            # Fallback for models with no data yet: Center on 0 with headroom
+            ax.set_ylim(-5, 15)
         else:
-            # Shift the floor up to follow the model's actual performance floor
-            ax.set_ylim(f_min - delta*0.01, f_max + delta*0.05)
+            f_min, f_max = focus_series.min(), focus_series.max()
+            delta = f_max - f_min
+            
+            # Institutional Spacing: 
+            # We add 25% top margin to avoid overlapping the HTML labels (top-left).
+            # We add 5% bottom margin for floor stability.
+            if delta < 10:
+                ax.set_ylim(f_min - 5, f_max + 25)
+            else:
+                ax.set_ylim(f_min - delta*0.05, f_max + delta*0.25)
 
         # --- FULL BLEED FORMATTING ---
-        # Strip all text and decorations
-        ax.set_axis_off() 
-        
-        # Grid - still useful if we want it visible behind ax.set_axis_off()? 
-        # (Actually axis_off removes grid. If we want grid, we keep axis but hide ticks)
-        # We'll keep axis but hide everything manually for grid control.
-        ax.set_axis_on()
-        ax.set_title("")
-        ax.set_ylabel("")
-        
-        # Grid - ultra subtle
-        ax.grid(True, which='both', linestyle='-', color='white', alpha=0.03, linewidth=0.5)
-        
-        # Axes/Ticks - minimalist invisible baseline
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        ax.spines['left'].set_visible(False)
-        ax.spines['bottom'].set_visible(False)
-        ax.tick_params(colors='#333333', labelsize=7, length=0)
-        
-        # Ensure it hits the edges (True Full Bleed)
+        ax.set_axis_off() # Absolute cleanliness
         plt.subplots_adjust(left=0, right=1, top=1, bottom=0)
         
         out_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'docs', f'comparison_{page_id}.png'))

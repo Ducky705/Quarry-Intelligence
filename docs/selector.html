@@ -564,17 +564,31 @@
 
         // --- 2. DATA HYDRATION ---
         const DATA = {
-            "pyrite": "LEGACY",
-            "diamond": "STABLE",
-            "obsidian": "ADVANCED",
-            "quartz": "FLAGSHIP"
+            "pyrite": "AGGRESSIVE",
+            "diamond": "AGGRESSIVE",
+            "obsidian": "BALANCED",
+            "quartz": "SURGICAL"
 };
 
-        function hydrate() {
-            if (document.getElementById('risk-pyrite')) document.getElementById('risk-pyrite').textContent = DATA.pyrite;
-            if (document.getElementById('risk-diamond')) document.getElementById('risk-diamond').textContent = DATA.diamond;
-            if (document.getElementById('risk-obsidian')) document.getElementById('risk-obsidian').textContent = DATA.obsidian;
-            if (document.getElementById('risk-quartz')) document.getElementById('risk-quartz').textContent = DATA.quartz;
+        async function hydrate() {
+            try {
+                const response = await fetch('stats.json');
+                const stats = await response.json();
+                
+                const models = ['pyrite', 'diamond', 'obsidian', 'quartz'];
+                models.forEach(m => {
+                    const data = stats.models[m];
+                    if (data) {
+                        const riskEl = document.getElementById(`risk-${m}`);
+                        if (riskEl) riskEl.textContent = data.status;
+                        
+                        const roiEl = document.getElementById(`roi-${m}`);
+                        if (roiEl) roiEl.textContent = (data.roi >= 0 ? '+' : '') + data.roi.toFixed(1) + '%';
+                    }
+                });
+            } catch (e) {
+                console.error("Institutional Link Failure:", e);
+            }
         }
 
         window.onload = () => {

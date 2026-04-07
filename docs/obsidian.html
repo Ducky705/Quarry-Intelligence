@@ -177,6 +177,7 @@
             cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 4L16 11M16 28L16 21M4 16L11 16M28 16L21 16" stroke="%238b5cf6" stroke-width="2" stroke-linecap="square"/><circle cx="16" cy="16" r="2" fill="%238b5cf6"/></svg>') 16 16, pointer;
         }
     </style>
+    <script src="stats.js"></script>
 </head>
 
 <body class="min-h-screen relative overflow-x-hidden selection:bg-obsidian-accent selection:text-white">
@@ -511,120 +512,269 @@
         }
 
         window.addEventListener('resize', resize);
-        window.onload = () => {
+        const init_all = () => {
             initStars();
             hydrate(); // Call hydration on load
         };
+window.addEventListener("load", init_all); if(document.readyState==="complete")init_all();
 
         // --- DATA HYDRATION (PRESERVED LOGIC) ---
         // This object is usually injected by the backend script.
         // We initialize it with mocks for fallback visualization.
+        
+
+        // --- DATA HYDRATION (OBSIDIAN V3) ---
         const DATA = {
             "v3": {
-                "roi": 24.598459854157788,
-                "winrate": 47.28260869565217,
-                "sample": 1656,
-                "record": "783/873/0",
-                "bets_day": 12.0,
-                "net": 171.08720797763823
+                        "roi": 6.101042663604921,
+                        "winrate": 47.14765100671141,
+                        "sample": 1192,
+                        "record": "562/630/0",
+                        "bets_day": 11.9,
+                        "net": 30.68580418086731
             },
             "v2": {
-                "roi": 6.827201661317775
+                        "roi": 1.736958280831002
             },
             "v1": {
-                "roi": 73.79148927390537
+                        "roi": 36.075662879251304
             },
             "yesterday_v3": {
-                "date": "Apr 06, 2026",
-                "record": "4-8-0",
-                "winrate": 33.3,
-                "roi": -14.66666666666667,
-                "net": -0.7392,
-                "history": [
-                    {"date": "04/06", "league": "NHL", "selection": "draw ml", "odds": 409, "edge": 0.281, "units": 0.42, "profit": 1.30, "result": "WIN"},
-                    {"date": "04/06", "league": "NCAAB", "selection": "connecticut ml", "odds": 355, "edge": 0.243, "units": 0.42, "profit": -0.42, "result": "LOSS"},
-                    {"date": "04/06", "league": "NHL", "selection": "sharks ml", "odds": 248, "edge": 0.121, "units": 0.42, "profit": -0.42, "result": "LOSS"},
-                    {"date": "04/06", "league": "NHL", "selection": "chicago ml", "odds": 242, "edge": 0.111, "units": 0.42, "profit": -0.42, "result": "LOSS"},
-                    {"date": "04/06", "league": "NHL", "selection": "kings ml", "odds": 220, "edge": 0.070, "units": 0.42, "profit": -0.42, "result": "LOSS"},
-                    {"date": "04/06", "league": "NHL", "selection": "nashville predators ml", "odds": 215, "edge": 0.059, "units": 0.42, "profit": -0.42, "result": "LOSS"},
-                    {"date": "04/06", "league": "NHL", "selection": "rangers ml", "odds": 210, "edge": 0.048, "units": 0.42, "profit": -0.42, "result": "LOSS"},
-                    {"date": "04/06", "league": "NBA", "selection": "orlando magic ml", "odds": 208, "edge": 0.044, "units": 0.42, "profit": 0.45, "result": "WIN"},
-                    {"date": "04/06", "league": "NHL", "selection": "sabres ml", "odds": 206, "edge": 0.039, "units": 0.42, "profit": 0.44, "result": "WIN"},
-                    {"date": "04/06", "league": "NCAAB", "selection": "uconn +6.5", "odds": 200, "edge": 0.025, "units": 0.42, "profit": 0.42, "result": "WIN"},
-                    {"date": "04/06", "league": "NHL", "selection": "chicago blackhawks vs san jose sharks total over 6.5", "odds": 200, "edge": 0.025, "units": 0.42, "profit": -0.42, "result": "LOSS"},
-                    {"date": "04/06", "league": "NCAAB", "selection": "connecticut vs michigan total over 144.5", "odds": 98, "edge": 0.020, "units": 0.42, "profit": -0.42, "result": "LOSS"}
-                ]
+                        "date": "Apr 06, 2026",
+                        "record": "4-8-0",
+                        "winrate": 33.3,
+                        "roi": -14.7,
+                        "net": -0.74,
+                        "history": [
+                                    {
+                                                "date": "04/06",
+                                                "league": "NHL",
+                                                "selection": "Draw ML",
+                                                "odds": 310,
+                                                "edge": 0.2810975609756098,
+                                                "units": 0.4,
+                                                "wager": 0.4,
+                                                "profit": 1.3,
+                                                "result": "WIN",
+                                                "match": "Draw ML"
+                                    },
+                                    {
+                                                "date": "04/06",
+                                                "league": "NBA",
+                                                "selection": "Orlando Magic ML",
+                                                "odds": 108,
+                                                "edge": 0.044230769230769296,
+                                                "units": 0.4,
+                                                "wager": 0.4,
+                                                "profit": 0.45,
+                                                "result": "WIN",
+                                                "match": "Orlando Magic ML"
+                                    },
+                                    {
+                                                "date": "04/06",
+                                                "league": "NHL",
+                                                "selection": "Sabres ML",
+                                                "odds": 106,
+                                                "edge": 0.03956310679611652,
+                                                "units": 0.4,
+                                                "wager": 0.4,
+                                                "profit": 0.45,
+                                                "result": "WIN",
+                                                "match": "Sabres ML"
+                                    },
+                                    {
+                                                "date": "04/06",
+                                                "league": "NCAAB",
+                                                "selection": "UConn +6.5",
+                                                "odds": 100,
+                                                "edge": 0.025000000000000022,
+                                                "units": 0.4,
+                                                "wager": 0.4,
+                                                "profit": 0.42,
+                                                "result": "WIN",
+                                                "match": "UConn +6.5"
+                                    },
+                                    {
+                                                "date": "04/06",
+                                                "league": "NCAAB",
+                                                "selection": "Connecticut vs Michigan: Total Over 144.5",
+                                                "odds": -102,
+                                                "edge": 0.020049504950495067,
+                                                "units": 0.4,
+                                                "wager": 0.4,
+                                                "profit": -0.42,
+                                                "result": "LOSS",
+                                                "match": "Connecticut vs Michigan: Total Over 144.5"
+                                    },
+                                    {
+                                                "date": "04/06",
+                                                "league": "NHL",
+                                                "selection": "Chicago Blackhawks vs San Jose Sharks: Total Over 6.5",
+                                                "odds": -100,
+                                                "edge": 0.025000000000000022,
+                                                "units": 0.4,
+                                                "wager": 0.4,
+                                                "profit": -0.42,
+                                                "result": "LOSS",
+                                                "match": "Chicago Blackhawks vs San Jose Sharks: Total Over 6.5"
+                                    },
+                                    {
+                                                "date": "04/06",
+                                                "league": "NHL",
+                                                "selection": "Rangers ML",
+                                                "odds": 110,
+                                                "edge": 0.04880952380952386,
+                                                "units": 0.4,
+                                                "wager": 0.4,
+                                                "profit": -0.42,
+                                                "result": "LOSS",
+                                                "match": "Rangers ML"
+                                    },
+                                    {
+                                                "date": "04/06",
+                                                "league": "NHL",
+                                                "selection": "Nashville Predators ML",
+                                                "odds": 115,
+                                                "edge": 0.05988372093023259,
+                                                "units": 0.4,
+                                                "wager": 0.4,
+                                                "profit": -0.42,
+                                                "result": "LOSS",
+                                                "match": "Nashville Predators ML"
+                                    },
+                                    {
+                                                "date": "04/06",
+                                                "league": "NHL",
+                                                "selection": "Kings ML",
+                                                "odds": 120,
+                                                "edge": 0.07045454545454549,
+                                                "units": 0.4,
+                                                "wager": 0.4,
+                                                "profit": -0.42,
+                                                "result": "LOSS",
+                                                "match": "Kings ML"
+                                    },
+                                    {
+                                                "date": "04/06",
+                                                "league": "NHL",
+                                                "selection": "Chicago ML",
+                                                "odds": 142,
+                                                "edge": 0.11177685950413224,
+                                                "units": 0.4,
+                                                "wager": 0.4,
+                                                "profit": -0.42,
+                                                "result": "LOSS",
+                                                "match": "Chicago ML"
+                                    },
+                                    {
+                                                "date": "04/06",
+                                                "league": "NHL",
+                                                "selection": "Sharks ML",
+                                                "odds": 148,
+                                                "edge": 0.12177419354838709,
+                                                "units": 0.4,
+                                                "wager": 0.4,
+                                                "profit": -0.42,
+                                                "result": "LOSS",
+                                                "match": "Sharks ML"
+                                    },
+                                    {
+                                                "date": "04/06",
+                                                "league": "NCAAB",
+                                                "selection": "Connecticut ML",
+                                                "odds": 255,
+                                                "edge": 0.2433098591549296,
+                                                "units": 0.4,
+                                                "wager": 0.4,
+                                                "profit": -0.42,
+                                                "result": "LOSS",
+                                                "match": "Connecticut ML"
+                                    }
+                        ]
             }
-        };
-
-        function hydrate() {
-            // Sidebar/Header KPIs
-            if (DATA.v3) {
-                const roiEl = document.getElementById('stat-roi');
-                if (roiEl) roiEl.textContent = (DATA.v3.roi >= 0 ? '+' : '') + DATA.v3.roi.toFixed(1) + '%';
-
-                const roiBar = document.getElementById('roi-bar');
-                if (roiBar) {
-                    const roiVal = DATA.v3.roi;
-                    const roiWidth = Math.min(Math.max(roiVal, 0), 100);
-                    roiBar.style.width = roiWidth + '%';
+};
+        
+        async function hydrate() {
+            try {
+                // Prioritize injected DATA if available, fallback to JS-Broadcast or JSON
+                let stats = DATA && Object.keys(DATA).length > 0 ? { models: { obsidian: DATA } } : window.QUARRY_STATS;
+                if (!stats) {
+                    const response = await fetch('stats.json');
+                    stats = await response.json();
                 }
+                
+                const v3 = stats.models.obsidian;
+                
+                if (v3) {
+                    // Header & KPIs
+                    const roiEl = document.getElementById('stat-roi');
+                    if (roiEl) roiEl.textContent = (v3.roi >= 0 ? '+' : '') + v3.roi.toFixed(1) + '%';
 
-                const wrEl = document.getElementById('stat-winrate');
-                if (wrEl) wrEl.textContent = DATA.v3.winrate.toFixed(1) + '%';
+                    const roiBar = document.getElementById('roi-bar');
+                    if (roiBar) {
+                        const roiVal = v3.roi;
+                        const roiWidth = Math.min(Math.max(roiVal, 0), 100);
+                        roiBar.style.width = roiWidth + '%';
+                    }
 
-                const sampleEl = document.getElementById('stat-sample');
-                if (sampleEl) sampleEl.textContent = DATA.v3.sample;
+                    const wrEl = document.getElementById('stat-winrate');
+                    if (wrEl) wrEl.textContent = v3.win_rate.toFixed(1) + '%';
 
-                const recEl = document.getElementById('stat-record');
-                if (recEl) {
-                    const [w, l, t] = DATA.v3.record.split('/');
-                    recEl.textContent = `${w}-${l}-${t}`;
+                    const sampleEl = document.getElementById('stat-sample');
+                    if (sampleEl) sampleEl.textContent = v3.sample;
+
+                    const recEl = document.getElementById('stat-record');
+                    if (recEl) {
+                        const [w, l, t] = v3.record.split('-');
+                        recEl.textContent = `${w}-${l}-${t}`;
+                    }
+
+                    const volEl = document.getElementById('stat-bets-day');
+                    if (volEl) volEl.textContent = v3.bets_day.toFixed(1) + ' / day';
+
+                    const netEl = document.getElementById('stat-net-absolute');
+                    if (netEl) netEl.textContent = (v3.net >= 0 ? '+' : '') + v3.net.toFixed(2) + 'u';
+
+                    // Yesterday's Summary
+                    if (v3.yesterday) {
+                        const yDate = document.getElementById('y-date-v3');
+                        if (yDate) yDate.textContent = v3.yesterday.date;
+                        
+                        const yRec = document.getElementById('y-record-v3');
+                        if (yRec) yRec.textContent = v3.yesterday.record;
+                        
+                        const yRoi = document.getElementById('y-roi-v3');
+                        if (yRoi) {
+                            yRoi.textContent = (v3.yesterday.roi >= 0 ? '+' : '') + v3.yesterday.roi.toFixed(1) + '%';
+                            yRoi.className = `font-bold ${v3.yesterday.roi >= 0 ? 'text-obsidian-glow' : 'text-red-400'}`;
+                        }
+                        
+                        const yNet = document.getElementById('y-net-v3');
+                        if (yNet) {
+                            yNet.textContent = (v3.yesterday.net >= 0 ? '+' : '') + v3.yesterday.net.toFixed(2) + 'u';
+                            yNet.className = `font-bold ${v3.yesterday.net >= 0 ? 'text-obsidian-glow' : 'text-red-400'}`;
+                        }
+
+                        // Ledger Table
+                        const body = document.getElementById('ledger-body-v3');
+                        if (body && v3.yesterday.ledger) {
+                            body.innerHTML = v3.yesterday.ledger.map(row => `
+                                <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
+                                    <td class="py-4 pl-6 text-zinc-500">${row.league_name}</td>
+                                    <td class="py-4 text-white font-medium">${row.pick_norm}</td>
+                                    <td class="py-4 text-right text-zinc-500">${row.decimal_odds.toFixed(2)}</td>
+                                    <td class="py-4 text-right text-zinc-500">${(row.edge * 100).toFixed(1)}%</td>
+                                    <td class="py-4 pl-8 text-zinc-300">${row.wager_unit.toFixed(1)}u</td>
+                                    <td class="py-4 text-right pr-6 font-bold ${row.profit_actual >= 0 ? 'text-obsidian-glow' : 'text-red-400'}">
+                                        ${row.profit_actual >= 0 ? '+' : ''}${row.profit_actual.toFixed(2)}
+                                    </td>
+                                </tr>
+                            `).join('');
+                        }
+                    }
                 }
-
-                const volEl = document.getElementById('stat-bets-day');
-                if (volEl) volEl.textContent = DATA.v3.bets_day.toFixed(1) + ' / day';
-
-                const netEl = document.getElementById('stat-net-absolute');
-                if (netEl) netEl.textContent = (DATA.v3.net >= 0 ? '+' : '') + DATA.v3.net.toFixed(2) + 'u';
-            }
-
-            // Yesterday / Ledger Section
-            const y = DATA.yesterday_v3;
-            if (y) {
-                const dateEl = document.getElementById('y-date-v3');
-                if (dateEl) dateEl.textContent = y.date;
-
-                // Compatibility hidden fields
-                const currDateEl = document.getElementById('current-date');
-                if (currDateEl) currDateEl.textContent = y.date;
-                const recV3 = document.getElementById('y-record-v3');
-                if (recV3) recV3.textContent = y.record;
-
-                const roiV3 = document.getElementById('y-roi-v3');
-                if (roiV3) roiV3.textContent = (y.roi >= 0 ? '+' : '') + y.roi.toFixed(1) + '%';
-
-                const netV3 = document.getElementById('y-net-v3');
-                if (netV3) netV3.textContent = (y.net >= 0 ? '+' : '') + y.net.toFixed(2) + 'u';
-
-                // Ledger Body
-                const tbody = document.getElementById('ledger-body-v3');
-                if (tbody && y.history && y.history.length > 0) {
-                    tbody.innerHTML = y.history.map(row => `
-                        <tr class="group hover:bg-white/5 transition-colors">
-                            <td class="py-4 pl-6 text-zinc-500 text-xs font-mono">${row.league}</td>
-                            <td class="py-4 text-white font-medium group-hover:text-obsidian-accent transition-colors">${row.selection}</td>
-                            <td class="py-4 text-right text-zinc-400">${row.odds > 0 ? '+' + row.odds : row.odds}</td>
-                            <td class="py-4 text-right text-obsidian-accent">${(row.edge * 100).toFixed(1)}%</td>
-                            <td class="py-4 pl-8 text-zinc-500">${row.units.toFixed(1)}u</td>
-                            <td class="py-4 text-right pr-6 font-bold ${row.profit > 0 ? 'text-obsidian-glow' : (row.profit < 0 ? 'text-warning-red' : 'text-zinc-600')}">
-                                ${row.profit > 0 ? '+' : ''}${row.profit.toFixed(2)}u
-                            </td>
-                        </tr>
-                    `).join('');
-                } else if (tbody) {
-                    tbody.innerHTML = '<tr><td colspan="6" class="py-8 text-center text-zinc-600">No signals detected for yesterday.</td></tr>';
-                }
+            } catch (e) {
+                console.error("Institutional Data Link Failure:", e);
             }
         }
     </script>

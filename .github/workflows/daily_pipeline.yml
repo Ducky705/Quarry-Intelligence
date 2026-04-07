@@ -1,4 +1,4 @@
-name: Daily Sniper Update
+name: Daily Quarry Pipeline
 
 on:
   schedule:
@@ -8,13 +8,12 @@ on:
       full_run:
         description: 'Run full historical simulation'
         required: false
-        default: 'false'
+        default: false
         type: boolean
 
 jobs:
-  update-stats:
+  run-pipeline:
     runs-on: ubuntu-latest
-    # ADD WRITE PERMISSIONS FOR PUSHING CHANGES
     permissions:
       contents: write
     
@@ -26,7 +25,7 @@ jobs:
           submodules: 'recursive'
           fetch-depth: 0
 
-      - name: Update Private Submodules to Latest
+      - name: Update Submodules to Latest
         run: |
           git submodule update --init --recursive --remote --merge
           echo "✅ Submodules updated to latest remote commits."
@@ -36,40 +35,40 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install system dependencies
+      - name: Install System Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libfreetype6-dev libpng-dev
 
       - name: Install Python Dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
+          # Additional dependencies for parquet/sync if not in requirements.txt
+          pip install pyarrow fastparquet
 
-      - name: Run Monitoring Engine
+      - name: Run Unified Daily Update
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: |
-          if [[ "${{ github.event.inputs.full_run }}" == "true" ]]; then
-            python3 scripts/monitor.py --full
-          else
-            # 180 days covers everything back to Nov 2025
-            python3 scripts/monitor.py --days 180
-          fi
+          # The script handles days logic internally or via cached fetch
+          python3 scripts/daily_update.py
 
       - name: Commit and Push Changes
         run: |
-          git config --global user.name "SniperBot"
-          git config --global user.email "bot@noreply.github.com"
+          git config --global user.name "QuarryBot"
+          git config --global user.email "bot@quarry.institutional"
           
-          # Check for changes
+          # Add all modified files: docs, reports, assets
+          git add docs/ README.md LATEST_ACTION.md assets/
+          
           if [[ -z $(git status -s) ]]; then
-            echo "No changes to commit from monitor run."
+            echo "No changes to commit."
           else
-            git add .
-            git commit -m "📈 Auto-Update: Daily Dashboard"
+            git commit -m "📈 Auto-Update: Daily Pipeline Sync [$(date +'%Y-%m-%d')]"
             
-            # Manually Authenticate for PUSH using GITHUB_TOKEN
+            # Use GITHUB_TOKEN for push authentication
             git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
             git push
           fi

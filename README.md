@@ -6,9 +6,8 @@
   <br />
 
   [![Status](https://img.shields.io/badge/STATUS-OPERATIONAL-success?style=for-the-badge&logo=statuspage&logoColor=white)](https://ducky705.github.io/XGBoost-Sniper/selector.html)
-  [![V4 ROI](https://img.shields.io/badge/V4_QUARTZ-+196.3u-CBD5E1?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/quartz.html)
-  [![V3 ROI](https://img.shields.io/badge/V3_OBSIDIAN-+171.1u-7c3aed?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/obsidian.html)
-  [![V2 ROI](https://img.shields.io/badge/V2_DIAMOND-+90.4u-00E0FF?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/diamond.html)
+  [![V2 ROI](https://img.shields.io/badge/V2_ROI-+89.7u-00E0FF?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/diamond.html)
+  [![V4 ROI](https://img.shields.io/badge/V4_ROI-+0.0u-f8fafc?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/quartz.html)
 
   <br />
   <br />
@@ -23,12 +22,12 @@
 
 A multi-generational algorithmic trading system leveraging **Gradient Boosting Decision Trees (XGBoost)** and **Deep Neural Networks** to identify inefficiencies in sports betting markets.
 
-| MODEL ARCHITECTURE | RELEASED | STRATEGY PROFILE | STATUS | VOLUME | TOTAL ALPHA |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **[V4 QUARTZ](https://ducky705.github.io/XGBoost-Sniper/quartz.html)** | `APR 06, 2026` | `V4-ALPHA` <br> Quantum Signal / Flagship | 💎 **FLAGSHIP** | Medium (~14 bets/day) | **+196.3u** |
-| **[V3 OBSIDIAN](https://ducky705.github.io/XGBoost-Sniper/obsidian.html)** | `DEC 27, 2025` | `XGB-V3` <br> Advanced Arbitrage | 🟣 **ADVANCED** | Low (~3 bets/day) | **+171.1u** |
-| **[V2 DIAMOND](https://ducky705.github.io/XGBoost-Sniper/diamond.html)** | `NOV 30, 2025` | `XGB-HYBRID` <br> Precision / Regime Filter | 🟢 **STABLE** | Medium (~8 bets/day) | **+90.4u** |
-| **[V1 PYRITE](https://ducky705.github.io/XGBoost-Sniper/pyrite.html)** | `NOV 20, 2025` | `XGB-CLASSIC` <br> High-Freq Prototype | 🟡 **LEGACY** | High (~112 bets/day) | **+984.8u** |
+| MODEL ARCHITECTURE | RELEASED | STRATEGY PROFILE | STATUS | VOLUME | TOTAL BETS | ROI |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **[V1 PYRITE](https://ducky705.github.io/XGBoost-Sniper/pyrite.html)** | `NOV 20, 2025` | `XGB-CLASSIC` <br> High-Freq | 🟡 **LEGACY** | High (~23 bets/day) | **3250** | **+74.1%** |
+| **[V2 DIAMOND](https://ducky705.github.io/XGBoost-Sniper/diamond.html)** | `NOV 30, 2025` | `XGB-HYBRID` <br> Precision | 🟢 **STABLE** | High (~31 bets/day) | **4044** | **+7.3%** |
+| **[V3 OBSIDIAN](https://ducky705.github.io/XGBoost-Sniper/obsidian.html)** | `DEC 27, 2025` | `DNN-ENSEMBLE` <br> Non-Linear | 🟣 **ADVANCED** | Medium (~12 bets/day) | **1200** | **+9.0%** |
+| **[V4 QUARTZ](https://ducky705.github.io/XGBoost-Sniper/quartz.html)** | `APR 06, 2026` | `CORRECT SHIFT` <br> High-Fidelity | ⚪ **FLAGSHIP** | None (0 bets/day) | **0** | **+0.0%** |
 
 > [!IMPORTANT]
 > **ACCESS PROTOCOL**: The primary interface for all models is the [**Model Selector**](https://ducky705.github.io/XGBoost-Sniper/selector.html).
@@ -37,23 +36,15 @@ A multi-generational algorithmic trading system leveraging **Gradient Boosting D
 
 ## 🛰 SYSTEMS OVERVIEW
 
-### V1 PYRITE // THE BRUTE FORCE
-*The initial prototype.* Operated on raw probability differentials. While high-volume, it suffered from "false confidence" on heavy favorites.
-*   **Verdict**: Profitable but volatile. Retired from primary rotation.
+### V4 QUARTZ // THE PRISM
+*The latest flagship.* Utilizes **Correct Shift** logic to identify opening line inefficiencies across high-fidelity consensus pools.
+*   **Mechanism**: Vectorized alpha harvesting with institutional drift proxy.
+*   **Performance**: Targeting maximum stability and high recovery factor.
 
 ### V2 DIAMOND // THE SNIPER
-*The current standard.* Introduces **Regime Filtering**—banning "toxic" low-predictability markets (NFL/MLB) and focusing on high-confidence setups (NBA/NCAAB).
+*The institutional standard.* Focuses on **Regime Filtering** to avoid toxic low-predictability markets.
 *   **Mechanism**: Uses a Fade Score to identify public overexposure.
-*   **Performance**: Consistent alpha generation with lower drawdown.
-
-### V3 OBSIDIAN // THE ORACLE
-*The ensemble frontier.* An advanced hybrid designed to capture complex, non-linear dependencies.
-*   **Status**: Successfully transitioned from shadow mode to live alpha.
-
-### V4 QUARTZ // THE QUANTUM SNIPER
-*The institutional standard.* Operates on the "Correct Shift" alpha curve, leveraging high-fidelity consensus signals and institutional market drift proxy.
-*   **Mechanism**: Proprietary "Correction Loop" that identifies market inefficiencies before they are absorbed by standard limits.
-*   **Performance**: +196u alpha with an ultra-stable trajectory.
+*   **Performance**: Strong alpha generation with low drawdown.
 
 ---
 
@@ -61,24 +52,18 @@ A multi-generational algorithmic trading system leveraging **Gradient Boosting D
 
 ```mermaid
 graph TD
-    A[DATA LAKE] -->|Sync| B(CORE ENGINE)
+    A[DATA LAKE] -->|Ingest| B(CORE ENGINE)
     B -->|Feature Engineering| C{MODEL SELECTOR}
-    C -->|Legacy Track| D[V1 PYRITE]
-    C -->|Regime Filter| E[V2 DIAMOND]
-    C -->|Ensemble| F[V3 OBSIDIAN]
-    C -->|Flagship Track| Z[V4 QUARTZ]
-    D & E & F & Z -->|Simulate| G[DECISION SUPPORT]
-    G -->|Automate| AA[GHA SYNC]
-    AA -->|Render| H[DASHBOARD SUITE]
+    C -->|Legacy| D[V1 PYRITE]
+    C -->|Stable| E[V2 DIAMOND]
+    C -->|Advanced| F[V3 OBSIDIAN]
+    C -->|Flagship| G[V4 QUARTZ]
+    D & E & F & G -->|Simulate| H[DECISION SUPPORT]
+    H -->|Render| I[DASHBOARD SUITE]
 ```
-
-### COMPONENTS
-*   `monitor.py`: Central command. Fetches data, executes inference pipelines, and commits artifacts.
-*   `models/`: Serialized XGBoost binaries and neural weights.
-*   `docs/`: Static visualization layer hosted on GitHub Pages.
 
 ---
 
 <div align="center">
-    <p><em>© 2025 XGBOOST-SNIPER TECHNOLOGIES // PROPRIETARY RESEARCH</em></p>
+    <p><em>© 2026 XGBOOST-SNIPER TECHNOLOGIES // PROPRIETARY RESEARCH</em></p>
 </div>

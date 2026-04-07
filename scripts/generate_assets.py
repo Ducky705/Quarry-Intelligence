@@ -33,10 +33,12 @@ COLORS = {
     'obsidian': '#7c3aed',
     'diamond': '#00E0FF',
     'pyrite': '#FFC125', # Fool's Gold
+    'quartz': '#f8fafc', # Shard Silver/Ice Blue
     'ghost': '#444444',
     'text': '#E5E7EB',
     'grid': '#1A1A1A',
-    'loss': '#FF4D00' # Safety Orange for losses
+    'loss': '#FF4D00', # Safety Orange for losses
+    'ice-blue': '#bae6fd'
 }
 
 # ==========================================
@@ -152,6 +154,8 @@ def generate_live_assets(since_days=None):
     if not v1.empty: v1['edge'] = v1['prob'] - v1['implied_prob']
     v2 = sim.run_v2_diamond()
     v3 = sim.run_v3_obsidian()
+    v4 = sim.run_v4_quartz()
+    if not v4.empty: v4['edge'] = (v4['prob'] if 'prob' in v4.columns else 0.5) - (v4['implied_prob'] if 'implied_prob' in v4.columns else 0.5)
     
     # --- 1. PLOTS ---
     # cumulative profit
@@ -159,25 +163,29 @@ def generate_live_assets(since_days=None):
         if d.empty: return pd.DataFrame({'pick_date':[], 'profit':[]})
         daily = d.groupby('pick_date')['profit_actual'].sum().cumsum().reset_index()
         daily.columns = ['pick_date', 'profit']
-        start_node = pd.DataFrame({'pick_date': [daily['pick_date'].min() - pd.Timedelta(days=1)], 'profit': [0.0]})
+        # Start at 0
+        min_date = daily['pick_date'].min()
+        if pd.isna(min_date): return pd.DataFrame({'pick_date':[], 'profit':[]})
+        start_node = pd.DataFrame({'pick_date': [min_date - pd.Timedelta(days=1)], 'profit': [0.0]})
         return pd.concat([start_node, daily]).sort_values('pick_date')
 
-    d1, d2, d3 = get_cum(v1), get_cum(v2), get_cum(v3)
+    d1, d2, d3, d4 = get_cum(v1), get_cum(v2), get_cum(v3), get_cum(v4)
     
     # Combined Curve
     plt.figure(figsize=(12, 6), facecolor=COLORS['void'])
     ax = plt.gca()
     ax.set_facecolor(COLORS['void'])
-    if not d1.empty: plt.plot(d1['pick_date'], d1['profit'], color=COLORS['pyrite'], label='V1 Pyrite', alpha=0.4)
-    if not d2.empty: plt.plot(d2['pick_date'], d2['profit'], color=COLORS['diamond'], label='V2 Diamond', alpha=0.7, linewidth=2)
-    if not d3.empty: plt.plot(d3['pick_date'], d3['profit'], color=COLORS['obsidian'], label='V3 Obsidian', linewidth=3)
+    if not d1.empty: plt.plot(d1['pick_date'], d1['profit'], color=COLORS['pyrite'], label='V1 Pyrite', alpha=0.3)
+    if not d2.empty: plt.plot(d2['pick_date'], d2['profit'], color=COLORS['diamond'], label='V2 Diamond', alpha=0.5, linewidth=2)
+    if not d3.empty: plt.plot(d3['pick_date'], d3['profit'], color=COLORS['obsidian'], label='V3 Obsidian', alpha=0.7, linewidth=2)
+    if not d4.empty: plt.plot(d4['pick_date'], d4['profit'], color=COLORS['quartz'], label='V4 Quartz', linewidth=3)
     
     plt.axhline(0, color='#333333', linestyle='--')
     plt.title("QUANTITATIVE PERFORMANCE // MULTI-GENERATIONAL", color='white', fontweight='bold')
     plt.legend(frameon=False)
     plt.grid(color='#1A1A1A', alpha=0.5)
-    plt.savefig("docs/assets/obsidian_curve.png", bbox_inches='tight', dpi=150)
-    plt.savefig("assets/live_curve.png", bbox_inches='tight', dpi=150)
+    plt.savefig("docs/assets/obsidian_curve.png", bbox_inches='tight', dpi=150) # Legacy name
+    plt.savefig("docs/assets/quarry_performance.png", bbox_inches='tight', dpi=150)
     plt.savefig("docs/assets/live_curve.png", bbox_inches='tight', dpi=150)
     plt.close()
 
@@ -242,6 +250,7 @@ def generate_live_assets(since_days=None):
 
     plot_sizing(v1, "assets/pyrite_size.png", "V1 Pyrite ROI by Confidence", COLORS['pyrite'])
     plot_sizing(v2, "assets/diamond_size.png", "V2 Diamond ROI by Confidence", COLORS['diamond'])
+    plot_sizing(v4, "assets/quartz_size.png", "V4 Quartz ROI by Confidence", COLORS['quartz'])
     
     if not v3.empty:
         v3_sports = v3.groupby('league_name')['profit_actual'].sum().sort_index()
@@ -421,6 +430,32 @@ def generate_live_assets(since_days=None):
     }
     inject_json('docs/pyrite.html', pyrite_page_data)
 
+    # Quartz (V4)
+    v4_yesterday = get_yesterday_stats(v4, sort_mode='diamond')
+    quartz_page_data = {
+        "meta": {"last_update": pd.Timestamp.now().strftime('%Y-%m-%d %H:%M UTC'), "status": "FLAGSHIP"},
+        "stats": {
+            "roi": round((v4['profit_actual'].sum() / v4['wager_unit'].sum() * 100) if not v4.empty and v4['wager_unit'].sum() > 0 else 0, 1),
+            "net_units": round(v4['profit_actual'].sum(), 2) if not v4.empty else 0,
+            "record": f"{len(v4[v4['outcome']==1])}-{len(v4[v4['outcome']==0])}-{len(v4[v4['outcome']==0.5])}" if not v4.empty else "0-0-0",
+            "win_rate": round((len(v4[v4['outcome']==1])/len(v4[v4['outcome'].isin([0,1])])*100) if not v4.empty and len(v4[v4['outcome'].isin([0,1])])>0 else 0, 1),
+            "sample": len(v4)
+        },
+        "volume": {
+            "v4_avg": round(len(v4) / v4['pick_date'].nunique() if not v4.empty else 0, 1),
+            "v4_label": "High"
+        },
+        "yesterday": {
+            "record": v4_yesterday['record'] if v4_yesterday else "0-0-0",
+            "win_pct": v4_yesterday['winrate'] if v4_yesterday else 0,
+            "roi": v4_yesterday['roi'] if v4_yesterday else 0,
+            "net": v4_yesterday['net'] if v4_yesterday else 0,
+            "date": v4_yesterday['date'] if v4_yesterday else "N/A"
+        },
+        "history": v4_yesterday['history'] if v4_yesterday else []
+    }
+    inject_json('docs/quartz.html', quartz_page_data)
+
     # Selector Page - Dynamic Risk Profiles
     def get_risk_profile(bets_per_day):
         if bets_per_day > 20: return "AGGRESSIVE"
@@ -430,7 +465,8 @@ def generate_live_assets(since_days=None):
     selector_data = {
         "pyrite": get_risk_profile(pyrite_page_data['volume']['v1_avg']),
         "diamond": get_risk_profile(diamond_page_data['volume']['v2_avg']),
-        "obsidian": get_risk_profile(obsidian_data['v3']['bets_day'])
+        "obsidian": get_risk_profile(obsidian_data['v3']['bets_day']),
+        "quartz": get_risk_profile(quartz_page_data['volume']['v4_avg'])
     }
     
     inject_json('docs/selector.html', selector_data)

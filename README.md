@@ -6,7 +6,7 @@
   <br />
 
   [![Status](https://img.shields.io/badge/STATUS-OPERATIONAL-success?style=for-the-badge&logo=statuspage&logoColor=white)](https://ducky705.github.io/XGBoost-Sniper/selector.html)
-  [![V4 ROI](https://img.shields.io/badge/V4_QUARTZ-+196.3u-f8fafc?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/quartz.html)
+  [![V4 ROI](https://img.shields.io/badge/V4_QUARTZ-+196.3u-CBD5E1?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/quartz.html)
   [![V3 ROI](https://img.shields.io/badge/V3_OBSIDIAN-+171.1u-7c3aed?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/obsidian.html)
   [![V2 ROI](https://img.shields.io/badge/V2_DIAMOND-+90.4u-00E0FF?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/diamond.html)
 
@@ -25,10 +25,10 @@ A multi-generational algorithmic trading system leveraging **Gradient Boosting D
 
 | MODEL ARCHITECTURE | RELEASED | STRATEGY PROFILE | STATUS | VOLUME | TOTAL ALPHA |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **[V4 QUARTZ](https://ducky705.github.io/XGBoost-Sniper/quartz.html)** | `APR 06, 2026` | `V4-ALPHA` <br> Quantum Signal / Institutional | 💎 **LEGACY+** | Medium (~14 bets/day) | **+196.3u** |
-| **[V3 OBSIDIAN](https://ducky705.github.io/XGBoost-Sniper/obsidian.html)** | `DEC 27, 2025` | `XGB-V3` <br> Non-Linear Arbitrage | 🟣 **ALPHA** | Low (~3 bets/day) | **+171.1u** |
-| **[V2 DIAMOND](https://ducky705.github.io/XGBoost-Sniper/diamond.html)** | `NOV 30, 2025` | `XGB-HYBRID` <br> Precision / Regime Filtering | 🟢 **ACTIVE** | Medium (~8 bets/day) | **+90.4u** |
-| **[V1 PYRITE](https://ducky705.github.io/XGBoost-Sniper/pyrite.html)** | `NOV 20, 2025` | `XGB-CLASSIC` <br> High-Freq / Volatility | 🟡 **LEGACY** | High (~112 bets/day) | **+984.8u** |
+| **[V4 QUARTZ](https://ducky705.github.io/XGBoost-Sniper/quartz.html)** | `APR 06, 2026` | `V4-ALPHA` <br> Quantum Signal / Flagship | 💎 **FLAGSHIP** | Medium (~14 bets/day) | **+196.3u** |
+| **[V3 OBSIDIAN](https://ducky705.github.io/XGBoost-Sniper/obsidian.html)** | `DEC 27, 2025` | `XGB-V3` <br> Advanced Arbitrage | 🟣 **ADVANCED** | Low (~3 bets/day) | **+171.1u** |
+| **[V2 DIAMOND](https://ducky705.github.io/XGBoost-Sniper/diamond.html)** | `NOV 30, 2025` | `XGB-HYBRID` <br> Precision / Regime Filter | 🟢 **STABLE** | Medium (~8 bets/day) | **+90.4u** |
+| **[V1 PYRITE](https://ducky705.github.io/XGBoost-Sniper/pyrite.html)** | `NOV 20, 2025` | `XGB-CLASSIC` <br> High-Freq Prototype | 🟡 **LEGACY** | High (~112 bets/day) | **+984.8u** |
 
 > [!IMPORTANT]
 > **ACCESS PROTOCOL**: The primary interface for all models is the [**Model Selector**](https://ducky705.github.io/XGBoost-Sniper/selector.html).
@@ -66,7 +66,7 @@ graph TD
     C -->|Legacy Track| D[V1 PYRITE]
     C -->|Regime Filter| E[V2 DIAMOND]
     C -->|Ensemble| F[V3 OBSIDIAN]
-    C -->|Correct Shift| Z[V4 QUARTZ]
+    C -->|Flagship Track| Z[V4 QUARTZ]
     D & E & F & Z -->|Simulate| G[DECISION SUPPORT]
     G -->|Automate| AA[GHA SYNC]
     AA -->|Render| H[DASHBOARD SUITE]

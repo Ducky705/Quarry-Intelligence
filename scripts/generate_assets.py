@@ -330,14 +330,14 @@ def generate_live_assets(since_days=None):
                 {
                     "date": r['pick_date'].strftime('%m/%d'),
                     "league": r['league_name'],
-                    "selection": r['pick_value'],
-                    "odds": int(r['odds_american']),
-                    "edge": float(r['edge']),
+                    "selection": r.get('pick_norm', r.get('pick_value', 'N/A')),
+                    "odds": int(r['odds_american']) if 'odds_american' in r and pd.notna(r['odds_american']) else int((r['decimal_odds']-1)*100) if 'decimal_odds' in r and r['decimal_odds'] >= 2.0 else int(-100/(r['decimal_odds']-1)) if 'decimal_odds' in r else 0,
+                    "edge": float(r.get('edge', 0.0)),
                     "units": round(r['wager_unit'], 1),
                     "wager": round(r['wager_unit'], 1),
                     "profit": round(r['profit_actual'], 2),
                     "result": "WIN" if r['outcome']==1 else "LOSS" if r['outcome']==0 else "PUSH",
-                    "match": r['pick_value']
+                    "match": r.get('pick_norm', r.get('pick_value', 'N/A'))
                 } for _, r in day_sorted.iterrows()
             ]
         }

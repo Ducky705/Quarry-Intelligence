@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import json
 import os
+import traceback
 
 # RISK CONTROLS
 DAILY_RISK_CAP = 10.0 # Standard Institutional Cap
@@ -115,6 +116,7 @@ class ModelSimulator:
             return final
         except Exception as e:
             print(f"Error V1: {e}")
+            traceback.print_exc()
             return pd.DataFrame()
 
     def run_v2_diamond(self):
@@ -143,6 +145,7 @@ class ModelSimulator:
             return final
         except Exception as e:
             print(f"Error V2: {e}")
+            traceback.print_exc()
             return pd.DataFrame()
 
     def run_v3_obsidian(self):
@@ -225,6 +228,7 @@ class ModelSimulator:
             return final
         except Exception as e:
             print(f"Error V3: {e}")
+            traceback.print_exc()
             return pd.DataFrame()
 
     def run_v4_quartz(self):
@@ -325,6 +329,7 @@ class ModelSimulator:
             return final
         except Exception as e:
             print(f"Error V4 (Vectorized): {e}")
+            traceback.print_exc()
             return pd.DataFrame()
 
     def run_backtest_all(self):

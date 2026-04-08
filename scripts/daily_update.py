@@ -180,12 +180,16 @@ def run_daily_update():
     ms = ModelSimulator(df)
     
     # 2. Run Simulations
+    print("⏳ Running Simulations...")
     models = {
         "pyrite": ms.run_v1_pyrite(),
         "diamond": ms.run_v2_diamond(),
         "obsidian": ms.run_v3_obsidian(),
         "quartz": ms.run_v4_quartz()
     }
+    
+    for name, res in models.items():
+        print(f"  - {name.upper()}: {len(res)} picks identified.")
     
     # 3. Generate Stats for JSON/JS
     stats = {

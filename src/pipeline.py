@@ -97,10 +97,16 @@ class SportsDataPipeline:
             last_fetch_time = os.path.getmtime(cache_path)
             file_age_hours = (time.time() - last_fetch_time) / 3600
             
-            # If cache is very fresh, just return it
-            if file_age_hours < 1.0:
+            # CI Environment Check: Always check for updates in GitHub Actions
+            is_ci = os.environ.get('GITHUB_ACTIONS') == 'true'
+            
+            # If cache is very fresh, just return it (unless in CI)
+            if file_age_hours < 1.0 and not is_ci:
                 print(f"⚡ Cache is fresh ({file_age_hours:.1f}h old). Loading...")
                 return pd.read_parquet(cache_path)
+            
+            if is_ci:
+                print(f"🔄 CI Environment detected. Checking for updates regardless of cache age...")
             
             existing_df = pd.read_parquet(cache_path)
             print(f"🔄 Cache age: {file_age_hours:.1f}h. Checking for incremental updates...")

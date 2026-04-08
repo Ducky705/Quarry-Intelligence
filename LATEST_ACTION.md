@@ -1,81 +1,104 @@
-# 📝 Daily Action Log (2026-04-06)
+# 📝 Daily Action Log (2026-04-07)
+
+### V4 Quartz Action
+| LEAGUE | PICK | ODDS | UNIT | RES | PROFIT |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| NHL | canadiens ml | 2.63 | 2.6 | ❌ | -2.56u |
+
+**Daily PnL (Settled): -2.56 Units**
+
 
 ### V3 Obsidian Action
 | LEAGUE | PICK | ODDS | UNIT | RES | PROFIT |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| NHL | draw ml | +310 | 0.4 | ✅ | +1.30u |
-| NCAAB | connecticut ml | +255 | 0.4 | ❌ | -0.42u |
-| NHL | sharks ml | +148 | 0.4 | ❌ | -0.42u |
-| NHL | chicago ml | +142 | 0.4 | ❌ | -0.42u |
-| NHL | kings ml | +120 | 0.4 | ❌ | -0.42u |
-| NHL | nashville predators ml | +115 | 0.4 | ❌ | -0.42u |
-| NHL | rangers ml | +110 | 0.4 | ❌ | -0.42u |
-| NBA | orlando magic ml | +108 | 0.4 | ✅ | +0.45u |
-| NHL | sabres ml | +106 | 0.4 | ✅ | +0.45u |
-| NCAAB | uconn +6.5 | +100 | 0.4 | ✅ | +0.42u |
-| NHL | chicago blackhawks vs san jose sharks total over 6.5 | -100 | 0.4 | ❌ | -0.42u |
-| NCAAB | connecticut vs michigan total over 144.5 | -102 | 0.4 | ❌ | -0.42u |
+| NHL | canucks ml | +210 | 0.4 | ❌ | -0.42u |
+| NHL | canadiens ml | +192 | 0.4 | ❌ | -0.42u |
+| NHL | hurricanes ml | +164 | 0.4 | ❌ | -0.42u |
+| NHL | seattle mariners -1.5 george kirby rhp must start | +155 | 0.4 | ❌ | -0.42u |
+| NHL | st. louis blues ml | +132 | 0.4 | ❌ | -0.42u |
+| NHL | nashville ml | +125 | 0.4 | ✅ | +0.53u |
+| NHL | vegas golden knights -1.5 | +116 | 0.4 | ❌ | -0.42u |
+| NHL | senators ml | +115 | 0.4 | ❌ | -0.42u |
+| NHL | montreal canadiens -1.5 | +113 | 0.4 | ❌ | -0.42u |
+| NHL | columbus blue jackets vs detroit red wings total over 6 | +112 | 0.4 | ✅ | +0.47u |
+| NHL | utah mammoth ml | +111 | 0.4 | ❌ | -0.42u |
+| NHL | rangers ml | +110 | 0.4 | ✅ | +0.46u |
 
-**Daily PnL (Settled): -0.74 Units**
+**Daily PnL (Settled): -2.32 Units**
 
 
 ### V2 Diamond Action
 | LEAGUE | PICK | ODDS | UNIT | RES | PROFIT |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| NCAAB | connecticut +7 | -110 | 0.8 | ✅ | +0.73u |
-| NCAAB | michigan under 75.5 total pts | -110 | 0.7 | ✅ | +0.64u |
-| NCAAB | under 144.5 | -110 | 0.6 | ✅ | +0.55u |
-| NCAAB | connecticut +7 | -110 | 0.6 | ✅ | +0.55u |
-| NCAAB | connecticut vs michigan under 146 | -110 | 0.6 | ✅ | +0.55u |
-| NBA | atlanta -1.5 | -109 | 0.5 | ❌ | -0.50u |
-| NBA | cavs -13 | -110 | 0.5 | ✅ | +0.45u |
-| NCAAB | michigan -7 | -110 | 0.5 | ❌ | -0.50u |
-| NCAAB | connecticut vs michigan total under 144.5 | -110 | 0.5 | ✅ | +0.45u |
-| NBA | portland trail blazers vs denver nuggets total over 239.5 | -110 | 0.5 | ✅ | +0.45u |
-| NBA | 76ers +8.5 | -105 | 0.5 | ❌ | -0.50u |
-| NBA | cleveland cavaliers -14.5 | -110 | 0.5 | ✅ | +0.45u |
-| NCAAB | connecticut +7 | -110 | 0.5 | ✅ | +0.45u |
-| NCAAB | connecticut vs michigan under 145 | -110 | 0.5 | ✅ | +0.45u |
-| NBA | cavs -15 | -110 | 0.4 | ✅ | +0.36u |
-| NCAAB | connecticut +7 | -110 | 0.4 | ✅ | +0.36u |
-| NCAAB | connecticut vs michigan over 144 | -110 | 0.4 | ❌ | -0.40u |
-| NCAAB | michigan -6.5 | -112 | 0.4 | ❌ | -0.40u |
-| NBA | pistons vs magic over 222.5 | -110 | 0.3 | ✅ | +0.27u |
-| NCAAB | connecticut vs michigan over 144 | -110 | 0.3 | ❌ | -0.30u |
-| NBA | mikal bridges under 16.5 total points +assists | -114 | 0.3 | ❌ | -0.30u |
+| NHL | rangers ml | +104 | 0.5 | ✅ | +0.52u |
+| NHL | rangers ml | +104 | 0.5 | ✅ | +0.52u |
+| NBA | gary payton ii over 11.5 total points | -102 | 0.5 | ✅ | +0.49u |
+| NBA | gary payton ii over 11.5 total points | -102 | 0.5 | ✅ | +0.49u |
+| NBA | gary payton ii over 11.5 total points | -102 | 0.5 | ✅ | +0.49u |
+| NBA | bucks -2 | -110 | 0.4 | ❌ | -0.40u |
+| NBA | bucks -2 | -110 | 0.4 | ❌ | -0.40u |
+| NBA | houston rockets +1 | -110 | 0.4 | ✅ | +0.36u |
+| NBA | houston rockets +1 | -110 | 0.4 | ✅ | +0.36u |
+| NBA | houston rockets +1 | -110 | 0.4 | ✅ | +0.36u |
+| NBA | wolves -12.5 | -108 | 0.3 | ✅ | +0.28u |
+| NBA | wolves -12.5 | -108 | 0.3 | ✅ | +0.28u |
+| NBA | lamelo ball under 32.5 total points +assists +rebounds | -111 | 0.3 | ❌ | -0.30u |
+| NBA | lamelo ball under 32.5 total points +assists +rebounds | -111 | 0.3 | ❌ | -0.30u |
+| NBA | lamelo ball under 32.5 total points +assists +rebounds | -111 | 0.3 | ❌ | -0.30u |
+| NBA | oklahoma city thunder -14.5 | -110 | 0.3 | ✅ | +0.27u |
+| NBA | oklahoma city thunder -14.5 | -110 | 0.3 | ✅ | +0.27u |
+| NBA | cody williams over 20.5 total points +assists | -112 | 0.3 | ✅ | +0.27u |
+| NBA | cody williams over 20.5 total points +assists | -112 | 0.3 | ✅ | +0.27u |
+| NBA | cody williams over 20.5 total points +assists | -112 | 0.3 | ✅ | +0.27u |
+| NBA | bucks -2 | -110 | 0.2 | ❌ | -0.20u |
+| NBA | chicago -5.5 | -110 | 0.2 | ✅ | +0.18u |
+| NBA | charlotte +4.5 | -110 | 0.2 | ❌ | -0.20u |
+| NBA | hornets +4.5 | -110 | 0.2 | ❌ | -0.20u |
+| NBA | hornets +4.5 | -110 | 0.2 | ❌ | -0.20u |
+| NBA | charlotte +4.5 | -110 | 0.2 | ❌ | -0.20u |
+| NBA | chicago -5.5 | -110 | 0.2 | ✅ | +0.18u |
+| NBA | bulls -5.5 | -110 | 0.2 | ✅ | +0.18u |
+| NBA | bucks -2 | -110 | 0.2 | ❌ | -0.20u |
+| NBA | minnesota timberwolves -12.5 | -110 | 0.2 | ✅ | +0.18u |
+| NBA | minnesota timberwolves -12.5 | -110 | 0.2 | ✅ | +0.18u |
+| NBA | rockets -1.5 | -110 | 0.2 | ✅ | +0.18u |
+| NBA | minnesota timberwolves -12.5 | -110 | 0.2 | ✅ | +0.18u |
 
-**Daily PnL (Settled): +3.83 Units**
+**Daily PnL (Settled): +3.88 Units**
 
 
 ### V1 Pyrite Action
 | LEAGUE | PICK | ODDS | UNIT | RES | PROFIT |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| MLB | reds vs marlins over 8 | -105 | 0.2 | ❌ | -0.24u |
-| MLB | guardians ml | -115 | 0.8 | ❌ | -0.82u |
-| NBA | denver nuggets -8.5 | -105 | 0.3 | ❌ | -0.25u |
-| NHL | mariners vs rangers over 7.5 | -105 | 0.0 | ❌ | -0.05u |
-| MLB | reds vs marlins over 8 | -105 | 0.2 | ❌ | -0.20u |
-| NBA | 76ers +8.5 | -105 | 0.1 | ❌ | -0.11u |
-| NBA | orlando magic ml | +108 | 0.3 | ✅ | +0.27u |
-| NCAAB | michigan -6.5 | -105 | 0.0 | ❌ | -0.01u |
-| NBA | atlanta -1.5 | -109 | 0.3 | ❌ | -0.29u |
-| NCAAB | connecticut vs michigan total over 144.5 | -102 | 0.3 | ❌ | -0.32u |
-| MLB | guardians ml | +103 | 2.0 | ✅ | +2.02u |
-| NHL | seattle kraken vs winnipeg jets total under 5.5 | -104 | 0.0 | ❌ | -0.03u |
-| NHL | chicago blackhawks vs san jose sharks total over 6.5 | -100 | 0.1 | ❌ | -0.09u |
-| NHL | nashville predators ml | +113 | 0.2 | ❌ | -0.19u |
-| NHL | nashville predators ml | +113 | 0.3 | ❌ | -0.35u |
-| NHL | nashville predators ml | +115 | 0.3 | ❌ | -0.25u |
-| NHL | rangers ml | +108 | 0.8 | ❌ | -0.84u |
-| NBA | magic +3 | -105 | 0.0 | ✅ | +0.03u |
-| NBA | magic +3 | -105 | 0.4 | ✅ | +0.41u |
-| MLB | nationals ml | -108 | 0.7 | ❌ | -0.72u |
-| NHL | rangers ml | +103 | 0.9 | ❌ | -0.94u |
-| MLB | red sox ml | -105 | 0.1 | ✅ | +0.09u |
-| NHL | rangers ml | +110 | 0.5 | ❌ | -0.48u |
-| NCAAB | michigan -6.5 | -105 | 0.6 | ❌ | -0.60u |
-| MLB | rays ml | -102 | 0.5 | ✅ | +0.44u |
+| NHL | philadelphia flyers ml | +105 | 0.2 | ✅ | +0.25u |
+| MLB | cincinnati reds vs miami marlins total under 7 action | +100 | 0.1 | ❌ | -0.06u |
+| NHL | rangers ml | +110 | 0.9 | ✅ | +0.94u |
+| NBA | wolves -12.5 | -108 | 0.2 | ✅ | +0.22u |
+| NHL | golden knights -1.5 | +105 | 0.8 | ❌ | -0.83u |
+| MLB | blue jays ml | +115 | 0.3 | ❌ | -0.31u |
+| NHL | anaheim ducks total over 3.5 | -107 | 0.2 | ❌ | -0.15u |
+| NBA | indiana pacers +12.5 | -105 | 0.1 | ❌ | -0.06u |
+| NHL | anaheim ducks total over 3.5 | -107 | 0.2 | ❌ | -0.15u |
+| NHL | golden knights -1.5 | +105 | 0.8 | ❌ | -0.83u |
+| MLB | blue jays ml | +115 | 0.3 | ❌ | -0.31u |
+| MLB | cincinnati reds vs miami marlins total under 7 action | +100 | 0.1 | ❌ | -0.06u |
+| NHL | philadelphia flyers ml | +105 | 0.2 | ✅ | +0.17u |
+| NBA | indiana pacers +12.5 | -105 | 0.1 | ❌ | -0.06u |
+| NBA | oklahoma city thunder vs los angeles lakers total under 220.5 | -105 | 0.7 | ✅ | +0.66u |
+| NBA | phoenix suns ml | +100 | 0.3 | ❌ | -0.32u |
+| NHL | flyers vs devils under 6 | -105 | 0.5 | ❌ | -0.50u |
+| NBA | phoenix suns ml | +100 | 0.3 | ❌ | -0.32u |
+| NBA | indiana pacers +12.5 | -105 | 0.1 | ❌ | -0.06u |
+| NHL | philadelphia flyers ml | +105 | 0.2 | ✅ | +0.17u |
+| MLB | cincinnati reds vs miami marlins total under 7 action | +100 | 0.1 | ❌ | -0.06u |
+| MLB | blue jays ml | +115 | 0.3 | ❌ | -0.31u |
+| NHL | golden knights -1.5 | +105 | 0.8 | ❌ | -0.83u |
+| NHL | anaheim ducks total over 3.5 | -107 | 0.2 | ❌ | -0.15u |
+| NHL | flyers vs devils under 6 | -105 | 0.5 | ❌ | -0.50u |
+| NBA | oklahoma city thunder vs los angeles lakers total under 220.5 | -105 | 0.7 | ✅ | +0.66u |
+| NHL | rangers ml | +110 | 0.9 | ✅ | +0.94u |
+| NBA | wolves -12.5 | -108 | 0.2 | ✅ | +0.22u |
 
-**Daily PnL (Settled): -3.51 Units**
+**Daily PnL (Settled): -1.66 Units**
 
 

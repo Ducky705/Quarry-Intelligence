@@ -42,16 +42,21 @@ def generate_comparison_chart():
     def get_series(res_df, label):
         if res_df.empty: return pd.Series(dtype=float)
         
-        # FIX: Normalize to DATE to prevent intra-day vertical jumps/jitter
-        # We sum all profits for a specific day before calculating cumsum
-        res_df = res_df.copy()
-        res_df['pick_day'] = res_df['pick_date'].dt.normalize()
-        series = res_df.groupby('pick_day')['profit_actual'].sum().cumsum()
+        # Chronological Sort
+        res_df = res_df.sort_values('pick_date').copy()
         
-        # Institutional Alignment: Prepend 0 at the start of the tracking period
+        # Cumulative Profit
+        res_df['cum_profit'] = res_df['profit_actual'].cumsum()
+        
+        # Aggregate by timestamp to ensure unique index for concat
+        # We take the 'last' cumulative value for any picks at the exact same time
+        series = res_df.groupby('pick_date')['cum_profit'].last()
+        
+        # Zero-Origin alignment: Prepend a 0.0 point just before the first action
         if not series.empty:
-            start_date = series.index.min() - pd.Timedelta(days=1)
-            series[start_date] = 0
+            first_pick_time = series.index.min()
+            start_time = first_pick_time - pd.Timedelta(seconds=1)
+            series[start_time] = 0.0
             series = series.sort_index()
             
         series.name = label
@@ -66,7 +71,7 @@ def generate_comparison_chart():
     bench = pd.concat([q_series, o_series, d_series, p_series], axis=1)
     bench.columns = ['v4 Quartz', 'v3 Obsidian', 'v2 Diamond', 'v1 Pyrite']
     # FIX: Remove fillfill(0). NaNs will prevent the line from starting too early.
-    bench = bench.ffill().sort_index()
+    bench = bench.sort_index().ffill()
 
     print("\n📈 CURRENT PERFORMANCE BENCHMARKS:")
     for col in bench.columns:
@@ -91,64 +96,83 @@ def generate_comparison_chart():
     ]
 
     for page_id, focus_label in focus_models:
-        # --- PANAVISION RATIO: Ultra-slim 16x4 to eliminate vertical voids ---
-        fig, ax = plt.subplots(figsize=(16, 4), facecolor='none')
+        # --- PANAVISION RATIO: 16x10 for symmetrical dashboard parity ---
+        fig, ax = plt.subplots(figsize=(16, 10), facecolor='none')
         ax.set_facecolor('none')
         
-        # Enforce absolute full-bleed within the figure coordinate space
+        # Enforce absolute full-bleed
         ax.set_position([0, 0, 1, 1])
         
+        # --- INSTITUTIONAL SCAFFOLDING ---
+        # Subtle dotted grid for structural grounding
+        ax.grid(True, linestyle=':', color='#222222', alpha=0.3, zorder=0)
+        ax.axhline(0, color='#333333', linewidth=0.8, alpha=0.5, zorder=1)
+
         # --- ELITE FOCUS STYLING ---
         for col in bench.columns:
             series_name = str(col)
             is_focus = (series_name == focus_label)
             
-            # Drop NaNs for current model for clean start
             curr_series = bench[col].dropna()
             if curr_series.empty: continue
 
             color = colors.get(series_name, '#ffffff')
             if not is_focus:
-                alpha = 0.15 # Further reduced for focus
+                alpha = 0.35 # Enhanced visibility for background models
                 lw = 1.0
-                zorder = 1
+                zorder = 5
             else:
-                alpha = 0.95
-                lw = 4.0 # Thicker for flagship feel
+                alpha = 1.0
+                lw = 4.0 # Slightly thicker for 16x7
                 zorder = 100
             
-            # Plot line using its specific non-null range
-            ax.plot(curr_series.index, curr_series.values, color=color, linewidth=lw, alpha=alpha, zorder=zorder)
+            smooth_values = curr_series.rolling(window=3, min_periods=1).mean()
+            
+            # 1. Background / Comparison Line
+            ax.plot(curr_series.index, smooth_values, color=color, linewidth=lw, alpha=alpha, zorder=zorder)
             
             if is_focus:
-                # Add inner glow for focus
+                # 2. Institutional Aura (Fill-Under)
+                # Layered alpha fills for a 'fintech' volume feel
+                ax.fill_between(curr_series.index, smooth_values, -200, color=color, alpha=0.03, zorder=zorder-5)
+                ax.fill_between(curr_series.index, smooth_values, -200, color=color, alpha=0.015, zorder=zorder-6)
+                
+                # 3. Outer Glow Layers
                 for i in range(1, 4): 
-                    ax.plot(curr_series.index, curr_series.values, color=color, linewidth=lw + i*3, alpha=0.012, zorder=zorder-1)
+                    ax.plot(curr_series.index, smooth_values, color=color, linewidth=lw + i*3, alpha=0.01, zorder=zorder-1)
+                
+                # 4. Neon Termination Orb (The 'Live' Point)
+                last_time = curr_series.index[-1]
+                last_val = smooth_values.iloc[-1]
+                
+                # Glowing Scatter Point
+                ax.scatter(last_time, last_val, color='#ffffff', s=100, zorder=zorder+10, edgecolors=color, linewidths=2.5)
+                ax.scatter(last_time, last_val, color=color, s=350, zorder=zorder+5, alpha=0.3) # Core glow
+                ax.scatter(last_time, last_val, color=color, s=800, zorder=zorder+4, alpha=0.1) # Outer glow
 
-        # --- DYNAMIC Hero-SCALING (Absolute Minimal Voids) ---
+        # --- DYNAMIC HEADROOM (Absolute Collision Avoidance) ---
         focus_series = bench[focus_label].dropna()
         if focus_series.empty:
-            # Fallback for models with no data yet: Center on 0 with headroom
             ax.set_ylim(-5, 15)
         else:
             f_min, f_max = focus_series.min(), focus_series.max()
             delta = f_max - f_min
             
             # Institutional Spacing: 
-            # We add 25% top margin to avoid overlapping the HTML labels (top-left).
-            # We add 5% bottom margin for floor stability.
+            # 25% top margin (harmonized for 16x7). 10% bottom for floor stability.
             if delta < 10:
                 ax.set_ylim(f_min - 5, f_max + 25)
             else:
-                ax.set_ylim(f_min - delta*0.05, f_max + delta*0.25)
+                ax.set_ylim(f_min - delta*0.1, f_max + delta*0.25)
 
         # --- FULL BLEED FORMATTING ---
-        ax.set_axis_off() # Absolute cleanliness
+        ax.set_axis_off() 
+        for spine in ax.spines.values(): spine.set_visible(False) 
         plt.subplots_adjust(left=0, right=1, top=1, bottom=0)
         
         out_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'docs', f'comparison_{page_id}.png'))
         
-        # Save with transparency and no bbox tight (already adjusted)
+        # Save with Ultra-DPI for crispness in 1200px+ containers
         plt.savefig(out_path, dpi=400, transparent=True)
         plt.close(fig)
         print(f"✅ Full-Bleed PNG saved: {out_path}")

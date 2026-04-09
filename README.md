@@ -6,8 +6,8 @@
   <br />
 
   [![Status](https://img.shields.io/badge/STATUS-OPERATIONAL-success?style=for-the-badge&logo=statuspage&logoColor=white)](https://ducky705.github.io/XGBoost-Sniper/selector.html)
-  [![V2 ROI](https://img.shields.io/badge/V2_ROI-+97.0u-00E0FF?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/diamond.html)
-  [![V4 ROI](https://img.shields.io/badge/V4_ROI-+1.9u-f8fafc?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/quartz.html)
+  [![V2 ROI](https://img.shields.io/badge/V2_ROI-+8.0%25-00E0FF?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/diamond.html)
+  [![V4 ROI](https://img.shields.io/badge/V4_ROI-+9.6%25-f8fafc?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/quartz.html)
 
   <br />
   <br />

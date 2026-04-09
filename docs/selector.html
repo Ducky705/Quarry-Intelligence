@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="THE QUARRY: Advanced Gradient Boosting Decision Trees (XGBoost) and Deep Neural Networks for institutional-grade sports betting alpha.">
     <title>THE QUARRY // CONTROL CENTER</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -234,6 +235,10 @@
                         <span id="risk-pyrite" class="text-white">LEGACY</span>
                     </div>
                     <div class="flex justify-between border-b border-zinc-800 pb-2">
+                        <span class="text-zinc-600 uppercase">Live ROI</span>
+                        <span id="roi-pyrite" class="text-pyrite-gold font-bold">--%</span>
+                    </div>
+                    <div class="flex justify-between border-b border-zinc-800 pb-2">
                         <span class="text-zinc-600 uppercase">Architecture</span>
                         <span class="text-white">XGB-CLASSIC</span>
                     </div>
@@ -280,6 +285,10 @@
                     <div class="flex justify-between border-b border-zinc-800 pb-2">
                         <span class="text-zinc-600 uppercase">Risk Profile</span>
                         <span id="risk-diamond" class="text-white">STABLE</span>
+                    </div>
+                    <div class="flex justify-between border-b border-zinc-800 pb-2">
+                        <span class="text-zinc-600 uppercase">Live ROI</span>
+                        <span id="roi-diamond" class="text-diamond-blue font-bold">--%</span>
                     </div>
                     <div class="flex justify-between border-b border-zinc-800 pb-2">
                         <span class="text-zinc-600 uppercase">Architecture</span>
@@ -330,6 +339,10 @@
                         <span id="risk-obsidian" class="text-white">ADVANCED</span>
                     </div>
                     <div class="flex justify-between border-b border-zinc-800 pb-2">
+                        <span class="text-zinc-600 uppercase">Live ROI</span>
+                        <span id="roi-obsidian" class="text-obsidian-purple font-bold">--%</span>
+                    </div>
+                    <div class="flex justify-between border-b border-zinc-800 pb-2">
                         <span class="text-zinc-600 uppercase">Architecture</span>
                         <span class="text-white">XGB-V3</span>
                     </div>
@@ -374,6 +387,10 @@
                     <div class="flex justify-between border-b border-zinc-900 pb-2">
                         <span class="text-zinc-600 uppercase">Risk Profile</span>
                         <span id="risk-quartz" class="text-white">FLAGSHIP</span>
+                    </div>
+                    <div class="flex justify-between border-b border-zinc-900 pb-2">
+                        <span class="text-zinc-600 uppercase">Live ROI</span>
+                        <span id="roi-quartz" class="text-white font-bold">--%</span>
                     </div>
                     <div class="flex justify-between border-b border-zinc-900 pb-2">
                         <span class="text-zinc-600 uppercase">Architecture</span>
@@ -565,7 +582,7 @@
         // --- 2. DATA HYDRATION ---
         const DATA = {
             "pyrite": "AGGRESSIVE",
-            "diamond": "AGGRESSIVE",
+            "diamond": "BALANCED",
             "obsidian": "BALANCED",
             "quartz": "SURGICAL"
 };

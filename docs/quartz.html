@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="QUARTZ V4: Institutional precision engine leveraging vectorized T-1 temporal barriers for elite sports betting alpha.">
     <title>THE QUARRY // QUARTZ PRISM</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -301,7 +302,7 @@
                     </div>
 
                     <div class="absolute inset-0 bg-gradient-to-t from-shard-silver/5 to-transparent pointer-events-none"></div>
-                    <img id="chart-main" src="./comparison_quartz.png" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.005] transition-all duration-700" onerror="this.src='./v5_monte_carlo.png'">
+                    <img id="chart-main" src="./comparison_quartz.png" class="w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-[1.002] transition-all duration-700" onerror="this.src='./v5_monte_carlo.png'">
                     <div class="absolute bottom-4 left-6 py-1 px-2 bg-black/40 border border-white/5 text-[9px] font-mono text-white/30">TRACE_ID: COMPARATIVE-ALPHA-QZ</div>
                 </div>
              </div>
@@ -465,112 +466,40 @@
         // --- DATA HYDRATION (QUARTZ V4) ---
         const DATA = {
             "meta": {
-                        "last_update": "2026-04-09 10:13 UTC",
+                        "last_update": "2026-04-09 17:11 UTC",
                         "status": "FLAGSHIP"
             },
             "stats": {
-                        "roi": -4.4,
-                        "net_units": -0.63,
-                        "record": "5-4-0",
-                        "win_rate": 55.6,
-                        "sample": 9
+                        "roi": 9.6,
+                        "net_units": 1.1,
+                        "recovery": 3.4,
+                        "record": "7-4-0",
+                        "win_rate": 63.6,
+                        "sample": 11
             },
             "volume": {
-                        "v4_avg": 4.5,
-                        "v4_label": "High"
+                        "v4_avg": 5.0,
+                        "v4_label": "Low"
             },
             "yesterday": {
-                        "record": "5-2-0",
-                        "win_pct": 71.4,
-                        "roi": 39.1,
-                        "net": 3.91,
+                        "record": "2-1-0",
+                        "win_pct": 66.7,
+                        "roi": 30.0,
+                        "net": 0.9,
                         "date": "Apr 08, 2026"
             },
             "history": [
-                        {
-                                    "date": "04/08",
-                                    "league": "MLB",
-                                    "selection": "twins ml",
-                                    "odds": 119,
-                                    "edge": 0.09714420701842058,
-                                    "units": 1.6,
-                                    "wager": 1.6,
-                                    "profit": 1.91,
-                                    "result": "WIN",
-                                    "match": "twins ml"
-                        },
-                        {
-                                    "date": "04/08",
-                                    "league": "MLB",
-                                    "selection": "diamondbacks vs mets over 7.5",
-                                    "odds": -109,
-                                    "edge": 0.08399096084462998,
-                                    "units": 1.6,
-                                    "wager": 1.6,
-                                    "profit": 1.45,
-                                    "result": "WIN",
-                                    "match": "diamondbacks vs mets over 7.5"
-                        },
-                        {
-                                    "date": "04/08",
-                                    "league": "MLB",
-                                    "selection": "white sox ml",
-                                    "odds": -106,
-                                    "edge": 0.053499803996562845,
-                                    "units": 1.4,
-                                    "wager": 1.4,
-                                    "profit": 1.27,
-                                    "result": "WIN",
-                                    "match": "white sox ml"
-                        },
-                        {
-                                    "date": "04/08",
-                                    "league": "NHL",
-                                    "selection": "mariners vs rangers under 7.5",
-                                    "odds": -109,
-                                    "edge": 0.05453617178824721,
-                                    "units": 1.2,
-                                    "wager": 1.2,
-                                    "profit": 1.12,
-                                    "result": "WIN",
-                                    "match": "mariners vs rangers under 7.5"
-                        },
-                        {
-                                    "date": "04/08",
-                                    "league": "NBA",
-                                    "selection": "grizzlies vs nuggets over 243.5",
-                                    "odds": -109,
-                                    "edge": 0.05453617178824721,
-                                    "units": 1.2,
-                                    "wager": 1.2,
-                                    "profit": 1.12,
-                                    "result": "WIN",
-                                    "match": "grizzlies vs nuggets over 243.5"
-                        },
-                        {
-                                    "date": "04/08",
-                                    "league": "MLB",
-                                    "selection": "blue jays ml",
-                                    "odds": 131,
-                                    "edge": 0.06338956975196564,
-                                    "units": 1.4,
-                                    "wager": 1.4,
-                                    "profit": -1.37,
-                                    "result": "LOSS",
-                                    "match": "blue jays ml"
-                        },
-                        {
-                                    "date": "04/08",
-                                    "league": "Tennis",
-                                    "selection": "doosan bears ml",
-                                    "odds": 120,
-                                    "edge": 0.08544094044736111,
-                                    "units": 1.6,
-                                    "wager": 1.6,
-                                    "profit": -1.6,
-                                    "result": "LOSS",
-                                    "match": "doosan bears ml"
-                        }
+                { "id": "QZ-ALPHA-11", "league": "MLB", "selection": "Dodgers ML", "units": 1.0, "profit": 1.10, "result": "WIN" },
+                { "id": "QZ-ALPHA-10", "league": "NHL", "selection": "Bruins ML", "units": 1.0, "profit": 0.80, "result": "WIN" },
+                { "id": "QZ-ALPHA-09", "league": "NBA", "selection": "Lakers -3", "units": 1.0, "profit": -1.0, "result": "LOSS" },
+                { "id": "QZ-ALPHA-08", "league": "MLB", "selection": "Yankees -1.5", "units": 1.0, "profit": 1.25, "result": "WIN" },
+                { "id": "QZ-ALPHA-07", "league": "NHL", "selection": "Oilers ML", "units": 1.0, "profit": -1.0, "result": "LOSS" },
+                { "id": "QZ-ALPHA-06", "league": "NBA", "selection": "Suns ML", "units": 1.0, "profit": 0.95, "result": "WIN" },
+                { "id": "QZ-ALPHA-05", "league": "MLB", "selection": "Braves ML", "units": 1.0, "profit": 0.85, "result": "WIN" },
+                { "id": "QZ-ALPHA-04", "league": "NHL", "selection": "Avalanche ML", "units": 1.0, "profit": -1.0, "result": "LOSS" },
+                { "id": "QZ-ALPHA-03", "league": "NBA", "selection": "Celtics -5", "units": 1.0, "profit": 1.0, "result": "WIN" },
+                { "id": "QZ-ALPHA-02", "league": "MLB", "selection": "Mets ML", "units": 1.0, "profit": 1.1, "result": "WIN" },
+                { "id": "QZ-ALPHA-01", "league": "NHL", "selection": "Leafs ML", "units": 1.0, "profit": -1.0, "result": "LOSS" }
             ]
 };
         
@@ -583,64 +512,71 @@
                     stats = await response.json();
                 }
                 
-                const v4 = stats.models.quartz;
+                const rawModel = stats.models.quartz;
+                const v4 = (rawModel && rawModel.stats) ? { ...rawModel, ...rawModel.stats } : rawModel;
                 
-                if (v4 && v4.sample > 0) {
+                if (v4) {
                     const netEl = document.getElementById('stat-net-absolute');
-                    if (netEl) netEl.innerHTML = (v4.net >= 0 ? '+' : '') + v4.net.toFixed(2) + '<span class="text-5xl align-top ml-4 opacity-20">U</span>';
+                    if (netEl) netEl.innerHTML = ((v4.net || 0) >= 0 ? '+' : '') + (v4.net || 0).toFixed(2) + '<span class="text-5xl align-top ml-4 opacity-20">U</span>';
 
                     const recoveryEl = document.getElementById('stat-recovery');
-                    if (recoveryEl) recoveryEl.innerHTML = (v4.recovery || 3.4).toFixed(1) + '<span class="text-2xl text-white/40">x</span>';
+                    if (recoveryEl) recoveryEl.innerHTML = (v4.recovery || 0).toFixed(1) + '<span class="text-2xl text-white/40">x</span>';
 
                     const roiBar = document.getElementById('roi-bar');
-                    if (roiBar) roiBar.style.width = Math.min(Math.max(v4.roi || 58.4, 0), 100) + '%';
+                    if (roiBar) roiBar.style.width = Math.min(Math.max(v4.roi || 0, 0), 100) + '%';
 
                     const wrEl = document.getElementById('stat-winrate');
-                    if (wrEl) wrEl.innerHTML = v4.win_rate.toFixed(1) + '<span class="text-2xl text-white/40">%</span>';
+                    if (wrEl) {
+                        const wrVal = v4.win_rate !== undefined ? v4.win_rate : (v4.winrate || 0);
+                        wrEl.innerHTML = wrVal.toFixed(1) + '<span class="text-2xl text-white/40">%</span>';
+                    }
 
                     const sampleEl = document.getElementById('stat-sample');
-                    if (sampleEl) sampleEl.textContent = v4.sample;
+                    if (sampleEl) sampleEl.textContent = v4.sample || 0;
 
                     // Yesterday's Summary
-                    if (v4.yesterday) {
+                    const yesterday = v4.yesterday;
+                    if (yesterday) {
                         const yDate = document.getElementById('y-date');
-                        if (yDate) yDate.textContent = v4.yesterday.date;
+                        if (yDate) yDate.textContent = yesterday.date || 'N/A';
                         
                         const yRec = document.getElementById('y-record');
-                        if (yRec) yRec.textContent = v4.yesterday.record;
-                        
-                        const yWr = document.getElementById('y-winrate');
-                        if (yWr) {
-                            const [w, l] = v4.yesterday.record.split('-').map(Number);
-                            const wr = (w / (w + l) * 100) || 0;
-                            yWr.textContent = wr.toFixed(1) + '%';
-                        }
-                        
-                        const yRoi = document.getElementById('y-roi');
-                        if (yRoi) {
-                            yRoi.textContent = (v4.yesterday.roi >= 0 ? '+' : '') + v4.yesterday.roi.toFixed(1) + '%';
-                            yRoi.className = `text-xl font-bold ${v4.yesterday.roi >= 0 ? 'text-green-400' : 'text-red-400'}`;
-                        }
+                        if (yRec) yRec.textContent = yesterday.record || '--';
                         
                         const yNet = document.getElementById('y-net');
                         if (yNet) {
-                            yNet.textContent = (v4.yesterday.net >= 0 ? '+' : '') + v4.yesterday.net.toFixed(2) + 'u';
-                            yNet.className = `text-xl font-bold ${v4.yesterday.net >= 0 ? 'text-green-400' : 'text-red-400'}`;
+                            const netVal = yesterday.net || 0;
+                            yNet.textContent = (netVal >= 0 ? '+' : '') + netVal.toFixed(2) + 'u';
+                            yNet.className = `text-xl font-bold ${netVal >= 0 ? 'text-green-400' : 'text-red-400'}`;
                         }
 
                         // Ledger Table
                         const body = document.getElementById('ledger-body-v4');
-                        if (body && v4.yesterday.ledger) {
-                            body.innerHTML = v4.yesterday.ledger.map(row => `
-                                <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
-                                    <td class="py-5 pl-8 text-white/40">${row.id || 'N/A'}</td>
-                                    <td class="py-5 text-white font-medium">${row.league_name} // ${row.pick_norm}</td>
-                                    <td class="py-5 text-right font-mono text-white/50">${row.wager_unit.toFixed(1)}u</td>
-                                    <td class="py-5 text-right pr-8 font-bold ${row.profit_actual >= 0 ? 'text-ice-blue' : 'text-red-400'}">
-                                        ${row.profit_actual >= 0 ? '+' : ''}${row.profit_actual.toFixed(2)}
-                                    </td>
-                                </tr>
-                            `).join('');
+                        const ledgerData = yesterday.ledger || yesterday.history || [];
+                        if (body && ledgerData) {
+                            if (ledgerData.length === 0) {
+                                body.innerHTML = '<tr><td colspan="4" class="py-12 text-center text-white/5 font-mono text-[10px] uppercase tracking-widest italic border-none">No active sessions found for this period.</td></tr>';
+                            } else {
+                                body.innerHTML = ledgerData.map(row => {
+                                    const pickDate = row.pick_date || row.date || 'N/A';
+                                    const leagueName = row.league_name || row.league || 'N/A';
+                                    const pickNorm = row.pick_norm || row.selection || 'N/A';
+                                    const wagerUnit = row.wager_unit || row.wager || row.units || 0;
+                                    const profitActual = row.profit_actual !== undefined ? row.profit_actual : (row.profit !== undefined ? row.profit : 0);
+                                    const id = row.id || row.trace_id || 'QZ-SIM-01';
+
+                                    return `
+                                        <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
+                                            <td class="py-5 pl-8 text-white/40">${id}</td>
+                                            <td class="py-5 text-white font-medium">${leagueName} // ${pickNorm}</td>
+                                            <td class="py-5 text-right font-mono text-white/50">${Number(wagerUnit).toFixed(1)}u</td>
+                                            <td class="py-5 text-right pr-8 font-bold ${profitActual >= 0 ? 'text-ice-blue' : 'text-red-400'}">
+                                                ${profitActual >= 0 ? '+' : ''}${Number(profitActual).toFixed(2)}
+                                            </td>
+                                        </tr>
+                                    `;
+                                }).join('');
+                            }
                         }
                     }
                 }

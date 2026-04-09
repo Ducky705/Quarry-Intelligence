@@ -93,12 +93,23 @@ class SportsDataPipeline:
         
         existing_df = pd.DataFrame()
         last_fetch_time = 0
-        if os.path.exists(cache_path):
+        
+        # Check if we can even use parquet
+        use_parquet = True
+        try:
+            import pyarrow
+        except ImportError:
+            try:
+                import fastparquet
+            except ImportError:
+                use_parquet = False
+                print("⚠️ No parquet engine found. Falling back to direct database fetch (no cache).")
+
+        if use_parquet and os.path.exists(cache_path):
             last_fetch_time = os.path.getmtime(cache_path)
             file_age_hours = (time.time() - last_fetch_time) / 3600
             
             # BEST PRACTICE: Always check for updates in CI (GitHub Actions)
-            # This ensures we get latest picks even if the cache was just restored.
             is_ci = os.environ.get('GITHUB_ACTIONS') == 'true'
             
             if file_age_hours < 1.0 and not is_ci:
@@ -118,7 +129,7 @@ class SportsDataPipeline:
         
         # Determine incremental cutoff
         since_days = None
-        if not existing_df.empty:
+        if use_parquet and not existing_df.empty:
             # We want to overlap a bit just in case results were updated
             max_date = pd.to_datetime(existing_df['pick_date']).max()
             # Fetch last 3 days to catch any late-reported results/corrections
@@ -130,16 +141,24 @@ class SportsDataPipeline:
         if new_df.empty:
             return existing_df
             
-        if existing_df.empty:
-            print(f"💾 Seeding new cache: {cache_path}")
-            new_df.to_parquet(cache_path, index=False)
-            return new_df
+        if use_parquet:
+            if existing_df.empty:
+                print(f"💾 Seeding new cache: {cache_path}")
+                try:
+                    new_df.to_parquet(cache_path, index=False)
+                except Exception as e:
+                    print(f"⚠️ Failed to save cache: {e}")
+                return new_df
+            else:
+                print(f"📥 Merging {len(new_df)} new/updated rows into cache...")
+                combined = pd.concat([existing_df, new_df]).drop_duplicates(subset=['id'], keep='last')
+                try:
+                    combined.to_parquet(cache_path, index=False)
+                except Exception as e:
+                    print(f"⚠️ Failed to update cache: {e}")
+                return combined.sort_values('pick_date')
         else:
-            print(f"📥 Merging {len(new_df)} new/updated rows into cache...")
-            # Combine and deduplicate by 'id'
-            combined = pd.concat([existing_df, new_df]).drop_duplicates(subset=['id'], keep='last')
-            combined.to_parquet(cache_path, index=False)
-            return combined.sort_values('pick_date')
+            return new_df.sort_values('pick_date')
 
 class FeatureEngineer:
     def __init__(self, df): 

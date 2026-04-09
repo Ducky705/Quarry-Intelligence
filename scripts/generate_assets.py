@@ -161,52 +161,94 @@ def generate_live_assets(since_days=None):
     # cumulative profit
     def get_cum(d):
         if d.empty: return pd.DataFrame({'pick_date':[], 'profit':[]})
-        daily = d.groupby('pick_date')['profit_actual'].sum().cumsum().reset_index()
-        daily.columns = ['pick_date', 'profit']
-        # Start at 0
-        min_date = daily['pick_date'].min()
+        
+        # Raw Sequential Profit (Institutional Best Practice)
+        d = d.sort_values('pick_date').copy()
+        d['profit'] = d['profit_actual'].cumsum()
+        
+        # Zero-Origin sync
+        min_date = d['pick_date'].min()
         if pd.isna(min_date): return pd.DataFrame({'pick_date':[], 'profit':[]})
-        start_node = pd.DataFrame({'pick_date': [min_date - pd.Timedelta(days=1)], 'profit': [0.0]})
-        return pd.concat([start_node, daily]).sort_values('pick_date')
+        
+        start_node = pd.DataFrame({'pick_date': [min_date - pd.Timedelta(seconds=1)], 'profit': [0.0]})
+        return pd.concat([start_node, d[['pick_date', 'profit']]]).sort_values('pick_date')
 
     d1, d2, d3, d4 = get_cum(v1), get_cum(v2), get_cum(v3), get_cum(v4)
     
     # Combined Curve
-    plt.figure(figsize=(12, 6), facecolor=COLORS['void'])
+    plt.figure(figsize=(16, 10), facecolor=COLORS['void'])
     ax = plt.gca()
     ax.set_facecolor(COLORS['void'])
-    if not d1.empty: plt.plot(d1['pick_date'], d1['profit'], color=COLORS['pyrite'], label='V1 Pyrite', alpha=0.3)
-    if not d2.empty: plt.plot(d2['pick_date'], d2['profit'], color=COLORS['diamond'], label='V2 Diamond', alpha=0.5, linewidth=2)
-    if not d3.empty: plt.plot(d3['pick_date'], d3['profit'], color=COLORS['obsidian'], label='V3 Obsidian', alpha=0.7, linewidth=2)
-    if not d4.empty: plt.plot(d4['pick_date'], d4['profit'], color=COLORS['quartz'], label='V4 Quartz', linewidth=3)
+    # Hide spines
+    for spine in ax.spines.values(): spine.set_visible(False)
     
-    plt.axhline(0, color='#333333', linestyle='--')
-    plt.title("QUANTITATIVE PERFORMANCE // MULTI-GENERATIONAL", color='white', fontweight='bold')
-    plt.legend(frameon=False)
-    plt.grid(color='#1A1A1A', alpha=0.5)
-    plt.savefig("docs/assets/obsidian_curve.png", bbox_inches='tight', dpi=150) # Legacy name
-    plt.savefig("docs/assets/quarry_performance.png", bbox_inches='tight', dpi=150)
-    plt.savefig("docs/assets/live_curve.png", bbox_inches='tight', dpi=150)
+    # Grid
+    ax.grid(True, linestyle=':', color='#222222', alpha=0.3, zorder=0)
+    if not d1.empty: 
+        s1 = d1['profit'].rolling(window=3, min_periods=1).mean()
+        plt.plot(d1['pick_date'], s1, color=COLORS['pyrite'], label='V1 Pyrite', alpha=0.35, linewidth=1)
+    if not d2.empty: 
+        s2 = d2['profit'].rolling(window=3, min_periods=1).mean()
+        plt.plot(d2['pick_date'], s2, color=COLORS['diamond'], label='V2 Diamond', alpha=0.5, linewidth=2)
+    if not d3.empty: 
+        s3 = d3['profit'].rolling(window=3, min_periods=1).mean()
+        plt.plot(d3['pick_date'], s3, color=COLORS['obsidian'], label='V3 Obsidian', alpha=0.9, linewidth=2.5)
+    if not d4.empty: 
+        s4 = d4['profit'].rolling(window=3, min_periods=1).mean()
+        plt.plot(d4['pick_date'], s4, color=COLORS['quartz'], label='V4 Quartz', linewidth=3.5, zorder=100)
+        # Aura for Flagship V4
+        plt.fill_between(d4['pick_date'], s4, -100, color=COLORS['quartz'], alpha=0.04, zorder=90)
+    
+    plt.axhline(0, color='#333333', linestyle='--', alpha=0.3)
+    plt.title("QUANTITATIVE PERFORMANCE // MULTI-GENERATIONAL", color='white', fontweight='bold', pad=20)
+    plt.legend(frameon=False, loc='upper right')
+    plt.grid(color='#1A1A1A', alpha=0.3)
+    
+    # Dynamic Headroom (25% padding at top for 16x7)
+    all_profits = pd.concat([d1['profit'], d2['profit'], d3['profit'], d4['profit']])
+    if not all_profits.empty:
+        p_min, p_max = all_profits.min(), all_profits.max()
+        delta = p_max - p_min if p_max > p_min else 10
+        ax.set_ylim(p_min - delta*0.1, p_max + delta*0.25)
+
+    plt.savefig("docs/assets/obsidian_curve.png", bbox_inches='tight', dpi=300) # Legacy
+    plt.savefig("docs/assets/quarry_performance.png", bbox_inches='tight', dpi=300)
+    plt.savefig("docs/assets/live_curve.png", bbox_inches='tight', dpi=300)
     plt.close()
 
     # Pyrite Solo Curve
-    plt.figure(figsize=(12, 6), facecolor=COLORS['void'])
+    plt.figure(figsize=(16, 10), facecolor=COLORS['void'])
     ax = plt.gca()
     ax.set_facecolor(COLORS['void'])
-    if not d1.empty: plt.plot(d1['pick_date'], d1['profit'], color=COLORS['pyrite'], label='V1 Pyrite', linewidth=2)
-    plt.plot(d1['pick_date'], d1['cum_market'] if 'cum_market' in d1.columns else np.zeros(len(d1)), color='gray', linestyle='--', label='Market Baseline', alpha=0.5)
+    for spine in ax.spines.values(): spine.set_visible(False)
+    if not d1.empty: 
+        s1p = d1['profit'].rolling(window=3, min_periods=1).mean()
+        plt.plot(d1['pick_date'], s1p, color=COLORS['pyrite'], label='V1 Pyrite', linewidth=2)
+    plt.plot(d1['pick_date'], d1['cum_market'].rolling(window=3, min_periods=1).mean() if 'cum_market' in d1.columns else np.zeros(len(d1)), color='gray', linestyle='--', label='Market Baseline', alpha=0.5)
     
-    plt.axhline(0, color='#333333', linestyle='--')
-    plt.title("V1 PYRITE PERFORMANCE // CUMULATIVE PROFIT", color='white', fontweight='bold')
-    plt.legend(frameon=False)
-    plt.grid(color='#1A1A1A', alpha=0.5)
+    plt.axhline(0, color='#333333', linestyle='--', alpha=0.3)
+    plt.title("V1 PYRITE PERFORMANCE // CUMULATIVE PROFIT", color='white', fontweight='bold', pad=20)
+    plt.legend(frameon=False, loc='upper right')
+    ax.grid(True, linestyle=':', color='#222222', alpha=0.3, zorder=0)
+
+    # Aura and Termination Orb for Solo Focus
+    if not d1.empty:
+        s1p = d1['profit'].rolling(window=3, min_periods=1).mean()
+        plt.fill_between(d1['pick_date'], s1p, d1['profit'].min()-10, color=COLORS['pyrite'], alpha=0.03)
+        plt.scatter(d1['pick_date'].iloc[-1], s1p.iloc[-1], color='#ffffff', s=100, zorder=110, edgecolors=COLORS['pyrite'], linewidths=2.5)
+        plt.scatter(d1['pick_date'].iloc[-1], s1p.iloc[-1], color=COLORS['pyrite'], s=350, zorder=105, alpha=0.3)
     
     # Fix x-axis overlap
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
     plt.xticks(rotation=45)
     
-    plt.savefig("assets/pyrite_live_curve.png", bbox_inches='tight', dpi=150)
-    plt.savefig("docs/assets/pyrite_live_curve.png", bbox_inches='tight', dpi=150)
+    if not d1.empty:
+        p_min, p_max = d1['profit'].min(), d1['profit'].max()
+        delta = p_max - p_min if p_max > p_min else 10
+        ax.set_ylim(p_min - delta*0.1, p_max + delta*0.25)
+
+    plt.savefig("assets/pyrite_live_curve.png", bbox_inches='tight', dpi=300)
+    plt.savefig("docs/assets/pyrite_live_curve.png", bbox_inches='tight', dpi=300)
     plt.close()
 
     # Sport ROI

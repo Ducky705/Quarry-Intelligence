@@ -9,6 +9,13 @@ import traceback
 DAILY_RISK_CAP = 10.0 # Standard Institutional Cap
 KELLY_FRACTION = 0.2  # Conservative
 CONFIDENCE_THRESHOLD = 0.65
+MAX_ODDS = 7.0         # Institutional longshot filter
+MAX_KELLY_UNITS = 2.0  # Cap per individual pick
+
+try:
+    import lightgbm as lgb
+except ImportError:
+    lgb = None
 
 class PickRegistry:
     """Registry to store and manage capper-specific performance weights."""
@@ -76,15 +83,17 @@ class ModelSimulator:
             ]
 
     def _kelly_v1(self, row):
+        if row['decimal_odds'] > MAX_ODDS: return 0
         p = row['prob']
         if p > row['implied_prob']:
             b = row['decimal_odds'] - 1
             f = (b * p - (1-p)) / b
-            return max(0, f * 0.25) * 100
+            units = max(0, f * 0.25) * 100
+            return min(units, MAX_KELLY_UNITS)
         return 0
 
     def _kelly_v2(self, row):
-        if row['league_name'] in self.V2_TOXIC: return 0
+        if row['league_name'] in self.V2_TOXIC or row['decimal_odds'] > MAX_ODDS: return 0
         cfg = self.V2_LEAGUES.get(row['league_name'], self.V2_LEAGUES['DEFAULT'])
         p, edge = row['prob'], row['edge']
         if edge < cfg['min_edge'] or row['capper_experience'] < 10 or p < 0.55 or row['decimal_odds'] < 1.71:
@@ -92,7 +101,7 @@ class ModelSimulator:
         b = row['decimal_odds'] - 1
         f = (b * p - (1-p)) / b
         raw = max(0, f * 0.10) * cfg['stake'] * 100
-        return min(raw, 3.0)
+        return min(raw, MAX_KELLY_UNITS)
 
     def run_v1_pyrite(self):
         try:
@@ -136,7 +145,7 @@ class ModelSimulator:
             active = active.sort_values(['pick_date', 'edge'], ascending=[True, False])
             def cap_daily(group):
                 risk = group['wager_unit'].sum()
-                if risk > 10.0: group['wager_unit'] *= (10.0 / risk)
+                if risk > DAILY_RISK_CAP: group['wager_unit'] *= (DAILY_RISK_CAP / risk)
                 group['wager_unit'] = group['wager_unit'].apply(lambda x: round(x, 1))
                 return group[group['wager_unit'] > 0]
             

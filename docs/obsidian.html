@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="OBSIDIAN V3: Advanced non-linear neural network ensemble for high-fidelity ALPHA generation in sports betting markets.">
     <title>THE QUARRY // OBSIDIAN</title>
+    <script src="stats.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -697,105 +698,72 @@ window.addEventListener("load", init_all); if(document.readyState==="complete")i
         
         async function hydrate() {
             try {
-                // Prioritize injected DATA if available, fallback to JS-Broadcast or JSON
                 let stats = window.QUARRY_STATS;
-                
-                // Obsidian-specific DATA wrapper handling
-                if (DATA && DATA.v3) {
+                if (!stats && typeof DATA !== 'undefined' && DATA && DATA.v3) {
                     stats = { models: { obsidian: { ...DATA.v3, yesterday: DATA.yesterday_v3 } } };
                 }
-
                 if (!stats) {
                     const response = await fetch('stats.json');
                     stats = await response.json();
                 }
-                
-                const v3 = stats.models.obsidian;
-                
-                if (v3) {
-                    // Header & KPIs
-                    const roiEl = document.getElementById('stat-roi');
-                    if (roiEl) roiEl.textContent = (v3.roi >= 0 ? '+' : '') + v3.roi.toFixed(1) + '%';
 
-                    const roiBar = document.getElementById('roi-bar');
-                    if (roiBar) {
-                        const roiVal = v3.roi;
-                        const roiWidth = Math.min(Math.max(roiVal, 0), 100);
-                        roiBar.style.width = roiWidth + '%';
-                    }
+                const v = stats.models.obsidian;
+                if (!v) return;
 
-                    const wrEl = document.getElementById('stat-winrate');
-                    const wrVal = v3.win_rate !== undefined ? v3.win_rate : v3.winrate;
-                    if (wrEl && wrVal !== undefined) wrEl.textContent = wrVal.toFixed(1) + '%';
+                const mappings = {
+                    'stat-net-absolute': v.net,
+                    'stat-roi': v.roi,
+                    'stat-winrate': v.win_rate,
+                    'stat-record': v.record,
+                    'stat-sample': v.sample
+                };
 
-                    const sampleEl = document.getElementById('stat-sample');
-                    if (sampleEl) sampleEl.textContent = v3.sample;
+                for (const [id, val] of Object.entries(mappings)) {
+                    const el = document.getElementById(id);
+                    if (!el || val === undefined) continue;
+                    if (id.includes('roi')) el.textContent = (val >= 0 ? '+' : '') + val.toFixed(1) + '%';
+                    else if (id.includes('net')) el.textContent = (val >= 0 ? '+' : '') + val.toFixed(2) + 'u';
+                    else if (id.includes('record')) el.textContent = String(val).replace(/\//g, '-');
+                    else el.textContent = val;
+                }
 
-                    const recEl = document.getElementById('stat-record');
-                    if (recEl) {
-                        const record = v3.record || '0-0-0';
-                        recEl.textContent = record.replace(/\//g, '-');
-                    }
+                if (v.yesterday) {
+                    const y = v.yesterday;
+                    const d = document.getElementById('y-date-v3');
+                    if (d) d.textContent = y.date || 'N/A';
+                    const r = document.getElementById('y-record-v3');
+                    if (r) r.textContent = y.record || '--';
+                    const ro = document.getElementById('y-roi-v3');
+                    if (ro) ro.textContent = (y.roi >= 0 ? '+' : '') + y.roi.toFixed(1) + '%';
+                    const n = document.getElementById('y-net-v3');
+                    if (n) n.textContent = (y.net >= 0 ? '+' : '') + y.net.toFixed(2) + 'u';
 
-                    const volEl = document.getElementById('stat-bets-day');
-                    if (volEl && v3.bets_day !== undefined) volEl.textContent = v3.bets_day.toFixed(1) + ' / day';
-
-                    const netEl = document.getElementById('stat-net-absolute');
-                    if (netEl) netEl.textContent = (v3.net >= 0 ? '+' : '') + v3.net.toFixed(2) + 'u';
-
-                    // Yesterday's Summary
-                    const yesterday = v3.yesterday;
-                    if (yesterday) {
-                        const yDate = document.getElementById('y-date-v3');
-                        if (yDate) yDate.textContent = yesterday.date;
-                        
-                        const yRec = document.getElementById('y-record-v3');
-                        if (yRec) yRec.textContent = yesterday.record;
-                        
-                        const yRoiEl = document.getElementById('y-roi-v3');
-                        if (yRoiEl) {
-                            yRoiEl.textContent = (yesterday.roi >= 0 ? '+' : '') + yesterday.roi.toFixed(1) + '%';
-                            yRoiEl.className = `font-bold ${yesterday.roi >= 0 ? 'text-obsidian-glow' : 'text-red-400'}`;
-                        }
-                        
-                        const yNetEl = document.getElementById('y-net-v3');
-                        if (yNetEl) {
-                            yNetEl.textContent = (yesterday.net >= 0 ? '+' : '') + yesterday.net.toFixed(2) + 'u';
-                            yNetEl.className = `font-bold ${yesterday.net >= 0 ? 'text-obsidian-glow' : 'text-red-400'}`;
-                        }
-
-                        // Ledger Table
-                        const body = document.getElementById('ledger-body-v3');
-                        const ledgerData = yesterday.ledger || yesterday.history || [];
-                        if (body && ledgerData) {
-                            body.innerHTML = ledgerData.map(row => {
-                                const pickDate = row.pick_date || row.date || 'N/A';
-                                const leagueName = row.league_name || row.league || 'N/A';
-                                const pickNorm = row.pick_norm || row.selection || 'N/A';
-                                const decimalOdds = row.decimal_odds || (row.odds > 0 ? (row.odds/100)+1 : (100/Math.abs(row.odds))+1) || 0;
-                                const wagerUnit = row.wager_unit || row.wager || row.units || 0;
-                                const profitActual = row.profit_actual !== undefined ? row.profit_actual : (row.profit !== undefined ? row.profit : 0);
-                                const edgeVal = row.edge !== undefined ? row.edge : 0;
-
-                                return `
-                                    <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
-                                        <td class="py-4 pl-6 text-zinc-500">${leagueName}</td>
-                                        <td class="py-4 text-white font-medium">${pickNorm}</td>
-                                        <td class="py-4 text-right text-zinc-500">${Number(decimalOdds).toFixed(2)}</td>
-                                        <td class="py-4 text-right text-zinc-500">${(edgeVal * 100).toFixed(1)}%</td>
-                                        <td class="py-4 pl-8 text-zinc-300">${Number(wagerUnit).toFixed(1)}u</td>
-                                        <td class="py-4 text-right pr-6 font-bold ${profitActual >= 0 ? 'text-obsidian-glow' : 'text-red-400'}">
-                                            ${profitActual >= 0 ? '+' : ''}${Number(profitActual).toFixed(2)}
-                                        </td>
-                                    </tr>
-                                `;
-                            }).join('');
-                        }
+                    const body = document.getElementById('ledger-body-v3');
+                    const ledgerData = y.ledger || y.history || [];
+                    if (body && ledgerData) {
+                        body.innerHTML = ledgerData.map(row => {
+                            const pDate = row.pick_date || row.date || 'N/A';
+                            const lName = row.league_name || row.league || 'N/A';
+                            const pNorm = row.pick_norm || row.selection || 'N/A';
+                            const odds = row.decimal_odds || (row.odds > 0 ? (row.odds/100)+1 : (100/Math.abs(row.odds))+1) || 0;
+                            const wager = row.wager_unit || row.wager || row.units || 0;
+                            const res = row.result || 'N/A';
+                            const profit = row.profit_actual !== undefined ? row.profit_actual : (row.profit !== undefined ? row.profit : 0);
+                            const edge = row.edge !== undefined ? row.edge : 0;
+                            return `<tr class="hover:bg-white/5 transition-colors border-b border-white/5">
+                                <td class="py-4 pl-6 text-zinc-500">${lName}</td>
+                                <td class="py-4 text-white font-medium">${pNorm}</td>
+                                <td class="py-4 text-right text-zinc-500">${Number(odds).toFixed(2)}</td>
+                                <td class="py-4 text-right text-zinc-500">${(edge * 100).toFixed(1)}%</td>
+                                <td class="py-4 pl-8 text-zinc-300">${Number(wager).toFixed(1)}u</td>
+                                <td class="py-4 text-right pr-6 font-bold ${profit >= 0 ? 'text-obsidian-glow' : 'text-red-400'}">${profit >= 0 ? '+' : ''}${Number(profit).toFixed(2)}</td>
+                            </tr>`;
+                        }).join('');
                     }
                 }
-            } catch (e) {
-                console.error("Institutional Data Link Failure:", e);
-            }
+                const roiBar = document.getElementById('roi-bar');
+                if (roiBar && v.roi !== undefined) roiBar.style.width = Math.min(Math.max(v.roi, 0), 100) + '%';
+            } catch (e) { console.error("Institutional Link Failure:", e); }
         }
     </script>
 </body>

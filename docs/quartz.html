@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="QUARTZ V4: Institutional precision engine leveraging vectorized T-1 temporal barriers for elite sports betting alpha.">
     <title>THE QUARRY // QUARTZ PRISM</title>
+    <script src="stats.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -565,83 +566,93 @@
         
         async function hydrate() {
             try {
-                // Prioritize injected DATA if available, fallback to JS-Broadcast or JSON
-                let stats = DATA && Object.keys(DATA).length > 0 ? { models: { quartz: DATA } } : window.QUARRY_STATS;
+                let stats = window.QUARRY_STATS;
+                if (!stats && typeof DATA !== 'undefined' && DATA && Object.keys(DATA).length > 0) {
+                    stats = { models: { quartz: DATA } };
+                }
                 if (!stats) {
                     const response = await fetch('stats.json');
                     stats = await response.json();
                 }
-                
-                const rawModel = stats.models.quartz;
-                const v4 = (rawModel && rawModel.stats) ? { ...rawModel, ...rawModel.stats } : rawModel;
-                
-                if (v4) {
-                    const netEl = document.getElementById('stat-net-absolute');
-                    if (netEl) netEl.innerHTML = ((v4.net || 0) >= 0 ? '+' : '') + (v4.net || 0).toFixed(2) + '<span class="text-5xl align-top ml-4 opacity-20">U</span>';
 
-                    const recoveryEl = document.getElementById('stat-recovery');
-                    if (recoveryEl) recoveryEl.innerHTML = (v4.recovery || 0).toFixed(1) + '<span class="text-2xl text-white/40">x</span>';
+                const v = stats.models.quartz;
+                if (!v) return;
+                const mappings = {
+                    'stat-net-absolute': v.net,
+                    'header-net': v.net,
+                    'stat-roi': v.roi,
+                    'stats-roi': v.roi,
+                    'stat-winrate': v.win_rate,
+                    'stat-sample': v.sample
+                };
 
-                    const roiBar = document.getElementById('roi-bar');
-                    if (roiBar) roiBar.style.width = Math.min(Math.max(v4.roi || 0, 0), 100) + '%';
+                for (const [id, val] of Object.entries(mappings)) {
+                    const el = document.getElementById(id);
+                    if (!el || val === undefined) continue;
 
-                    const wrEl = document.getElementById('stat-winrate');
-                    if (wrEl) {
-                        const wrVal = v4.win_rate !== undefined ? v4.win_rate : (v4.winrate || 0);
-                        wrEl.innerHTML = wrVal.toFixed(1) + '<span class="text-2xl text-white/40">%</span>';
+                    if (id.includes('roi')) {
+                        el.textContent = (val >= 0 ? '+' : '') + val.toFixed(1) + '%';
+                    } else if (id.includes('net')) {
+                        if (el.innerHTML.includes('align-top')) {
+                            el.innerHTML = (val >= 0 ? '+' : '') + val.toFixed(2) + '<span class="text-5xl align-top ml-4 opacity-20">U</span>';
+                        } else {
+                            el.textContent = (val >= 0 ? '+' : '') + val.toFixed(2) + 'u';
+                        }
+                    } else if (id.includes('winrate')) {
+                        if (el.innerHTML.includes('text-white/40')) {
+                            el.innerHTML = val.toFixed(1) + '<span class="text-2xl text-white/40">%</span>';
+                        } else {
+                            el.textContent = val.toFixed(1) + '%';
+                        }
+                    } else {
+                        el.textContent = val;
+                    }
+                }
+
+                if (v.yesterday) {
+                    const y = v.yesterday;
+                    const d = document.getElementById('y-date');
+                    if (d) d.textContent = y.date || 'N/A';
+                    const r = document.getElementById('y-record');
+                    if (r) r.textContent = y.record || '--';
+                    const n = document.getElementById('y-net');
+                    if (n) {
+                        n.textContent = (y.net >= 0 ? '+' : '') + y.net.toFixed(2) + 'u';
+                        n.className = `text-xl font-bold ${y.net >= 0 ? 'text-green-400' : 'text-red-400'}`;
                     }
 
-                    const sampleEl = document.getElementById('stat-sample');
-                    if (sampleEl) sampleEl.textContent = v4.sample || 0;
+                    const body = document.getElementById('ledger-body-v4');
+                    const ledgerData = y.ledger || y.history || [];
+                    if (body && ledgerData) {
+                        if (ledgerData.length === 0) {
+                            body.innerHTML = '<tr><td colspan="4" class="py-12 text-center text-white/5 font-mono text-[10px] uppercase tracking-widest italic border-none">No active sessions found for this period.</td></tr>';
+                        } else {
+                            body.innerHTML = ledgerData.map(row => {
+                                const pDate = row.pick_date || row.date || 'N/A';
+                                const lName = row.league_name || row.league || 'N/A';
+                                const pNorm = row.pick_norm || row.selection || 'N/A';
+                                const wager = row.wager_unit || row.wager || row.units || 0;
+                                const profit = row.profit_actual !== undefined ? row.profit_actual : (row.profit !== undefined ? row.profit : 0);
+                                const id = row.id || row.trace_id || 'QZ-SIM-01';
 
-                    // Yesterday's Summary
-                    const yesterday = v4.yesterday;
-                    if (yesterday) {
-                        const yDate = document.getElementById('y-date');
-                        if (yDate) yDate.textContent = yesterday.date || 'N/A';
-                        
-                        const yRec = document.getElementById('y-record');
-                        if (yRec) yRec.textContent = yesterday.record || '--';
-                        
-                        const yNet = document.getElementById('y-net');
-                        if (yNet) {
-                            const netVal = yesterday.net || 0;
-                            yNet.textContent = (netVal >= 0 ? '+' : '') + netVal.toFixed(2) + 'u';
-                            yNet.className = `text-xl font-bold ${netVal >= 0 ? 'text-green-400' : 'text-red-400'}`;
-                        }
-
-                        // Ledger Table
-                        const body = document.getElementById('ledger-body-v4');
-                        const ledgerData = yesterday.ledger || yesterday.history || [];
-                        if (body && ledgerData) {
-                            if (ledgerData.length === 0) {
-                                body.innerHTML = '<tr><td colspan="4" class="py-12 text-center text-white/5 font-mono text-[10px] uppercase tracking-widest italic border-none">No active sessions found for this period.</td></tr>';
-                            } else {
-                                body.innerHTML = ledgerData.map(row => {
-                                    const pickDate = row.pick_date || row.date || 'N/A';
-                                    const leagueName = row.league_name || row.league || 'N/A';
-                                    const pickNorm = row.pick_norm || row.selection || 'N/A';
-                                    const wagerUnit = row.wager_unit || row.wager || row.units || 0;
-                                    const profitActual = row.profit_actual !== undefined ? row.profit_actual : (row.profit !== undefined ? row.profit : 0);
-                                    const id = row.id || row.trace_id || 'QZ-SIM-01';
-
-                                    return `
-                                        <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
-                                            <td class="py-5 pl-8 text-white/40">${id}</td>
-                                            <td class="py-5 text-white font-medium">${leagueName} // ${pickNorm}</td>
-                                            <td class="py-5 text-right font-mono text-white/50">${Number(wagerUnit).toFixed(1)}u</td>
-                                            <td class="py-5 text-right pr-8 font-bold ${profitActual >= 0 ? 'text-ice-blue' : 'text-red-400'}">
-                                                ${profitActual >= 0 ? '+' : ''}${Number(profitActual).toFixed(2)}
-                                            </td>
-                                        </tr>
-                                    `;
-                                }).join('');
-                            }
+                                return `
+                                    <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
+                                        <td class="py-5 pl-8 text-white/40">${id}</td>
+                                        <td class="py-5 text-white font-medium">${lName} // ${pNorm}</td>
+                                        <td class="py-5 text-right font-mono text-white/50">${Number(wager).toFixed(1)}u</td>
+                                        <td class="py-5 text-right pr-8 font-bold ${profit >= 0 ? 'text-ice-blue' : 'text-red-400'}">
+                                            ${profit >= 0 ? '+' : ''}${Number(profit).toFixed(2)}
+                                        </td>
+                                    </tr>
+                                `;
+                            }).join('');
                         }
                     }
                 }
+                const roiBar = document.getElementById('roi-bar');
+                if (roiBar && v.roi !== undefined) roiBar.style.width = Math.min(Math.max(v.roi, 0), 100) + '%';
             } catch (e) {
-                console.error("Institutional Data Link Failure:", e);
+                console.error("Institutional Link Failure:", e);
             }
         }
 

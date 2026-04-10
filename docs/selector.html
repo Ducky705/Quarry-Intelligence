@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="THE QUARRY: Advanced Gradient Boosting Decision Trees (XGBoost) and Deep Neural Networks for institutional-grade sports betting alpha.">
     <title>THE QUARRY // CONTROL CENTER</title>
+    <script src="stats.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -589,8 +590,13 @@
 
         async function hydrate() {
             try {
-                const response = await fetch('stats.json');
-                const stats = await response.json();
+                // Prioritize global window object (resolves CORS issues for local files)
+                let stats = window.QUARRY_STATS;
+                
+                if (!stats) {
+                    const response = await fetch('stats.json');
+                    stats = await response.json();
+                }
                 
                 const models = ['pyrite', 'diamond', 'obsidian', 'quartz'];
                 models.forEach(m => {

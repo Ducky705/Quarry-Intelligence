@@ -219,7 +219,7 @@
                 </div>
             </div>
             <div class="text-right mt-8 md:mt-0">
-                <div id="stat-net-absolute"
+                <div id="stat-net"
                     class="font-mono text-5xl font-bold text-obsidian-accent glow-text mb-1 tracking-tight">--</div>
                 <div class="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">Net Alpha Generated</div>
             </div>
@@ -521,152 +521,24 @@
         };
 window.addEventListener("load", init_all); if(document.readyState==="complete")init_all();
 
-        // --- DATA HYDRATION (PRESERVED LOGIC) ---
-        // This object is usually injected by the backend script.
-        // We initialize it with mocks for fallback visualization.
-        
-
-        // --- DATA HYDRATION (OBSIDIAN V3) ---
-        const DATA = {
-            "v3": {
-                        "roi": 4.930491386802632,
-                        "winrate": 50.21052631578947,
-                        "sample": 950,
-                        "record": "477/473/0",
-                        "bets_day": 9.7,
-                        "net": 21.914062017782978
-            },
-            "v2": {
-                        "roi": 5.270000931420039
-            },
-            "v1": {
-                        "roi": -8.790089433600569
-            },
-            "yesterday_v3": {
-                        "date": "Apr 06, 2026",
-                        "record": "2-6-0",
-                        "winrate": 25.0,
-                        "roi": -54.3,
-                        "net": -2.69,
-                        "history": [
-                                    {
-                                                "date": "04/06",
-                                                "league": "NCAAB",
-                                                "selection": "connecticut +7",
-                                                "odds": -110,
-                                                "edge": 0.0011904761904761862,
-                                                "units": 0.6,
-                                                "wager": 0.6,
-                                                "profit": 0.56,
-                                                "result": "WIN",
-                                                "match": "connecticut +7"
-                                    },
-                                    {
-                                                "date": "04/06",
-                                                "league": "NBA",
-                                                "selection": "blazers +8.5",
-                                                "odds": -134,
-                                                "edge": -0.0476495726495727,
-                                                "units": 0.6,
-                                                "wager": 0.6,
-                                                "profit": 0.46,
-                                                "result": "WIN",
-                                                "match": "blazers +8.5"
-                                    },
-                                    {
-                                                "date": "04/06",
-                                                "league": "NBA",
-                                                "selection": "hawks ml",
-                                                "odds": -115,
-                                                "edge": -0.009883720930232598,
-                                                "units": 0.6,
-                                                "wager": 0.6,
-                                                "profit": -0.62,
-                                                "result": "LOSS",
-                                                "match": "hawks ml"
-                                    },
-                                    {
-                                                "date": "04/06",
-                                                "league": "NCAAB",
-                                                "selection": "michigan -6.5",
-                                                "odds": -115,
-                                                "edge": -0.009883720930232598,
-                                                "units": 0.6,
-                                                "wager": 0.6,
-                                                "profit": -0.62,
-                                                "result": "LOSS",
-                                                "match": "michigan -6.5"
-                                    },
-                                    {
-                                                "date": "04/06",
-                                                "league": "NHL",
-                                                "selection": "sabres ml",
-                                                "odds": -115,
-                                                "edge": -0.009883720930232598,
-                                                "units": 0.6,
-                                                "wager": 0.6,
-                                                "profit": -0.62,
-                                                "result": "LOSS",
-                                                "match": "sabres ml"
-                                    },
-                                    {
-                                                "date": "04/06",
-                                                "league": "NBA",
-                                                "selection": "knicks vs hawks over 226.5",
-                                                "odds": -110,
-                                                "edge": 0.0011904761904761862,
-                                                "units": 0.6,
-                                                "wager": 0.6,
-                                                "profit": -0.62,
-                                                "result": "LOSS",
-                                                "match": "knicks vs hawks over 226.5"
-                                    },
-                                    {
-                                                "date": "04/06",
-                                                "league": "NBA",
-                                                "selection": "76ers vs spurs over 236.5",
-                                                "odds": -110,
-                                                "edge": 0.0011904761904761862,
-                                                "units": 0.6,
-                                                "wager": 0.6,
-                                                "profit": -0.62,
-                                                "result": "LOSS",
-                                                "match": "76ers vs spurs over 236.5"
-                                    },
-                                    {
-                                                "date": "04/06",
-                                                "league": "NCAAB",
-                                                "selection": "connecticut vs michigan over 144",
-                                                "odds": -110,
-                                                "edge": 0.0011904761904761862,
-                                                "units": 0.6,
-                                                "wager": 0.6,
-                                                "profit": -0.62,
-                                                "result": "LOSS",
-                                                "match": "connecticut vs michigan over 144"
-                                    }
-                        ]
-            }
-};
-        
         async function hydrate() {
             try {
+                // 1. Data Source Selection (Prioritize global object, fallback to fetch)
                 let stats = window.QUARRY_STATS;
-                if (!stats && typeof DATA !== 'undefined' && DATA && DATA.v3) {
-                    stats = { models: { obsidian: { ...DATA.v3, yesterday: DATA.yesterday_v3 } } };
-                }
                 if (!stats) {
                     const response = await fetch('stats.json');
                     stats = await response.json();
                 }
 
+                // 2. Resolve Model Data
                 const v = stats.models.obsidian;
                 if (!v) return;
 
+                // 3. KPI Mapping
                 const mappings = {
-                    'stat-net-absolute': v.net,
+                    'stat-net': v.net,
                     'stat-roi': v.roi,
-                    'stat-winrate': v.win_rate,
+                    'stat-winrate': v.win_rate !== undefined ? v.win_rate : v.winrate,
                     'stat-record': v.record,
                     'stat-sample': v.sample
                 };
@@ -716,7 +588,9 @@ window.addEventListener("load", init_all); if(document.readyState==="complete")i
                 }
                 const roiBar = document.getElementById('roi-bar');
                 if (roiBar && v.roi !== undefined) roiBar.style.width = Math.min(Math.max(v.roi, 0), 100) + '%';
-            } catch (e) { console.error("Institutional Link Failure:", e); }
+            } catch (e) {
+                console.error("Institutional Link Failure:", e);
+            }
         }
     </script>
 </body>

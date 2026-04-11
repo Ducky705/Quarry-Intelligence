@@ -182,7 +182,7 @@
             </div>
             <div class="lg:col-span-5 text-left lg:text-right pb-4">
                 <div class="shard-label mb-4 opacity-40">Cumulative Net Alpha</div>
-                <div id="stat-net-absolute" class="text-8xl md:text-[10rem] font-bold tracking-tighter glow-text leading-none">+0.00<span class="text-5xl align-top ml-4 opacity-20">U</span></div>
+                <div id="stat-net" class="text-8xl md:text-[10rem] font-bold tracking-tighter glow-text leading-none">+0.00<span class="text-5xl align-top ml-4 opacity-20">U</span></div>
                 <div class="mt-8 flex flex-wrap gap-4 lg:justify-end">
                     <div class="flex items-center gap-2 px-4 py-1.5 bg-white/[0.03] border border-white/10 rounded text-[10px] font-mono uppercase tracking-widest">
                         <span class="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_10px_#22c55e]"></span>
@@ -465,52 +465,26 @@
         }
 
         // --- DATA HYDRATION (QUARTZ V4) ---
-        const DATA = {
-            "meta": {
-                        "last_update": "2026-04-10 19:45 UTC",
-                        "status": "FLAGSHIP"
-            },
-            "stats": {
-                        "roi": 0,
-                        "net_units": 0,
-                        "record": "0-0-0",
-                        "win_rate": 0,
-                        "sample": 0
-            },
-            "volume": {
-                        "v4_avg": 0,
-                        "v4_label": "High"
-            },
-            "yesterday": {
-                        "record": "0-0-0",
-                        "win_pct": 0,
-                        "roi": 0,
-                        "net": 0,
-                        "date": "N/A"
-            },
-            "history": []
-};
-        
         async function hydrate() {
             try {
+                // 1. Data Source Selection (Prioritize global object, fallback to fetch)
                 let stats = window.QUARRY_STATS;
-                if (!stats && typeof DATA !== 'undefined' && DATA && Object.keys(DATA).length > 0) {
-                    stats = { models: { quartz: DATA } };
-                }
                 if (!stats) {
                     const response = await fetch('stats.json');
                     stats = await response.json();
                 }
 
+                // 2. Resolve Model Data
                 const v = stats.models.quartz;
                 if (!v) return;
+
+                // 3. KPI Mapping
                 const mappings = {
-                    'stat-net-absolute': v.net,
-                    'header-net': v.net,
+                    'stat-net': v.net,
                     'stat-roi': v.roi,
-                    'stats-roi': v.roi,
-                    'stat-winrate': v.win_rate,
-                    'stat-sample': v.sample
+                    'stat-winrate': v.win_rate !== undefined ? v.win_rate : v.winrate,
+                    'stat-sample': v.sample,
+                    'stat-recovery': v.roi / 5.0 // Proxy recovery factor
                 };
 
                 for (const [id, val] of Object.entries(mappings)) {
@@ -531,6 +505,8 @@
                         } else {
                             el.textContent = val.toFixed(1) + '%';
                         }
+                    } else if (id.includes('recovery')) {
+                        el.innerHTML = val.toFixed(1) + '<span class="text-2xl text-white/40">x</span>';
                     } else {
                         el.textContent = val;
                     }
@@ -560,11 +536,11 @@
                                 const pNorm = row.pick_norm || row.selection || 'N/A';
                                 const wager = row.wager_unit || row.wager || row.units || 0;
                                 const profit = row.profit_actual !== undefined ? row.profit_actual : (row.profit !== undefined ? row.profit : 0);
-                                const id = row.id || row.trace_id || 'QZ-SIM-01';
+                                const traceId = row.id || row.trace_id || 'QZ-SIM-01';
 
                                 return `
                                     <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
-                                        <td class="py-5 pl-8 text-white/40">${id}</td>
+                                        <td class="py-5 pl-8 text-white/40">${traceId}</td>
                                         <td class="py-5 text-white font-medium">${lName} // ${pNorm}</td>
                                         <td class="py-5 text-right font-mono text-white/50">${Number(wager).toFixed(1)}u</td>
                                         <td class="py-5 text-right pr-8 font-bold ${profit >= 0 ? 'text-ice-blue' : 'text-red-400'}">

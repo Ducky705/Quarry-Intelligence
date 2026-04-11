@@ -216,7 +216,7 @@
                 </p>
             </div>
             <div class="text-right mt-6 md:mt-0">
-                <div class="font-mono text-5xl font-bold text-pyrite-gold glow-text" id="header-net">--</div>
+                <div class="font-mono text-5xl font-bold text-pyrite-gold glow-text" id="stat-net">--</div>
                 <div class="font-mono text-xs text-zinc-500 uppercase tracking-widest">Net Alpha Generated</div>
             </div>
         </header>
@@ -272,7 +272,7 @@
                     <div class="absolute inset-0 bg-pyrite-gold/5 opacity-0 group-hover:opacity-100 transition-opacity">
                     </div>
                     <span class="font-mono text-xs text-zinc-500 uppercase relative z-10">ROI</span>
-                    <div class="text-3xl font-bold text-pyrite-gold relative z-10" id="stats-roi">--%</div>
+                    <div class="text-3xl font-bold text-pyrite-gold relative z-10" id="stat-roi">--%</div>
                 </div>
                 <!-- Win Rate -->
                 <div class="bg-zinc-900/50 border border-zinc-800 p-6 flex flex-col justify-between h-32 hover:border-pyrite-gold transition-all duration-300 group opacity-0 animate-slide-up-fade relative overflow-hidden"
@@ -281,7 +281,7 @@
                     </div>
                     <span class="font-mono text-xs text-zinc-500 uppercase relative z-10">Win Rate</span>
                     <div class="text-3xl font-bold text-white group-hover:text-pyrite-gold transition-colors relative z-10"
-                        id="stats-winrate">--%</div>
+                        id="stat-winrate">--%</div>
                 </div>
                 <!-- Record -->
                 <div class="col-span-2 bg-zinc-900/50 border border-zinc-800 p-6 flex flex-col justify-between h-24 hover:border-pyrite-gold transition-all duration-300 group opacity-0 animate-slide-up-fade relative overflow-hidden"
@@ -290,7 +290,7 @@
                     </div>
                     <div class="flex justify-between items-center relative z-10">
                         <span class="font-mono text-xs text-zinc-500 uppercase">Total Record</span>
-                        <div class="font-mono text-xl text-zinc-300" id="stats-record">--</div>
+                        <div class="font-mono text-xl text-zinc-300" id="stat-record">--</div>
                     </div>
                 </div>
             </div>
@@ -498,90 +498,25 @@
 
         initEmbers();
 
-        // --- DATA HYDRATION (PYRITE V1) ---
-        const DATA = {
-            "meta": {
-                        "last_update": "2026-04-10 19:45 UTC",
-                        "status": "LEGACY"
-            },
-            "stats": {
-                        "roi": -8.8,
-                        "net_units": -18.52,
-                        "record": "121-140-0",
-                        "win_rate": 46.4
-            },
-            "volume": {
-                        "v1_avg": 3.8,
-                        "v2_avg": 0,
-                        "v1_label": "High",
-                        "v2_label": "Medium"
-            },
-            "yesterday": {
-                        "record": "0-3-0",
-                        "win_pct": 0.0,
-                        "roi": -100.0,
-                        "net": -6.0,
-                        "date": "Apr 02, 2026"
-            },
-            "history": [
-                        {
-                                    "date": "04/02",
-                                    "league": "NBA",
-                                    "selection": "luke kennard over 7.5 total points",
-                                    "odds": 101,
-                                    "edge": 0.04987772513384836,
-                                    "units": 2.0,
-                                    "wager": 2.0,
-                                    "profit": -2.0,
-                                    "result": "LOSS",
-                                    "match": "luke kennard over 7.5 total points"
-                        },
-                        {
-                                    "date": "04/02",
-                                    "league": "NCAAB",
-                                    "selection": "illinois state +6.5",
-                                    "odds": -105,
-                                    "edge": 0.05806921749580196,
-                                    "units": 2.0,
-                                    "wager": 2.0,
-                                    "profit": -2.0,
-                                    "result": "LOSS",
-                                    "match": "illinois state +6.5"
-                        },
-                        {
-                                    "date": "04/02",
-                                    "league": "NBA",
-                                    "selection": "cleveland cavaliers -10.5",
-                                    "odds": -105,
-                                    "edge": 0.05806921749580196,
-                                    "units": 2.0,
-                                    "wager": 2.0,
-                                    "profit": -2.0,
-                                    "result": "LOSS",
-                                    "match": "cleveland cavaliers -10.5"
-                        }
-            ]
-};
-
         async function hydrate() {
             try {
+                // 1. Data Source Selection (Prioritize global object, fallback to fetch)
                 let stats = window.QUARRY_STATS;
-                if (!stats && typeof DATA !== 'undefined' && DATA && Object.keys(DATA).length > 0) {
-                    stats = { models: { pyrite: DATA } };
-                }
                 if (!stats) {
                     const response = await fetch('stats.json');
                     stats = await response.json();
                 }
-                
+
+                // 2. Resolve Model Data
                 const v = stats.models.pyrite;
                 if (!v) return;
 
+                // 3. KPI Mapping
                 const mappings = {
-                    'header-net': v.net,
-                    'stats-roi': v.roi,
-                    'stats-winrate': v.win_rate,
-                    'stats-record': v.record,
+                    'stat-net': v.net,
+                    'stat-roi': v.roi,
+                    'stat-winrate': v.win_rate !== undefined ? v.win_rate : v.winrate,
+                    'stat-record': v.record,
                     'stat-sample': v.sample
                 };
 

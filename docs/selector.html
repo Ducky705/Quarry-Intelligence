@@ -577,30 +577,22 @@
         window.addEventListener('resize', resize);
 
         // --- 2. DATA HYDRATION ---
-        const DATA = {
-            "pyrite": "SURGICAL",
-            "diamond": "SURGICAL",
-            "obsidian": "BALANCED",
-            "quartz": "SURGICAL"
-};
-
         async function hydrate() {
             try {
                 // Prioritize global window object (resolves CORS issues for local files)
                 let stats = window.QUARRY_STATS;
-                
                 if (!stats) {
                     const response = await fetch('stats.json');
                     stats = await response.json();
                 }
-                
+
                 const models = ['pyrite', 'diamond', 'obsidian', 'quartz'];
                 models.forEach(m => {
                     const data = stats.models[m];
                     if (data) {
                         const riskEl = document.getElementById(`risk-${m}`);
-                        if (riskEl) riskEl.textContent = data.status;
-                        
+                        if (riskEl) riskEl.textContent = (data.status || 'NOMINAL').toUpperCase();
+
                         const roiEl = document.getElementById(`roi-${m}`);
                         if (roiEl) roiEl.textContent = (data.roi >= 0 ? '+' : '') + data.roi.toFixed(1) + '%';
                     }

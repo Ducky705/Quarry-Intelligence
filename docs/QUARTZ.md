@@ -1,23 +1,23 @@
-# Quartz Engine (V4) // The Quantum Sniper
+# Series 4: Quartz // Institutional Framework
 
-The Quartz engine represents the pinnacle of the Quarry algorithmic suite, transitioning from standard gradient boosting to a **Correct Shift** signal processing architecture.
+The Quartz architecture represents the flagship analytical model of the Quarry Intelligence suite, transitioning from standard boosting to a multi-source signal processing framework.
 
-## 🏛 Architecture: Institutional Drift Proxy
-Quartz does not merely predict outcomes; it identifies **market drift**. By analyzing the relationship between opening lines and high-fidelity consensus signals, it locates "The Gap"—the transient window where institutional money has not yet moved the price.
+## 🏛 Architecture: Systematic Drift Analysis
+Quartz identifies market inefficiencies by analyzing the relationship between opening lines and high-fidelity consensus signals. This allows it to locate the transient window where market prices haven't yet reflected institutional moves.
 
 ### Key Mechanisms:
-- **Vectorized Alpha Hook**: Ingests multi-source price streams to identify deviations from the "Correct" market line.
-- **Mean-Pooling Consensus**: Aggregates signals from a pool of top-tier cap-weighted performers to filter out idiosyncratic noise.
-- **T-1 Temporal Barrier**: Strict post-release simulation ensures zero data leakage, providing an honest institutional performance curve.
+- **Systematic Drift Detection**: Ingests multi-source data to identify deviations from target price targets.
+- **Consensus Filtering**: Aggregates signals from top-tier performers to reduce noise.
+- **T-1 Simulation Barrier**: Strict verification process ensures zero data leakage, providing an honest performance curve.
 
 ## 📊 Performance Benchmarks (Live Track)
 Quartz is calibrated for **institutional stability** rather than raw volume. 
 
 | Metric | Value |
 | :--- | :--- |
-| **Total Alpha** | **+196.31u** |
-| **Win Rate** | **58.4%** |
-| **Recovery Factor** | **3.4x** |
+| **Net Alpha** | **+1.10u** |
+| **Win Rate** | **63.6%** |
+| **Total Samples** | **11** |
 | **Max Drawdown** | **-12.8u** |
 
 ## 🛠 Strategic Execution
@@ -28,4 +28,5 @@ Quartz operates on a **Strict Edge Filter**:
 - **Staking**: Dynamic Kelly (0.20 fraction) with Consensus Volatility weighting.
 
 ---
-*© 2026 XGBOOST-SNIPER TECHNOLOGIES // PROPRIETARY INSTITUTIONAL RESEARCH*
+---
+*© 2026 QUARRY INTELLIGENCE GROUP // PROPRIETARY RESEARCH*

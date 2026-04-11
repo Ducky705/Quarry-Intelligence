@@ -29,7 +29,7 @@ def get_model_path(filename):
     """Resolve model path, supporting both submodule and direct placement."""
     paths = [
         os.path.join('models', filename),           # Submodule location
-        os.path.join('..', 'XGBoost-Sniper-Models', filename),  # Adjacent repo
+        os.path.join('..', 'Quarry-Intelligence-Models', filename),  # Adjacent repo
     ]
     for path in paths:
         if os.path.exists(path):

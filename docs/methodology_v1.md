@@ -1,20 +1,17 @@
-# Phase 1: The "Pyrite" Prototype (Legacy)
+# Analytical Series 1: Pyrite (Legacy Framework)
 
-**Status:** Deprecated
-**Outcome:** High Volatility / Negative Yield
+**Current Status:** Archived
+**Performance Metric:** High Volatility / Negative Yield
 
-This document details the development of the initial **V1 "Pyrite"** model. We call it "Pyrite" (Fool's Gold) because, during backtesting, it appeared highly profitable due to high accuracy (65%+). However, in live trading, it failed to overcome the bookmaker's vigorish, revealing that **Accuracy $
-eq$ Profitability**.
+This report documents the research findings from the initial **Series 1: Pyrite** model. Originally categorized as a potential alpha generator, live deployment revealed a failure to maintain profitability across market-adjusted benchmarks.
 
 ---
 
-## 1. The Fallacy of Accuracy
-Sports betting markets are efficient. The closing lines represent a highly accurate aggregation of public information. A common pitfall in ML sports betting is optimizing for classification accuracy.
+## 1. The Accuracy Fallacy
+Model optimization based purely on classification accuracy often overlooks the efficiency of market segments.
+*   **Case Study:** High-probability outcomes (e.g., -400 favorites) may yield high "accuracy" but negative expected value if the market price exceeds the true probability.
 
-*   **Example:** A model that predicts a -400 favorite (80% implied probability) will be "correct" 80% of the time.
-*   **The Trap:** If that favorite wins 78% of the time, the model is "accurate" but loses money on every bet.
-
-V1 was designed to maximize **Unit Profit**, but it inadvertently fell into the accuracy trap by over-weighting heavy favorites.
+The Series 1 model was optimized for net profit but inadvertently weighted heavy favorites without sufficient edge detection.
 
 ## 2. The Technical Stack
 *   **Data:** 58,000+ historical picks (NCAAF, NCAAB, NFL, NBA, NHL).

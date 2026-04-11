@@ -1,439 +1,187 @@
 window.QUARRY_STATS = {
     "meta": {
-        "last_update": "2026-04-10 16:49 UTC",
+        "last_update": "2026-04-10 17:27 UTC",
         "status": "NOMINAL"
     },
     "models": {
         "pyrite": {
-            "roi": -2.5,
-            "net": -31.1,
-            "wins": 1640,
-            "losses": 1837,
+            "roi": -3.2,
+            "net": -18.3,
+            "wins": 365,
+            "losses": 413,
             "pushes": 0,
-            "record": "1640-1837-0",
-            "win_rate": 47.2,
-            "sample": 3477,
-            "bets_day": 25.4,
+            "record": "365-413-0",
+            "win_rate": 46.9,
+            "sample": 778,
+            "bets_day": 5.8,
             "status": "LEGACY",
             "yesterday": {
-                "date": "Apr 06, 2026",
-                "record": "10-21-0",
-                "net": -5.37,
-                "roi": -53.7,
+                "date": "Apr 04, 2026",
+                "record": "2-0-0",
+                "net": 0.4,
+                "roi": 105.0,
                 "ledger": [
                     {
-                        "pick_date": "04/06",
+                        "pick_date": "04/04",
                         "result": "WIN",
-                        "league_name": "MLB",
-                        "decimal_odds": 2.0300000000000002,
-                        "pick_norm": "guardians ml",
-                        "wager_unit": 0.45901057433461945,
-                        "profit_actual": 0.47278089156465813
+                        "league_name": "NCAAB",
+                        "decimal_odds": 2.05,
+                        "pick_norm": "zalaegerszegi te -0.5",
+                        "wager_unit": 0.3795997727484899,
+                        "profit_actual": 0.39857976138591433
                     },
                     {
-                        "pick_date": "04/06",
+                        "pick_date": "04/04",
                         "result": "WIN",
-                        "league_name": "MLB",
-                        "decimal_odds": 2.0300000000000002,
-                        "pick_norm": "guardians ml",
-                        "wager_unit": 0.45901057433461945,
-                        "profit_actual": 0.47278089156465813
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "NBA",
-                        "decimal_odds": 1.9523809523809523,
-                        "pick_norm": "magic +3",
-                        "wager_unit": 0.37844485918836746,
-                        "profit_actual": 0.3604236754174928
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "NBA",
-                        "decimal_odds": 1.9523809523809523,
-                        "pick_norm": "magic +3",
-                        "wager_unit": 0.37844485918836746,
-                        "profit_actual": 0.3604236754174928
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "MLB",
-                        "decimal_odds": 2.0300000000000002,
-                        "pick_norm": "nationals ml",
-                        "wager_unit": 0.1579855354295935,
-                        "profit_actual": 0.16272510149248134
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "MLB",
-                        "decimal_odds": 2.0300000000000002,
-                        "pick_norm": "nationals ml",
-                        "wager_unit": 0.1579855354295935,
-                        "profit_actual": 0.16272510149248134
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "NBA",
-                        "decimal_odds": 1.9523809523809523,
-                        "pick_norm": "magic +3",
-                        "wager_unit": 0.1623002444820846,
-                        "profit_actual": 0.15457166141150913
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "NBA",
-                        "decimal_odds": 1.9523809523809523,
-                        "pick_norm": "magic +3",
-                        "wager_unit": 0.1623002444820846,
-                        "profit_actual": 0.15457166141150913
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "MLB",
-                        "decimal_odds": 1.9803921568627452,
-                        "pick_norm": "rays ml",
-                        "wager_unit": 0.0037058806017251597,
-                        "profit_actual": 0.0036332162762011374
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "MLB",
-                        "decimal_odds": 1.9803921568627452,
-                        "pick_norm": "rays ml",
-                        "wager_unit": 0.0037058806017251597,
-                        "profit_actual": 0.0036332162762011374
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "LOSS",
-                        "league_name": "NHL",
-                        "decimal_odds": 2.13,
-                        "pick_norm": "nashville predators ml",
-                        "wager_unit": 0.09576007762026117,
-                        "profit_actual": -0.09576007762026117
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "LOSS",
-                        "league_name": "NHL",
-                        "decimal_odds": 2.13,
-                        "pick_norm": "nashville predators ml",
-                        "wager_unit": 0.09576007762026117,
-                        "profit_actual": -0.09576007762026117
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "LOSS",
-                        "league_name": "MLB",
-                        "decimal_odds": 2.12,
-                        "pick_norm": "twins ml",
-                        "wager_unit": 0.1197903330267372,
-                        "profit_actual": -0.1197903330267372
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "LOSS",
-                        "league_name": "MLB",
-                        "decimal_odds": 2.12,
-                        "pick_norm": "twins ml",
-                        "wager_unit": 0.1197903330267372,
-                        "profit_actual": -0.1197903330267372
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "LOSS",
-                        "league_name": "NBA",
-                        "decimal_odds": 1.9523809523809523,
-                        "pick_norm": "76ers +8.5",
-                        "wager_unit": 0.2617461310360334,
-                        "profit_actual": -0.2617461310360334
+                        "league_name": "NCAAB",
+                        "decimal_odds": 2.02,
+                        "pick_norm": "michigan -1.5",
+                        "wager_unit": 0.005897675074782373,
+                        "profit_actual": 0.00601562857627802
                     }
                 ]
             }
         },
         "diamond": {
-            "roi": 2.6,
-            "net": 26.1,
-            "wins": 898,
-            "losses": 816,
+            "roi": 11.3,
+            "net": 72.3,
+            "wins": 572,
+            "losses": 418,
             "pushes": 0,
-            "record": "898-816-0",
-            "win_rate": 52.4,
-            "sample": 1714,
-            "bets_day": 13.5,
+            "record": "572-418-0",
+            "win_rate": 57.8,
+            "sample": 990,
+            "bets_day": 7.6,
             "status": "STABLE",
             "yesterday": {
-                "date": "Apr 06, 2026",
-                "record": "7-6-0",
-                "net": -2.94,
-                "roi": -29.1,
+                "date": "Apr 09, 2026",
+                "record": "1-0-0",
+                "net": 1.82,
+                "roi": 90.9,
                 "ledger": [
                     {
-                        "pick_date": "04/06",
+                        "pick_date": "04/09",
                         "result": "WIN",
-                        "league_name": "NHL",
-                        "decimal_odds": 2.06,
-                        "pick_norm": "sabres ml",
-                        "wager_unit": 0.7,
-                        "profit_actual": 0.742
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "NCAAB",
+                        "league_name": "NBA",
                         "decimal_odds": 1.9090909090909092,
-                        "pick_norm": "connecticut +7",
-                        "wager_unit": 0.5,
-                        "profit_actual": 0.4545454545454546
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "NCAAB",
-                        "decimal_odds": 1.9090909090909092,
-                        "pick_norm": "connecticut vs michigan under 146",
-                        "wager_unit": 0.5,
-                        "profit_actual": 0.4545454545454546
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "NCAAB",
-                        "decimal_odds": 1.9090909090909092,
-                        "pick_norm": "connecticut +7",
-                        "wager_unit": 0.5,
-                        "profit_actual": 0.4545454545454546
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "NCAAB",
-                        "decimal_odds": 1.9090909090909092,
-                        "pick_norm": "connecticut vs michigan under 146",
-                        "wager_unit": 0.5,
-                        "profit_actual": 0.4545454545454546
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "NHL",
-                        "decimal_odds": 1.900900900900901,
-                        "pick_norm": "rangers ml",
-                        "wager_unit": 0.5,
-                        "profit_actual": 0.4504504504504505
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "WIN",
-                        "league_name": "NHL",
-                        "decimal_odds": 1.900900900900901,
-                        "pick_norm": "rangers ml",
-                        "wager_unit": 0.5,
-                        "profit_actual": 0.4504504504504505
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "LOSS",
-                        "league_name": "NHL",
-                        "decimal_odds": 2.08,
-                        "pick_norm": "rangers ml",
-                        "wager_unit": 1.0,
-                        "profit_actual": -1.0
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "LOSS",
-                        "league_name": "NHL",
-                        "decimal_odds": 2.08,
-                        "pick_norm": "rangers ml",
-                        "wager_unit": 1.0,
-                        "profit_actual": -1.0
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "LOSS",
-                        "league_name": "NHL",
-                        "decimal_odds": 2.1,
-                        "pick_norm": "rangers ml",
-                        "wager_unit": 1.1,
-                        "profit_actual": -1.1
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "LOSS",
-                        "league_name": "NHL",
-                        "decimal_odds": 2.1,
-                        "pick_norm": "rangers ml",
-                        "wager_unit": 1.1,
-                        "profit_actual": -1.1
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "LOSS",
-                        "league_name": "NHL",
-                        "decimal_odds": 2.0300000000000002,
-                        "pick_norm": "rangers ml",
-                        "wager_unit": 1.1,
-                        "profit_actual": -1.1
-                    },
-                    {
-                        "pick_date": "04/06",
-                        "result": "LOSS",
-                        "league_name": "NHL",
-                        "decimal_odds": 2.0300000000000002,
-                        "pick_norm": "rangers ml",
-                        "wager_unit": 1.1,
-                        "profit_actual": -1.1
+                        "pick_norm": "pacers -1.5",
+                        "wager_unit": 2.0,
+                        "profit_actual": 1.8181818181818183
                     }
                 ]
             }
         },
         "obsidian": {
-            "roi": 2.5,
-            "net": 12.7,
-            "wins": 555,
-            "losses": 662,
+            "roi": -1.8,
+            "net": -8.6,
+            "wins": 557,
+            "losses": 608,
             "pushes": 0,
-            "record": "555-662-0",
-            "win_rate": 45.6,
-            "sample": 1217,
-            "bets_day": 11.8,
+            "record": "557-608-0",
+            "win_rate": 47.8,
+            "sample": 1165,
+            "bets_day": 11.3,
             "status": "ADVANCED",
             "yesterday": {
                 "date": "Apr 09, 2026",
-                "record": "5-7-0",
-                "net": -0.85,
-                "roi": -16.8,
+                "record": "8-1-0",
+                "net": 3.28,
+                "roi": 65.1,
                 "ledger": [
                     {
                         "pick_date": "04/09",
                         "result": "WIN",
                         "league_name": "NHL",
-                        "decimal_odds": 2.25,
-                        "pick_norm": "pittsburgh penguins team total over 3.5",
-                        "wager_unit": 0.42,
-                        "profit_actual": 0.525
-                    },
-                    {
-                        "pick_date": "04/09",
-                        "result": "WIN",
-                        "league_name": "NHL",
-                        "decimal_odds": 1.9615384615384617,
-                        "pick_norm": "montreal canadiens ml",
-                        "wager_unit": 0.42,
-                        "profit_actual": 0.4038461538461539
-                    },
-                    {
-                        "pick_date": "04/09",
-                        "result": "WIN",
-                        "league_name": "NBA",
                         "decimal_odds": 1.9523809523809523,
-                        "pick_norm": "chicago bulls -6.5",
-                        "wager_unit": 0.42,
-                        "profit_actual": 0.39999999999999997
+                        "pick_norm": "los angeles kings -1.5",
+                        "wager_unit": 0.56,
+                        "profit_actual": 0.5333333333333333
                     },
                     {
                         "pick_date": "04/09",
                         "result": "WIN",
                         "league_name": "NBA",
                         "decimal_odds": 1.9090909090909092,
-                        "pick_norm": "toronto raptors -4",
-                        "wager_unit": 0.42,
-                        "profit_actual": 0.38181818181818183
+                        "pick_norm": "pacers -1.5",
+                        "wager_unit": 0.56,
+                        "profit_actual": 0.5090909090909091
+                    },
+                    {
+                        "pick_date": "04/09",
+                        "result": "WIN",
+                        "league_name": "NBA",
+                        "decimal_odds": 1.9090909090909092,
+                        "pick_norm": "rockets -3.5",
+                        "wager_unit": 0.56,
+                        "profit_actual": 0.5090909090909091
+                    },
+                    {
+                        "pick_date": "04/09",
+                        "result": "WIN",
+                        "league_name": "NBA",
+                        "decimal_odds": 1.8771929824561404,
+                        "pick_norm": "houston rockets -3.5",
+                        "wager_unit": 0.56,
+                        "profit_actual": 0.4912280701754387
+                    },
+                    {
+                        "pick_date": "04/09",
+                        "result": "WIN",
+                        "league_name": "NBA",
+                        "decimal_odds": 1.8695652173913042,
+                        "pick_norm": "indiana pacers -2.5",
+                        "wager_unit": 0.56,
+                        "profit_actual": 0.4869565217391304
                     },
                     {
                         "pick_date": "04/09",
                         "result": "WIN",
                         "league_name": "NHL",
-                        "decimal_odds": 1.9090909090909092,
-                        "pick_norm": "hurricanes vs blackhawks over 6",
-                        "wager_unit": 0.42,
-                        "profit_actual": 0.38181818181818183
+                        "decimal_odds": 1.8,
+                        "pick_norm": "dallas stars ml",
+                        "wager_unit": 0.56,
+                        "profit_actual": 0.44800000000000006
+                    },
+                    {
+                        "pick_date": "04/09",
+                        "result": "WIN",
+                        "league_name": "NHL",
+                        "decimal_odds": 1.7692307692307692,
+                        "pick_norm": "regulation new york islanders ml",
+                        "wager_unit": 0.56,
+                        "profit_actual": 0.4307692307692308
+                    },
+                    {
+                        "pick_date": "04/09",
+                        "result": "WIN",
+                        "league_name": "NHL",
+                        "decimal_odds": 1.7692307692307692,
+                        "pick_norm": "regulation carolina hurricanes ml",
+                        "wager_unit": 0.56,
+                        "profit_actual": 0.4307692307692308
                     },
                     {
                         "pick_date": "04/09",
                         "result": "LOSS",
                         "league_name": "NHL",
-                        "decimal_odds": 2.1,
-                        "pick_norm": "philadelphia flyers ml",
-                        "wager_unit": 0.42,
-                        "profit_actual": -0.42
-                    },
-                    {
-                        "pick_date": "04/09",
-                        "result": "LOSS",
-                        "league_name": "NHL",
-                        "decimal_odds": 2.05,
-                        "pick_norm": "minnesota ml",
-                        "wager_unit": 0.42,
-                        "profit_actual": -0.42
-                    },
-                    {
-                        "pick_date": "04/09",
-                        "result": "LOSS",
-                        "league_name": "NBA",
-                        "decimal_odds": 1.9090909090909092,
-                        "pick_norm": "boston celtics +3.5",
-                        "wager_unit": 0.42,
-                        "profit_actual": -0.42
-                    },
-                    {
-                        "pick_date": "04/09",
-                        "result": "LOSS",
-                        "league_name": "NBA",
-                        "decimal_odds": 1.9090909090909092,
-                        "pick_norm": "indiana pacers vs brooklyn nets total over 224",
-                        "wager_unit": 0.42,
-                        "profit_actual": -0.42
-                    },
-                    {
-                        "pick_date": "04/09",
-                        "result": "LOSS",
-                        "league_name": "NBA",
-                        "decimal_odds": 1.9090909090909092,
-                        "pick_norm": "philadelphia 76ers +4",
-                        "wager_unit": 0.42,
-                        "profit_actual": -0.42
-                    },
-                    {
-                        "pick_date": "04/09",
-                        "result": "LOSS",
-                        "league_name": "NBA",
-                        "decimal_odds": 1.9090909090909092,
-                        "pick_norm": "los angeles lakers vs golden state warriors total over 225.5",
-                        "wager_unit": 0.42,
-                        "profit_actual": -0.42
-                    },
-                    {
-                        "pick_date": "04/09",
-                        "result": "LOSS",
-                        "league_name": "NBA",
-                        "decimal_odds": 1.9090909090909092,
-                        "pick_norm": "indiana pacers vs brooklyn nets total over 224.5",
-                        "wager_unit": 0.42,
-                        "profit_actual": -0.42
+                        "decimal_odds": 1.900900900900901,
+                        "pick_norm": "toronto maple leafs total under 2.5",
+                        "wager_unit": 0.56,
+                        "profit_actual": -0.56
                     }
                 ]
             }
         },
         "quartz": {
-            "roi": 0,
-            "net": 0,
-            "wins": 0,
-            "losses": 0,
+            "roi": 9.6,
+            "net": 1.1,
+            "wins": 7,
+            "losses": 4,
             "pushes": 0,
-            "record": "0-0-0",
+            "record": "7-4-0",
             "win_rate": 0,
-            "sample": 0,
-            "bets_day": 0,
+            "sample": 11,
+            "bets_day": 5.0,
             "status": "FLAGSHIP",
             "yesterday": {
                 "date": "N/A",

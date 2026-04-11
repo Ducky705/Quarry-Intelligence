@@ -112,17 +112,17 @@ def update_markdown_reports(models):
     readme_text = f"""
 <div align="center">
   <br />
-  <h1>THE QUARRY <span style="color: #444; font-weight: normal;">// XGB-SNIPER</span></h1>
-  <p style="font-family: monospace; letter-spacing: 2px; color: #888;">ADVANCED ALGORITHMIC ARBITRAGE SYSTEM</p>
+  <h1>QUARRY INTELLIGENCE</h1>
+  <p style="font-family: monospace; letter-spacing: 2px; color: #888;">INSTITUTIONAL ALGORITHMIC ANALYTICS</p>
   <br />
 
-  [![Status](https://img.shields.io/badge/STATUS-OPERATIONAL-success?style=for-the-badge&logo=statuspage&logoColor=white)](https://ducky705.github.io/XGBoost-Sniper/selector.html)
-  [![V2 ROI](https://img.shields.io/badge/V2_ROI-{p2:+.1f}u-00E0FF?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/diamond.html)
-  [![V4 ROI](https://img.shields.io/badge/V4_ROI-{p4:+.1f}u-f8fafc?style=for-the-badge)](https://ducky705.github.io/XGBoost-Sniper/quartz.html)
+  [![Status](https://img.shields.io/badge/STATUS-OPERATIONAL-success?style=for-the-badge&logo=statuspage&logoColor=white)](https://ducky705.github.io/Quarry-Intelligence/selector.html)
+  [![Series 2 ROI](https://img.shields.io/badge/SERIES_2_ROI-{p2:+.1f}u-00E0FF?style=for-the-badge)](https://ducky705.github.io/Quarry-Intelligence/diamond.html)
+  [![Series 4 ROI](https://img.shields.io/badge/SERIES_4_ROI-{p4:+.1f}u-f8fafc?style=for-the-badge)](https://ducky705.github.io/Quarry-Intelligence/quartz.html)
 
   <br />
   <br />
-  <a href="https://ducky705.github.io/XGBoost-Sniper/selector.html"><strong>ENTER CONTROL CENTER</strong></a>
+  <a href="https://ducky705.github.io/Quarry-Intelligence/selector.html"><strong>ACCESS CONTROL CENTER</strong></a>
   <br />
   <br />
 </div>
@@ -135,13 +135,13 @@ A multi-generational algorithmic trading system leveraging **Gradient Boosting D
 
 | MODEL ARCHITECTURE | RELEASED | STRATEGY PROFILE | STATUS | VOLUME | TOTAL BETS | ROI |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **[V1 PYRITE](https://ducky705.github.io/XGBoost-Sniper/pyrite.html)** | `NOV 20, 2025` | `XGB-CLASSIC` <br> High-Freq | 🟡 **LEGACY** | {vol_v1} | **{len(v1)}** | **{r1:+.1%}** |
-| **[V2 DIAMOND](https://ducky705.github.io/XGBoost-Sniper/diamond.html)** | `NOV 30, 2025` | `XGB-HYBRID` <br> Precision | 🟢 **STABLE** | {vol_v2} | **{len(v2)}** | **{r2:+.1%}** |
-| **[V3 OBSIDIAN](https://ducky705.github.io/XGBoost-Sniper/obsidian.html)** | `DEC 27, 2025` | `DNN-ENSEMBLE` <br> Non-Linear | 🟣 **ADVANCED** | {vol_v3} | **{len(v3)}** | **{r3:+.1%}** |
-| **[V4 QUARTZ](https://ducky705.github.io/XGBoost-Sniper/quartz.html)** | `APR 06, 2026` | `CORRECT SHIFT` <br> High-Fidelity | ⚪ **FLAGSHIP** | {vol_v4} | **{len(v4)}** | **{r4:+.1%}** |
+| **[SERIES 1: PYRITE](https://ducky705.github.io/Quarry-Intelligence/pyrite.html)** | `NOV 20, 2025` | `LEGACY CORE` <br> High-Freq | 🟡 **LEGACY** | {vol_v1} | **{len(v1)}** | **{r1:+.1%}** |
+| **[SERIES 2: DIAMOND](https://ducky705.github.io/Quarry-Intelligence/diamond.html)** | `NOV 30, 2025` | `PRECISION CORE` <br> Refined | 🟢 **STABLE** | {vol_v2} | **{len(v2)}** | **{r2:+.1%}** |
+| **[SERIES 3: OBSIDIAN](https://ducky705.github.io/Quarry-Intelligence/obsidian.html)** | `DEC 27, 2025` | `ADVANCED ENSEMBLE` <br> Non-Linear | 🟣 **ADVANCED** | {vol_v3} | **{len(v3)}** | **{r3:+.1%}** |
+| **[SERIES 4: QUARTZ](https://ducky705.github.io/Quarry-Intelligence/quartz.html)** | `APR 06, 2026` | `INSTITUTIONAL` <br> Drift Proxy | ⚪ **FLAGSHIP** | {vol_v4} | **{len(v4)}** | **{r4:+.1%}** |
 
 > [!IMPORTANT]
-> **ACCESS PROTOCOL**: The primary interface for all models is the [**Model Selector**](https://ducky705.github.io/XGBoost-Sniper/selector.html).
+\> **ACCESS PROTOCOL**: The primary interface for all models is the [**Model Selector**](https://ducky705.github.io/Quarry-Intelligence/selector.html).
 
 ---
 
@@ -176,7 +176,7 @@ graph TD
 ---
 
 <div align="center">
-    <p><em>© 2026 XGBOOST-SNIPER TECHNOLOGIES // PROPRIETARY RESEARCH</em></p>
+    <p><em>© 2026 QUARRY INTELLIGENCE GROUP // PROPRIETARY RESEARCH</em></p>
 </div>
 """
     
@@ -226,57 +226,56 @@ def run_daily_update():
                 "status": "LEGACY" if name == "pyrite" else ("STABLE" if name == "diamond" else ("ADVANCED" if name == "obsidian" else "FLAGSHIP")),
                 "yesterday": {"date": "N/A", "record": "0-0-0", "net": 0, "roi": 0, "ledger": []}
             }
-            continue
-
-        roi = (res['profit_actual'].sum() / res['wager_unit'].sum() * 100) if res['wager_unit'].sum() > 0 else 0
-        net = res['profit_actual'].sum()
-        wins = len(res[res['outcome'] == 1])
-        losses = len(res[res['outcome'] == 0])
-        pushes = len(res[res['outcome'] == 0.5])
-        
-        last_day_val = res['pick_date'].max()
-        last_day = res[res['pick_date'] == last_day_val]
-        y_record = "0-0-0"
-        y_net = 0
-        y_roi = 0
-        y_list = []
-        
-        if not last_day.empty:
-            y_wins = len(last_day[last_day['outcome'] == 1])
-            y_losses = len(last_day[last_day['outcome'] == 0])
-            y_record = f"{y_wins}-{y_losses}-{len(last_day) - y_wins - y_losses}"
-            y_net = last_day['profit_actual'].sum()
-            y_roi = (y_net / last_day['wager_unit'].sum() * 100) if last_day['wager_unit'].sum() > 0 else 0
+        else:
+            roi = (res['profit_actual'].sum() / res['wager_unit'].sum() * 100) if res['wager_unit'].sum() > 0 else 0
+            net = res['profit_actual'].sum()
+            wins = len(res[res['outcome'] == 1])
+            losses = len(res[res['outcome'] == 0])
+            pushes = len(res[res['outcome'] == 0.5])
             
-            # Ensure columns are unique before converting to dict (Prevents UserWarning & data loss)
-            last_day_unique = last_day.loc[:, ~last_day.columns.duplicated()]
-            y_list = last_day_unique.sort_values('profit_actual', ascending=False).head(15).to_dict('records')
-            for item in y_list:
-                item['pick_date'] = item['pick_date'].strftime('%m/%d')
-                item['result'] = 'WIN' if item['outcome'] == 1 else ('LOSS' if item['outcome'] == 0 else 'PUSH')
-                for k in list(item.keys()):
-                    if k not in ['pick_date', 'league_name', 'pick_norm', 'decimal_odds', 'wager_unit', 'result', 'profit_actual']:
-                        del item[k]
+            last_day_val = res['pick_date'].max()
+            last_day = res[res['pick_date'] == last_day_val]
+            y_record = "0-0-0"
+            y_net = 0
+            y_roi = 0
+            y_list = []
+            
+            if not last_day.empty:
+                y_wins = len(last_day[last_day['outcome'] == 1])
+                y_losses = len(last_day[last_day['outcome'] == 0])
+                y_record = f"{y_wins}-{y_losses}-{len(last_day) - y_wins - y_losses}"
+                y_net = last_day['profit_actual'].sum()
+                y_roi = (y_net / last_day['wager_unit'].sum() * 100) if last_day['wager_unit'].sum() > 0 else 0
+                
+                # Ensure columns are unique before converting to dict (Prevents UserWarning & data loss)
+                last_day_unique = last_day.loc[:, ~last_day.columns.duplicated()]
+                y_list = last_day_unique.sort_values('profit_actual', ascending=False).head(15).to_dict('records')
+                for item in y_list:
+                    item['pick_date'] = item['pick_date'].strftime('%m/%d')
+                    item['result'] = 'WIN' if item['outcome'] == 1 else ('LOSS' if item['outcome'] == 0 else 'PUSH')
+                    for k in list(item.keys()):
+                        if k not in ['pick_date', 'league_name', 'pick_norm', 'decimal_odds', 'wager_unit', 'result', 'profit_actual']:
+                            del item[k]
 
-        stats["models"][name] = {
-            "roi": round(roi, 1),
-            "net": round(net, 1),
-            "wins": wins,
-            "losses": losses,
-            "pushes": pushes,
-            "record": f"{wins}-{losses}-{pushes}",
-            "win_rate": round(wins / (wins + losses) * 100, 1) if (wins + losses) > 0 else 0,
-            "sample": len(res),
-            "bets_day": round(len(res) / ((res['pick_date'].max() - res['pick_date'].min()).days + 1), 1),
-            "status": "LEGACY" if name == "pyrite" else ("STABLE" if name == "diamond" else ("ADVANCED" if name == "obsidian" else "FLAGSHIP")),
-            "yesterday": {
-                "date": last_day_val.strftime('%b %d, %Y'),
-                "record": y_record,
-                "net": round(y_net, 2),
-                "roi": round(y_roi, 1),
-                "ledger": y_list
+            stats["models"][name] = {
+                "roi": round(roi, 1),
+                "net": round(net, 1),
+                "wins": wins,
+                "losses": losses,
+                "pushes": pushes,
+                "record": f"{wins}-{losses}-{pushes}",
+                "win_rate": round(wins / (wins + losses) * 100, 1) if (wins + losses) > 0 else 0,
+                "sample": len(res),
+                "bets_day": round(len(res) / ((res['pick_date'].max() - res['pick_date'].min()).days + 1), 1),
+                "status": "LEGACY" if name == "pyrite" else ("STABLE" if name == "diamond" else ("ADVANCED" if name == "obsidian" else "FLAGSHIP")),
+                "yesterday": {
+                    "date": last_day_val.strftime('%b %d, %Y'),
+                    "record": y_record,
+                    "net": round(y_net, 2),
+                    "roi": round(y_roi, 1),
+                    "ledger": y_list
+                }
             }
-        }
 
         # Apply Manual Overrides if configured
         if name in MANUAL_OVERRIDES:
@@ -289,6 +288,7 @@ def run_daily_update():
                 roi_val = ovr.get("roi", stats["models"][name]["roi"])
                 sample_val = ovr.get("sample", stats["models"][name]["sample"])
                 stats["models"][name]["net"] = round(sample_val * (roi_val / 100), 1)
+
 
     # 4. Save Stats
     docs_dir = os.path.join(BASE_DIR, 'docs')

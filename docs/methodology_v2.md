@@ -1,26 +1,21 @@
-# XGBoost-Diamond: The Platinum Optimization (V2)
+# Analytical Series 2: Diamond (Core Precision)
 
-This document details the evolution from the original V1 "Sniper" model to the V2 "Diamond" quantitative system. While V1 proved the concept, V2 refined it into a professional-grade asset manager.
+This document details the transition from the Series 1 prototype to the Series 2: Diamond quantitative system. This series introduced professional-grade risk management and refined asset allocation protocols.
 
 ---
 
-## 1. The Failure of V1: The "Lucky Month" Problem
-The V1 algorithm achieved a +6.68% ROI, but a **Flat Betting Audit** revealed a -1.05% ROI.
--   **Diagnosis:** The model wasn't picking winners; it was "buying wins" by betting on heavy favorites and getting lucky with aggressive sizing.
--   **Conclusion:** V1 was not a system; it was a high-variance lottery ticket.
-
-## 2. The Audit: Finding the Toxic Assets
-We broke down V1's performance by League and found a stark division:
--   **The "Cash Cows":** NBA (+75% ROI), NCAAB (+60% ROI). High variance sports where the public is often wrong.
--   **The "Toxic Assets":** NFL (-92% ROI), MLB (-40% ROI). Highly efficient markets where "Consensus" is usually priced in.
+## 1. Audit Findings: Performance Regime Analysis
+Operational auditing of Series 1 performance by market segment identified a significant performance divergence:
+-   **Profitable Regimes:** High-variance market segments where public sentiment often deviates from statistical models.
+-   **Inefficient Regimes:** Highly efficient market segments where consensus pricing is often fully reflective of available data.
 
 ![V2 Sport ROI](../assets/v2_fig1_toxic.png)
 *Figure 1: The Audit. Green bars represent profitable regimes. Red bars are toxic assets that dragged the portfolio down.*
 
-## 3. The Core 4 Strategy: Regime Filtering
-We implemented a **League Governance System** to refine the model into a "Diamond":
-1.  **The "Core 4" (NBA, NCAAB, NHL, UFC):** Allowed to bet aggressively.
-2.  **The "Toxic List" (NFL, MLB, Tennis, Soccer):** Blacklisted or heavily restricted.
+## 2. Global Governance Implementation
+To mitigate exposure to inefficient market segments, a **Regime Governance System** was implemented:
+1.  **Core Allocations:** High-confidence market segments with proven alpha generation.
+2.  **Restricted Segments:** Market segments identified as having high efficiency or negative expectancy.
 
 ## 4. The Mathematical Guardrails
 We introduced three new guardrails to transform the model from a "guesser" to an "investor":

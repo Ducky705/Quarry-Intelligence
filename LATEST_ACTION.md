@@ -1,27 +1,29 @@
-# 📝 Daily Action Log (2026-04-09)
+# Institutional Performance Log (2026-04-09)
 
-### V3 Obsidian Action
+### Series 3: Obsidian Analysis
 | LEAGUE | PICK | ODDS | UNIT | RES | PROFIT |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| NHL | pittsburgh penguins team total over 3.5 | +125 | 0.4 | ✅ | +0.53u |
-| NHL | philadelphia flyers ml | +110 | 0.4 | ❌ | -0.42u |
-| NHL | minnesota ml | +105 | 0.4 | ❌ | -0.42u |
-| NHL | montreal canadiens ml | -104 | 0.4 | ✅ | +0.40u |
-| NBA | chicago bulls -6.5 | -105 | 0.4 | ✅ | +0.40u |
-| NBA | boston celtics +3.5 | -110 | 0.4 | ❌ | -0.42u |
-| NBA | toronto raptors -4 | -110 | 0.4 | ✅ | +0.38u |
-| NBA | indiana pacers vs brooklyn nets total over 224 | -110 | 0.4 | ❌ | -0.42u |
-| NBA | philadelphia 76ers +4 | -110 | 0.4 | ❌ | -0.42u |
-| NHL | hurricanes vs blackhawks over 6 | -110 | 0.4 | ✅ | +0.38u |
-| NBA | los angeles lakers vs golden state warriors total over 225.5 | -110 | 0.4 | ❌ | -0.42u |
-| NBA | indiana pacers vs brooklyn nets total over 224.5 | -110 | 0.4 | ❌ | -0.42u |
+| NHL | los angeles kings -1.5 | -105 | 0.6 | ✅ | +0.53u |
+| NBA | pacers -1.5 | -110 | 0.6 | ✅ | +0.51u |
+| NBA | rockets -3.5 | -110 | 0.6 | ✅ | +0.51u |
+| NHL | toronto maple leafs total under 2.5 | -111 | 0.6 | ❌ | -0.56u |
+| NBA | houston rockets -3.5 | -114 | 0.6 | ✅ | +0.49u |
+| NBA | indiana pacers -2.5 | -115 | 0.6 | ✅ | +0.49u |
+| NHL | dallas stars ml | -125 | 0.6 | ✅ | +0.45u |
+| NHL | regulation new york islanders ml | -130 | 0.6 | ✅ | +0.43u |
+| NHL | regulation carolina hurricanes ml | -130 | 0.6 | ✅ | +0.43u |
 
-**Daily PnL (Settled): -0.85 Units**
+**Daily PnL (Settled): +3.28 Units**
 
 
-### V2 Diamond Action
-*No action for this date.*
+### Series 2: Diamond Analysis
+| LEAGUE | PICK | ODDS | UNIT | RES | PROFIT |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| NBA | pacers -1.5 | -110 | 2.0 | ✅ | +1.82u |
 
-### V1 Pyrite Action
+**Daily PnL (Settled): +1.82 Units**
+
+
+### Series 1: Pyrite Analysis
 *No action for this date.*
 

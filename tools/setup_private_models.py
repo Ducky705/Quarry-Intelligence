@@ -10,9 +10,9 @@ def run_cmd(cmd):
     return result.stdout
 
 def setup():
-    print("🚀 XGBoost-Sniper Model Migration Tool")
+    print("🚀 Quarry Intelligence Model Migration Tool")
     
-    repo_url = input("Enter your private GitHub model repository URL (e.g., git@github.com:Ducky705/XGBoost-Sniper-Models.git): ").strip()
+    repo_url = input("Enter your private GitHub model repository URL (e.g., git@github.com:Ducky705/Quarry-Intelligence-Models.git): ").strip()
     if not repo_url:
         print("❌ URL is required.")
         return
@@ -25,7 +25,7 @@ def setup():
         shutil.copytree("models", "models_backup")
     
     # 2. Create temp dir for private repo
-    temp_dir = "../XGBoost-Sniper-Models-Temp"
+    temp_dir = "../Quarry-Intelligence-Models-Temp"
     if os.path.exists(temp_dir):
         shutil.rmtree(temp_dir)
     os.makedirs(temp_dir)
@@ -48,7 +48,7 @@ def setup():
         run_cmd("git push -u origin main")
     
     # 4. Add Submodule to Public Repo
-    os.chdir("../XGBoost-Sniper")
+    os.chdir("../Quarry-Intelligence")
     print("🔗 Linking private repo as submodule...")
     
     # Remove existing models folder to make room for submodule

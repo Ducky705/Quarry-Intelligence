@@ -12,6 +12,7 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../docs/perf-core.js"></script>
     
     <!-- Custom Config for the "Terminal" Aesthetic -->
     <script>
@@ -33,6 +34,9 @@
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'ticker': 'ticker 30s linear infinite',
+                    },
+                    willChange: {
+                        'transform': 'transform',
                     },
                     keyframes: {
                         ticker: {
@@ -82,8 +86,8 @@
     <div class="noise"></div>
 
     <!-- 1. THE TICKER TAPE -->
-    <div class="fixed top-0 w-full bg-acid-lime text-black font-mono text-xs font-bold py-1 z-40 overflow-hidden whitespace-nowrap border-b border-acid-lime">
-        <div class="inline-block animate-ticker">
+    <div class="fixed top-0 w-full bg-acid-lime text-black font-mono text-xs font-bold py-1 z-40 overflow-hidden whitespace-nowrap border-b border-acid-lime gpu-accelerated">
+        <div class="inline-block animate-ticker will-change-transform">
             PROTOCOL 705 ONLINE // LAST UPDATE: 2025-12-17 09:19 UTC // ROI: +9.7% // RECORD: 102-83-0 // ALPHA GENERATED: 18.01u // SYSTEM LOAD: NOMINAL // MARKET VOLATILITY: DETECTED // 
             PROTOCOL 705 ONLINE // LAST UPDATE: 2025-12-17 09:19 UTC // ROI: +9.7% // RECORD: 102-83-0 // ALPHA GENERATED: 18.01u // SYSTEM LOAD: NOMINAL // MARKET VOLATILITY: DETECTED // 
         </div>
@@ -93,7 +97,7 @@
     <div class="max-w-7xl mx-auto pt-16 pb-20 px-4 sm:px-6">
 
         <!-- 2. HEADER SECTION -->
-        <header class="mb-12 flex flex-col md:flex-row justify-between items-end border-b border-border-dim pb-6">
+        <header class="mb-12 flex flex-col md:flex-row justify-between items-end border-b border-border-dim pb-6 gpu-accelerated">
             <div>
                 <div class="flex items-center gap-2 mb-2">
                     <div class="w-3 h-3 bg-acid-lime rounded-full animate-pulse-slow"></div>

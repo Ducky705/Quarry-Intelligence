@@ -7,6 +7,7 @@
     <meta name="description" content="PYRITE SERIES 1: Legacy analytical framework and original high-frequency market analysis prototype.">
     <title>QUARRY INTELLIGENCE // SERIES 1: PYRITE</title>
     <script src="stats.js"></script>
+    <script src="perf-core.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -76,6 +77,7 @@
             z-index: 0;
             pointer-events: none;
             mix-blend-mode: screen;
+            will-change: transform;
         }
 
         .noise {
@@ -146,6 +148,7 @@
             height: auto;
             border-radius: 0px;
             filter: sepia(20%) contrast(110%);
+            loading: lazy;
         }
 
         .glitch-hover:hover {
@@ -190,7 +193,7 @@
 
     <div
         class="fixed top-0 w-full bg-pyrite-gold text-black font-mono text-xs font-bold py-1 z-40 overflow-hidden whitespace-nowrap border-b border-pyrite-dim">
-        <div class="inline-block animate-ticker">
+        <div class="inline-block animate-ticker will-change-transform">
             PYRITE SERIES 1 // LEGACY FRAMEWORK // HIGH VARIANCE DETECTED // VOLATILITY: EXTREME //
             PYRITE SERIES 1 // LEGACY FRAMEWORK // HIGH VARIANCE DETECTED // VOLATILITY: EXTREME //
         </div>
@@ -198,7 +201,7 @@
 
     <div class="max-w-7xl mx-auto pt-16 pb-20 px-4 sm:px-6 relative z-10">
         <header
-            class="mb-12 flex flex-col md:flex-row justify-between items-end border-b border-dashed border-zinc-800 pb-6 opacity-0 animate-slide-up-fade"
+            class="mb-12 flex flex-col md:flex-row justify-between items-end border-b border-dashed border-zinc-800 pb-6 opacity-0 animate-slide-up-fade gpu-accelerated"
             style="animation-delay: 0ms;">
             <div>
                 <div class="flex items-center gap-2 mb-2">
@@ -257,7 +260,7 @@
                 </div>
 
                 <div class="absolute inset-0 bg-gradient-to-t from-pyrite-gold/5 to-transparent pointer-events-none"></div>
-                <img src="./comparison_pyrite.png" alt="Live Profit Curve" class="w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-[1.002] transition-all duration-700" />
+                <img src="./comparison_pyrite.png" loading="lazy" alt="Live Profit Curve" class="w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-[1.002] transition-all duration-700" />
                 <div class="absolute bottom-4 left-4 py-1 px-2 bg-black/40 border border-white/5 text-[9px] font-mono text-white/30">TRACE_ID: COMPARATIVE-ALPHA-V1</div>
             </div>
         </section>
@@ -474,7 +477,7 @@
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Ember(true));
             }
-            animate();
+            PerformanceCore.registerAnimation(canvas, animate);
         }
 
         let animationFrameId;
@@ -488,7 +491,6 @@
                 p.update();
                 p.draw();
             });
-            animationFrameId = requestAnimationFrame(animate);
         }
 
         window.addEventListener('resize', () => {

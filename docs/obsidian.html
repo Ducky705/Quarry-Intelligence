@@ -7,6 +7,7 @@
     <meta name="description" content="OBSIDIAN SERIES 3: Advanced ensemble architecture implementing multi-model signal consensus for capital allocation.">
     <title>QUARRY INTELLIGENCE // SERIES 3: OBSIDIAN</title>
     <script src="stats.js"></script>
+    <script src="perf-core.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -77,6 +78,7 @@
             z-index: 0;
             pointer-events: none;
             mix-blend-mode: screen;
+            will-change: transform;
         }
 
         .noise {
@@ -114,6 +116,7 @@
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            contain: content;
         }
 
         .glass-panel:hover {
@@ -192,7 +195,7 @@
     <!-- TICKER (Top) -->
     <div
         class="fixed top-0 w-full bg-void text-obsidian-glow font-mono text-[10px] font-bold py-1 z-40 overflow-hidden whitespace-nowrap border-b border-obsidian-dim/30">
-        <div class="inline-block animate-ticker">
+        <div class="inline-block animate-ticker will-change-transform">
             OBSIDIAN SERIES 3 ONLINE // ADVANCED ENSEMBLE // SIGNAL CONSENSUS DETECTED // STATUS: ACTIVE //
             OBSIDIAN SERIES 3 ONLINE // ADVANCED ENSEMBLE // SIGNAL CONSENSUS DETECTED // STATUS: ACTIVE //
         </div>
@@ -202,7 +205,7 @@
 
         <!-- HEADER -->
         <header
-            class="mb-16 flex flex-col md:flex-row justify-between items-end border-b border-border-dim pb-8 opacity-0 animate-slide-up-fade"
+            class="mb-16 flex flex-col md:flex-row justify-between items-end border-b border-border-dim pb-8 opacity-0 animate-slide-up-fade gpu-accelerated"
             style="animation-delay: 0ms;">
             <div>
                 <div class="flex items-center gap-3 mb-3">
@@ -243,7 +246,7 @@
                 <div>
                     <div id="stat-roi" class="text-4xl font-bold text-white tracking-tight">--%</div>
                     <div class="w-full bg-zinc-900 h-1 mt-3 rounded-full overflow-hidden">
-                        <div id="roi-bar" class="bg-obsidian-accent h-full shadow-[0_0_10px_currentColor]"
+                        <div id="roi-bar" class="bg-obsidian-accent h-full shadow-[0_0_10px_currentColor] gpu-accelerated"
                             style="width: 0%"></div>
                     </div>
                 </div>
@@ -345,7 +348,7 @@
                     </div>
 
                     <div class="absolute inset-0 bg-gradient-to-t from-obsidian-accent/5 to-transparent pointer-events-none"></div>
-                    <img id="chart-main" src="./comparison_obsidian.png" class="w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-[1.002] transition-all duration-700" />
+                    <img id="chart-main" src="./comparison_obsidian.png" loading="lazy" class="w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-[1.002] transition-all duration-700" />
                     <div class="absolute bottom-4 left-4 py-1 px-2 bg-black/40 border border-white/5 text-[9px] font-mono text-white/30">TRACE_ID: COMPARATIVE-ALPHA-V3</div>
                 </div>
             </div>
@@ -358,7 +361,7 @@
                     </h2>
                 </div>
                 <div class="glass-panel p-2 chart-container group aspect-[16/10] flex items-center justify-center">
-                    <img src="assets/obsidian_comparison.png" alt="Algo Comparison"
+                    <img src="assets/obsidian_comparison.png" alt="Algo Comparison" loading="lazy"
                         class="chart-img h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
             </div>
@@ -499,7 +502,7 @@
             // Clear existing if re-init
             stars.length = 0;
             for (let i = 0; i < starCount; i++) stars.push(new Star());
-            animate();
+            PerformanceCore.registerAnimation(canvas, animate);
         }
 
         function animate() {
@@ -511,7 +514,6 @@
                 star.update();
                 star.draw();
             });
-            requestAnimationFrame(animate);
         }
 
         window.addEventListener('resize', resize);

@@ -7,6 +7,7 @@
     <meta name="description" content="DIAMOND SERIES 2: Professional precision model optimized for risk-adjusted performance and market regime detection.">
     <title>QUARRY INTELLIGENCE // SERIES 2: DIAMOND</title>
     <script src="stats.js"></script>
+    <script src="perf-core.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -77,6 +78,7 @@
             z-index: 0;
             pointer-events: none;
             mix-blend-mode: screen;
+            will-change: transform;
         }
 
         #rain-canvas {
@@ -89,6 +91,7 @@
             /* Above caustics */
             pointer-events: none;
             mix-blend-mode: screen;
+            will-change: transform;
         }
 
         .noise {
@@ -216,7 +219,7 @@
     <!-- TICKER -->
     <div
         class="fixed top-0 w-full bg-diamond-blue text-black font-mono text-[10px] font-bold py-1 z-40 overflow-hidden whitespace-nowrap border-b border-diamond-light">
-        <div class="inline-block animate-ticker">
+        <div class="inline-block animate-ticker will-change-transform">
             DIAMOND SERIES 2 ONLINE // CORE PRECISION // ROI TARGET: >10% // STATUS: NOMINAL //
             DIAMOND SERIES 2 ONLINE // CORE PRECISION // ROI TARGET: >10% // STATUS: NOMINAL //
             DIAMOND SERIES 2 ONLINE // CORE PRECISION // ROI TARGET: >10% // STATUS: NOMINAL //
@@ -227,7 +230,7 @@
     <div class="max-w-7xl mx-auto pt-16 pb-20 px-4 sm:px-6 relative z-10">
         <!-- HEADER -->
         <header
-            class="mb-16 flex flex-col md:flex-row justify-between items-end border-b border-border-dim pb-8 opacity-0 animate-slide-up-fade"
+            class="mb-16 flex flex-col md:flex-row justify-between items-end border-b border-border-dim pb-8 opacity-0 animate-slide-up-fade gpu-accelerated"
             style="animation-delay: 0ms;">
             <div>
                 <div class="flex items-center gap-3 mb-3">
@@ -352,7 +355,7 @@
                 </div>
 
                 <div class="absolute inset-0 bg-gradient-to-t from-diamond-blue/5 to-transparent pointer-events-none"></div>
-                <img src="./comparison_diamond.png" alt="Cumulative Profit Curve" class="w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-[1.002] transition-all duration-700" />
+                <img src="./comparison_diamond.png" loading="lazy" alt="Cumulative Profit Curve" class="w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-[1.002] transition-all duration-700" />
                 <div class="absolute bottom-4 left-4 py-1 px-2 bg-black/40 border border-white/5 text-[9px] font-mono text-white/30">TRACE_ID: COMPARATIVE-ALPHA-V2</div>
             </div>
         </section>
@@ -472,13 +475,41 @@
             }
             ctx.restore();
 
-            time += 0.005;
-            requestAnimationFrame(drawCaustics);
-        }
-
         window.addEventListener('resize', resize);
         resize();
-        drawCaustics();
+        PerformanceCore.registerAnimation(canvas, drawCaustics);
+
+        function drawCaustics() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Simulating light rays with lines
+            const rayCount = 15;
+
+            ctx.save();
+            ctx.globalAlpha = 0.3; // Very subtle
+
+            for (let i = 0; i < rayCount; i++) {
+                const x = width * (i / rayCount) + Math.sin(time + i) * 100;
+
+                const gradient = ctx.createLinearGradient(x, 0, x + 200, height);
+                gradient.addColorStop(0, 'rgba(0, 224, 255, 0)');
+                gradient.addColorStop(0.5, 'rgba(0, 224, 255, 0.05)');
+                gradient.addColorStop(1, 'rgba(0, 224, 255, 0)');
+
+                ctx.fillStyle = gradient;
+
+                // Draw a wide "beam"
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x + 100 + Math.sin(time * 0.5 + i) * 50, height);
+                ctx.lineTo(x - 100 + Math.cos(time * 0.5 + i) * 50, height);
+                ctx.closePath();
+                ctx.fill();
+            }
+            ctx.restore();
+
+            time += 0.005;
+        }
 
         // --- DIAMOND RAIN EFFECT ---
         const rainCanvas = document.getElementById('rain-canvas');
@@ -548,7 +579,7 @@
             for (let i = 0; i < 80; i++) {
                 drops.push(new DiamondDrop());
             }
-            animateRain();
+            PerformanceCore.registerAnimation(rainCanvas, animateRain);
         }
 
         function animateRain() {
@@ -558,8 +589,6 @@
                 drop.update();
                 drop.draw();
             });
-
-            requestAnimationFrame(animateRain);
         }
 
         window.addEventListener('resize', resizeRain);
@@ -588,11 +617,17 @@
         }
 
         const panels = document.querySelectorAll('.faceted-panel');
+        panels.forEach(p => {
+            const obs = new IntersectionObserver((entries) => {
+                p._isVisible = entries[0].isIntersecting;
+            });
+            obs.observe(p);
+        });
+
         setInterval(() => {
             // Randomly pick a panel to sparkle
             const panel = panels[Math.floor(Math.random() * panels.length)];
-            // Only if visible logic could go here, but simple is fine
-            createSparkle(panel);
+            if (panel._isVisible) createSparkle(panel);
         }, 800);
 
         // --- DATA HYDRATION (DIAMOND V2) ---

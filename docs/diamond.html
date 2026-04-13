@@ -341,7 +341,9 @@
                     <div class="flex items-center gap-2 text-[9px] font-mono text-white/30 uppercase">
                         <span class="w-2.5 h-0.5" style="background: #7c3aed"></span> Obsidian
                     </div>
-                        <span class="w-2.5 h-0.5" style="background: #00f0ff"></span> Diamond Series 2
+                    <div class="flex items-center gap-2 text-[9px] font-mono text-white/30 uppercase">
+                        <span class="w-2.5 h-0.5" style="background: #00E0FF"></span> Diamond Series 2
+                    </div>
                     <div class="flex items-center gap-2 text-[9px] font-mono text-white/30 uppercase">
                         <span class="w-2.5 h-0.5" style="background: #ffdd00"></span> Pyrite
                     </div>
@@ -409,12 +411,13 @@
                 <table class="w-full font-mono text-xs text-left">
                     <thead class="text-zinc-600 border-b border-zinc-900 uppercase">
                         <tr>
-                            <th class="py-4 pl-4">Date</th>
+                            <th class="py-4 pl-8">Date</th>
                             <th class="py-4">Contract</th>
                             <th class="py-4 text-right">Odds</th>
-                            <th class="py-4 pl-8">Units</th>
+                            <th class="py-4 text-right">Edge</th>
+                            <th class="py-4 text-right">Units</th>
                             <th class="py-4 text-right">Result</th>
-                            <th class="py-4 text-right pr-4">P&L</th>
+                            <th class="py-4 text-right pr-8">P&L</th>
                         </tr>
                     </thead>
                     <tbody id="ledger-body" class="divide-y divide-zinc-900 text-zinc-400">
@@ -474,42 +477,12 @@
                 ctx.fill();
             }
             ctx.restore();
+            time += 0.005;
+        }
 
         window.addEventListener('resize', resize);
         resize();
         PerformanceCore.registerAnimation(canvas, drawCaustics);
-
-        function drawCaustics() {
-            ctx.clearRect(0, 0, width, height);
-
-            // Simulating light rays with lines
-            const rayCount = 15;
-
-            ctx.save();
-            ctx.globalAlpha = 0.3; // Very subtle
-
-            for (let i = 0; i < rayCount; i++) {
-                const x = width * (i / rayCount) + Math.sin(time + i) * 100;
-
-                const gradient = ctx.createLinearGradient(x, 0, x + 200, height);
-                gradient.addColorStop(0, 'rgba(0, 224, 255, 0)');
-                gradient.addColorStop(0.5, 'rgba(0, 224, 255, 0.05)');
-                gradient.addColorStop(1, 'rgba(0, 224, 255, 0)');
-
-                ctx.fillStyle = gradient;
-
-                // Draw a wide "beam"
-                ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x + 100 + Math.sin(time * 0.5 + i) * 50, height);
-                ctx.lineTo(x - 100 + Math.cos(time * 0.5 + i) * 50, height);
-                ctx.closePath();
-                ctx.fill();
-            }
-            ctx.restore();
-
-            time += 0.005;
-        }
 
         // --- DIAMOND RAIN EFFECT ---
         const rainCanvas = document.getElementById('rain-canvas');
@@ -682,6 +655,9 @@
 
                     const yNet = document.getElementById('y-net');
                     if (yNet) yNet.textContent = (yesterday.net >= 0 ? '+' : '') + yesterday.net.toFixed(2) + 'u';
+
+                    const yWin = document.getElementById('y-winpct');
+                    if (yWin && yesterday.win_rate !== undefined) yWin.textContent = yesterday.win_rate.toFixed(1) + '%';
                 }
 
                 // 5. Ledger Table
@@ -697,18 +673,20 @@
                         const result = row.result || 'N/A';
                         const profitActual = row.profit_actual !== undefined ? row.profit_actual : (row.profit !== undefined ? row.profit : 0);
 
+                        const edge = row.edge !== undefined ? row.edge : 0;
                         return `
                             <tr class="hover:bg-white/5 transition-colors">
-                                <td class="py-4 pl-4 text-zinc-500">${pickDate}</td>
+                                <td class="py-4 pl-8 text-zinc-500">${pickDate}</td>
                                 <td class="py-4 text-white font-medium">${leagueName} // ${pickNorm}</td>
                                 <td class="py-4 text-right text-zinc-500">${Number(decimalOdds).toFixed(2)}</td>
-                                <td class="py-4 pl-8 text-zinc-300">${Number(wagerUnit).toFixed(1)}u</td>
+                                <td class="py-4 text-right text-zinc-500">${(edge * 100).toFixed(1)}%</td>
+                                <td class="py-4 text-right text-zinc-300">${Number(wagerUnit).toFixed(1)}u</td>
                                 <td class="py-4 text-right">
                                     <span class="px-2 py-0.5 rounded-sm text-[9px] font-bold ${result === 'WIN' ? 'bg-green-500/10 text-green-400' : (result === 'LOSS' ? 'bg-red-500/10 text-red-400' : 'bg-zinc-800 text-zinc-400')}">
                                         ${result}
                                     </span>
                                 </td>
-                                <td class="py-4 text-right pr-4 font-bold ${profitActual >= 0 ? 'text-green-400' : 'text-red-400'}">
+                                <td class="py-4 text-right pr-8 font-bold ${profitActual >= 0 ? 'text-green-400' : 'text-red-400'}">
                                     ${profitActual >= 0 ? '+' : ''}${Number(profitActual).toFixed(2)}
                                 </td>
                             </tr>

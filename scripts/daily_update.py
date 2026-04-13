@@ -1,6 +1,7 @@
 import os
 import json
 import pandas as pd
+import joblib
 from datetime import datetime
 import sys
 
@@ -17,17 +18,7 @@ from models import ModelSimulator
 # Set these to non-None to force specific stats in the dashboard
 # regardless of simulation results.
 MANUAL_OVERRIDES = {
-    # Quartz kept for flagship stability during release window
-    "quartz": {
-        "roi": 9.6,
-        "net": 1.1,
-        "wins": 7,
-        "losses": 4,
-        "record": "7-4-0",
-        "sample": 11,
-        "bets_day": 5.0,
-        "status": "FLAGSHIP"
-    }
+    # No active overrides. Reporting raw simulation data.
 }
 
 
@@ -238,6 +229,7 @@ def run_daily_update():
             y_record = "0-0-0"
             y_net = 0
             y_roi = 0
+            y_winrate = 0
             y_list = []
             
             if not last_day.empty:
@@ -246,6 +238,7 @@ def run_daily_update():
                 y_record = f"{y_wins}-{y_losses}-{len(last_day) - y_wins - y_losses}"
                 y_net = last_day['profit_actual'].sum()
                 y_roi = (y_net / last_day['wager_unit'].sum() * 100) if last_day['wager_unit'].sum() > 0 else 0
+                y_winrate = (y_wins / (y_wins + y_losses) * 100) if (y_wins + y_losses) > 0 else 0
                 
                 # Ensure columns are unique before converting to dict (Prevents UserWarning & data loss)
                 last_day_unique = last_day.loc[:, ~last_day.columns.duplicated()]
@@ -254,7 +247,7 @@ def run_daily_update():
                     item['pick_date'] = item['pick_date'].strftime('%m/%d')
                     item['result'] = 'WIN' if item['outcome'] == 1 else ('LOSS' if item['outcome'] == 0 else 'PUSH')
                     for k in list(item.keys()):
-                        if k not in ['pick_date', 'league_name', 'pick_norm', 'decimal_odds', 'wager_unit', 'result', 'profit_actual']:
+                        if k not in ['pick_date', 'league_name', 'pick_norm', 'decimal_odds', 'wager_unit', 'result', 'profit_actual', 'edge']:
                             del item[k]
 
             stats["models"][name] = {
@@ -271,6 +264,7 @@ def run_daily_update():
                 "yesterday": {
                     "date": last_day_val.strftime('%b %d, %Y'),
                     "record": y_record,
+                    "win_rate": round(y_winrate, 1),
                     "net": round(y_net, 2),
                     "roi": round(y_roi, 1),
                     "ledger": y_list
@@ -299,6 +293,15 @@ def run_daily_update():
         
     with open(os.path.join(docs_dir, 'stats.js'), 'w') as f:
         f.write(f"window.QUARRY_STATS = {json.dumps(stats, indent=4)};")
+        
+    # 4b. Export Raw Results for Asset Sync
+    # This prevents generate_assets.py from having to re-simulate with potentially different data
+    cache_path = os.path.join(docs_dir, 'sim_results_cache.pkl')
+    try:
+        joblib.dump(models, cache_path)
+        print(f"📦 Simulation results cached to {cache_path}")
+    except Exception as e:
+        print(f"⚠️ Failed to cache simulation results: {e}")
         
     # 5. Update Markdown Reports
     update_markdown_reports(models)

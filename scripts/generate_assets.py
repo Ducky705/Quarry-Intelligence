@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+import joblib
 import numpy as np
 import os
 import json
@@ -29,15 +30,16 @@ os.makedirs('assets', exist_ok=True)
 os.makedirs('docs/assets', exist_ok=True)
 
 COLORS = {
-    'void': '#050505',
+    'void': '#05070a',
     'obsidian': '#7c3aed',
     'diamond': '#00E0FF',
     'pyrite': '#FFC125', # Fool's Gold
-    'quartz': '#f8fafc', # Shard Silver/Ice Blue
+    'quartz': '#bae6fd', # Ice Blue
+    'quartz_neg': '#334155', # Shadow Blue
     'ghost': '#444444',
     'text': '#E5E7EB',
     'grid': '#1A1A1A',
-    'loss': '#FF4D00', # Safety Orange for losses
+    'loss': '#FF4D00', # Safety Orange
     'ice-blue': '#bae6fd'
 }
 
@@ -146,16 +148,35 @@ def generate_live_assets(since_days=None):
         print("❌ No data found.")
         return
 
-    eng = FeatureEngineer(raw_df)
-    df = eng.process()
-    sim = ModelSimulator(df)
-    
-    v1 = sim.run_v1_pyrite()
-    if not v1.empty: v1['edge'] = v1['prob'] - v1['implied_prob']
-    v2 = sim.run_v2_diamond()
-    v3 = sim.run_v3_obsidian()
-    v4 = sim.run_v4_quartz()
-    if not v4.empty: v4['edge'] = (v4['prob'] if 'prob' in v4.columns else 0.5) - (v4['implied_prob'] if 'implied_prob' in v4.columns else 0.5)
+    # --- CENTRALIZED DATA LOADING ---
+    cache_path = os.path.join('docs', 'sim_results_cache.pkl')
+    if os.path.exists(cache_path):
+        try:
+            print(f"📦 Loading cached simulation results from {cache_path}...")
+            cached_models = joblib.load(cache_path)
+            v1 = cached_models.get('pyrite', pd.DataFrame())
+            v2 = cached_models.get('diamond', pd.DataFrame())
+            v3 = cached_models.get('obsidian', pd.DataFrame())
+            v4 = cached_models.get('quartz', pd.DataFrame())
+            print("✅ Cache loaded successfully.")
+        except Exception as e:
+            print(f"⚠️ Failed to load cache: {e}. Falling back to live simulation.")
+            v1, v2, v3, v4 = None, None, None, None
+    else:
+        v1, v2, v3, v4 = None, None, None, None
+
+    if v1 is None or v1.empty: # Fallback if cache missing or failed
+        eng = FeatureEngineer(raw_df)
+        df = eng.process()
+        sim = ModelSimulator(df)
+        v1 = sim.run_v1_pyrite()
+        v2 = sim.run_v2_diamond()
+        v3 = sim.run_v3_obsidian()
+        v4 = sim.run_v4_quartz()
+
+    # Ensure edge calculations are consistent
+    if not v1.empty and 'edge' not in v1.columns: v1['edge'] = v1['prob'] - v1['implied_prob']
+    if not v4.empty and 'edge' not in v4.columns: v4['edge'] = (v4['prob'] if 'prob' in v4.columns else 0.5) - (v4['implied_prob'] if 'implied_prob' in v4.columns else 0.5)
     
     # --- 1. PLOTS ---
     # cumulative profit
@@ -251,29 +272,42 @@ def generate_live_assets(since_days=None):
     plt.savefig("docs/assets/pyrite_live_curve.png", bbox_inches='tight', dpi=300)
     plt.close()
 
-    # Sport ROI
-    def plot_sport_roi(data, filename, title, color_theme):
+    def plot_sport_roi(data, filename, title, color_pos, color_neg=None):
         if data.empty: return
+        if color_neg is None: color_neg = COLORS['loss']
+        
         s = data.groupby('league_name').agg({'profit_actual':'sum', 'wager_unit':'sum'})
         s['roi'] = s['profit_actual'] / s['wager_unit']
         s = s.sort_values('roi', ascending=False)
-        plt.figure(figsize=(8, 4))
-        colors = [color_theme if x > 0 else COLORS['loss'] for x in s['roi']]
+        
+        plt.figure(figsize=(8, 4), facecolor=COLORS['void'])
+        ax = plt.gca()
+        ax.set_facecolor(COLORS['void'])
+        for spine in ax.spines.values(): spine.set_visible(False)
+        ax.grid(True, axis='y', linestyle=':', color='#222222', alpha=0.3)
+        
+        colors = [color_pos if x > 0 else color_neg for x in s['roi']]
         sns.barplot(x=s.index, y=s['roi'], palette=colors)
-        plt.title(title, color='white')
-        plt.xticks(rotation=45)
+        
+        plt.title(title, color='white', pad=20, fontname='monospace', fontweight='bold')
+        plt.xticks(rotation=45, color=COLORS['text'])
+        plt.yticks(color=COLORS['text'])
+        plt.ylabel('ROI', color=COLORS['text'])
+        plt.xlabel('')
         plt.tight_layout()
-        plt.savefig(filename)
-        plt.savefig(f"docs/{filename}")
+        plt.savefig(filename, dpi=150, facecolor=COLORS['void'])
+        plt.savefig(f"docs/{filename}", dpi=150, facecolor=COLORS['void'])
         plt.close()
 
-    plot_sport_roi(v1, "assets/pyrite_sport.png", "V1 Pyrite ROI by Sport", COLORS['pyrite'])
-    plot_sport_roi(v1, "assets/pyrite_sport.png", "V1 Pyrite ROI by Sport", COLORS['pyrite'])
-    plot_sport_roi(v2, "assets/diamond_sport.png", "V2 Diamond ROI by Sport", COLORS['diamond'])
+    plot_sport_roi(v1, "assets/pyrite_sport.png", "V1 PYRITE ROI BY SPORT", COLORS['pyrite'])
+    plot_sport_roi(v2, "assets/diamond_sport.png", "V2 DIAMOND ROI BY SPORT", COLORS['diamond'])
+    plot_sport_roi(v4, "assets/quartz_sport.png", "V4 QUARTZ ROI BY SPORT", COLORS['quartz'], color_neg=COLORS['quartz_neg'])
 
-    # Bet Sizing / Confidence Calibration (Simple)
-    def plot_sizing(data, filename, title, color):
+    # Bet Sizing / Confidence Calibration
+    def plot_sizing(data, filename, title, color_pos, color_neg=None):
         if data.empty: return
+        if color_neg is None: color_neg = COLORS['loss']
+        
         # Bin by confidence
         data['conf_bin'] = pd.cut(data['prob'], bins=[0.5, 0.55, 0.6, 0.65, 0.7, 1.0], labels=['50-55%', '55-60%', '60-65%', '65-70%', '70%+'])
         s = data.groupby('conf_bin').agg({'profit_actual':'sum', 'wager_unit':'sum'})
@@ -282,17 +316,25 @@ def generate_live_assets(since_days=None):
         plt.figure(figsize=(8, 4), facecolor=COLORS['void'])
         ax = plt.gca()
         ax.set_facecolor(COLORS['void'])
-        colors = [color if x > 0 else COLORS['loss'] for x in s['roi']]
+        for spine in ax.spines.values(): spine.set_visible(False)
+        ax.grid(True, axis='y', linestyle=':', color='#222222', alpha=0.3)
+        
+        colors = [color_pos if x > 0 else color_neg for x in s['roi']]
         sns.barplot(x=s.index, y=s['roi'], palette=colors)
-        plt.title(title, color='white')
+        
+        plt.title(title, color='white', pad=20, fontname='monospace', fontweight='bold')
+        plt.xticks(color=COLORS['text'])
+        plt.yticks(color=COLORS['text'])
+        plt.ylabel('ROI', color=COLORS['text'])
+        plt.xlabel('AI Confidence Level', color=COLORS['text'])
         plt.tight_layout()
-        plt.savefig(filename)
-        plt.savefig(f"docs/{filename}")
+        plt.savefig(filename, dpi=150, facecolor=COLORS['void'])
+        plt.savefig(f"docs/{filename}", dpi=150, facecolor=COLORS['void'])
         plt.close()
 
-    plot_sizing(v1, "assets/pyrite_size.png", "V1 Pyrite ROI by Confidence", COLORS['pyrite'])
-    plot_sizing(v2, "assets/diamond_size.png", "V2 Diamond ROI by Confidence", COLORS['diamond'])
-    plot_sizing(v4, "assets/quartz_size.png", "V4 Quartz ROI by Confidence", COLORS['quartz'])
+    plot_sizing(v1, "assets/pyrite_size.png", "V1 PYRITE ROI BY CONFIDENCE", COLORS['pyrite'])
+    plot_sizing(v2, "assets/diamond_size.png", "V2 DIAMOND ROI BY CONFIDENCE", COLORS['diamond'])
+    plot_sizing(v4, "assets/quartz_size.png", "V4 QUARTZ ROI BY CONFIDENCE", COLORS['quartz'], color_neg=COLORS['quartz_neg'])
     
     if not v3.empty:
         v3_sports = v3.groupby('league_name')['profit_actual'].sum().sort_index()

@@ -122,6 +122,7 @@ class ModelSimulator:
             final = active.groupby('pick_date', group_keys=False).apply(cap_daily)
             
             final['profit_actual'] = np.where(final['outcome']==1, final['wager_unit']*(final['decimal_odds']-1), np.where(final['outcome']==0, -final['wager_unit'], 0))
+            final['edge'] = final['prob'] - final['implied_prob']
             return final
         except Exception as e:
             print(f"Error V1: {e}")

@@ -391,12 +391,13 @@
                 <table class="w-full font-mono text-xs text-left">
                     <thead class="text-zinc-500 border-b border-white/5 bg-black/40 uppercase">
                         <tr>
-                            <th class="py-4 pl-6">Sport</th>
+                            <th class="py-4 pl-8">Date</th>
                             <th class="py-4">Contract</th>
                             <th class="py-4 text-right">Odds</th>
                             <th class="py-4 text-right">Edge</th>
-                            <th class="py-4 pl-8">Units</th>
-                            <th class="py-4 text-right pr-6">P&L</th>
+                            <th class="py-4 text-right">Units</th>
+                            <th class="py-4 text-right">Result</th>
+                            <th class="py-4 text-right pr-8">P&L</th>
                         </tr>
                     </thead>
                     <tbody id="ledger-body-v3" class="divide-y divide-white/5 text-zinc-400">
@@ -578,12 +579,15 @@ window.addEventListener("load", init_all); if(document.readyState==="complete")i
                             const profit = row.profit_actual !== undefined ? row.profit_actual : (row.profit !== undefined ? row.profit : 0);
                             const edge = row.edge !== undefined ? row.edge : 0;
                             return `<tr class="hover:bg-white/5 transition-colors border-b border-white/5">
-                                <td class="py-4 pl-6 text-zinc-500">${lName}</td>
-                                <td class="py-4 text-white font-medium">${pNorm}</td>
+                                <td class="py-4 pl-8 text-zinc-500">${pDate}</td>
+                                <td class="py-4 text-white font-medium">${lName} // ${pNorm}</td>
                                 <td class="py-4 text-right text-zinc-500">${Number(odds).toFixed(2)}</td>
                                 <td class="py-4 text-right text-zinc-500">${(edge * 100).toFixed(1)}%</td>
-                                <td class="py-4 pl-8 text-zinc-300">${Number(wager).toFixed(1)}u</td>
-                                <td class="py-4 text-right pr-6 font-bold ${profit >= 0 ? 'text-obsidian-glow' : 'text-red-400'}">${profit >= 0 ? '+' : ''}${Number(profit).toFixed(2)}</td>
+                                <td class="py-4 text-right text-zinc-300 font-mono">${Number(wager).toFixed(1)}u</td>
+                                <td class="py-4 text-right">
+                                    <span class="px-2 py-0.5 rounded-sm text-[9px] font-bold ${res === 'WIN' ? 'bg-green-500/10 text-green-400' : (res === 'LOSS' ? 'bg-red-500/10 text-red-400' : 'bg-zinc-800 text-zinc-400')}">${res}</span>
+                                </td>
+                                <td class="py-4 text-right pr-8 font-bold ${profit >= 0 ? 'text-obsidian-glow' : 'text-red-400'}">${profit >= 0 ? '+' : ''}${Number(profit).toFixed(2)}</td>
                             </tr>`;
                         }).join('');
                     }

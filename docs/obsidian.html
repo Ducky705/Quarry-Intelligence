@@ -419,7 +419,179 @@
     </div>
 
     <script>
-        // --- WARP STARFIELD FX ---
+        // --- DATA INJECTION POINT (AUTOMATED) ---
+        const DATA = {
+            "meta": {
+                        "last_update": "2026-04-14 13:56 UTC",
+                        "status": "ADVANCED"
+            },
+            "stats": {
+                        "roi": 6.5,
+                        "net_units": 34.78,
+                        "record": "605-669-0",
+                        "win_pct": 47.5,
+                        "sample": 1274
+            },
+            "benchmarks": {
+                        "v1_roi": -4.1,
+                        "v2_roi": 7.3
+            },
+            "yesterday": {
+                        "record": "3-9-0",
+                        "win_pct": 25.0,
+                        "roi": -44.2,
+                        "net": -2.23,
+                        "date": "Apr 13, 2026"
+            },
+            "history": [
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "predators ml",
+                                    "odds": 132,
+                                    "edge": 0.09396551724137936,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": 0.55,
+                                    "result": "WIN",
+                                    "match": "predators ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "buffalo sabres -1.5",
+                                    "odds": 122,
+                                    "edge": 0.07454954954954951,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": 0.51,
+                                    "result": "WIN",
+                                    "match": "buffalo sabres -1.5"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "st. louis ml",
+                                    "odds": 115,
+                                    "edge": 0.05988372093023259,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": 0.48,
+                                    "result": "WIN",
+                                    "match": "st. louis ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "oilers ml",
+                                    "odds": 112,
+                                    "edge": 0.0533018867924529,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.42,
+                                    "result": "LOSS",
+                                    "match": "oilers ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "as ml",
+                                    "odds": 115,
+                                    "edge": 0.05988372093023259,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.42,
+                                    "result": "LOSS",
+                                    "match": "as ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "seattle kraken ml",
+                                    "odds": 125,
+                                    "edge": 0.0805555555555556,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.42,
+                                    "result": "LOSS",
+                                    "match": "seattle kraken ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "tampa bay lightning -1.5",
+                                    "odds": 136,
+                                    "edge": 0.10127118644067806,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.42,
+                                    "result": "LOSS",
+                                    "match": "tampa bay lightning -1.5"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "winnipeg jets ml",
+                                    "odds": 152,
+                                    "edge": 0.12817460317460322,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.42,
+                                    "result": "LOSS",
+                                    "match": "winnipeg jets ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "golden knights ml",
+                                    "odds": 161,
+                                    "edge": 0.14185823754789278,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.42,
+                                    "result": "LOSS",
+                                    "match": "golden knights ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "nashville predators -1.5",
+                                    "odds": 164,
+                                    "edge": 0.14621212121212118,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.42,
+                                    "result": "LOSS",
+                                    "match": "nashville predators -1.5"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "lightning ml",
+                                    "odds": 167,
+                                    "edge": 0.1504681647940075,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.42,
+                                    "result": "LOSS",
+                                    "match": "lightning ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "blackhawks ml",
+                                    "odds": 175,
+                                    "edge": 0.16136363636363638,
+                                    "units": 0.4,
+                                    "wager": 0.4,
+                                    "profit": -0.42,
+                                    "result": "LOSS",
+                                    "match": "blackhawks ml"
+                        }
+            ]
+};
+
+        // --- STARS ANIMATION (SIMULATED MOTION) ---
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let width, height;
@@ -439,21 +611,16 @@
             }
 
             reset(initial = false) {
-                // Random position in 3D space
-                this.x = (Math.random() - 0.5) * width * 2; // Spread wider than screen
+                this.x = (Math.random() - 0.5) * width * 2;
                 this.y = (Math.random() - 0.5) * height * 2;
-                this.z = initial ? Math.random() * width : width; // Start at back if not initial
-                this.pz = this.z; // Previous Z for trail calculation
-
-                // Color variation: White vs Obsidian Purple
+                this.z = initial ? Math.random() * width : width;
+                this.pz = this.z;
                 this.color = Math.random() > 0.8 ? '#7c3aed' : '#ffffff';
                 this.sizeBase = Math.random() * 1.5 + 0.5;
             }
 
             update() {
-                this.z -= speed * 10; // Move towards camera
-
-                // Reset if passed camera
+                this.z -= speed * 10;
                 if (this.z <= 1) {
                     this.reset();
                     this.z = width;
@@ -462,140 +629,170 @@
             }
 
             draw() {
-                // Project 3D position to 2D
                 const sx = (this.x / this.z) * (width / 2) + (width / 2);
                 const sy = (this.y / this.z) * (height / 2) + (height / 2);
-
-                // Previous position for trail effect
                 const px = (this.x / this.pz) * (width / 2) + (width / 2);
                 const py = (this.y / this.pz) * (height / 2) + (height / 2);
 
                 this.pz = this.z;
 
-                // Scale size by proximity
-                const size = (1 - this.z / width) * this.sizeBase * 2;
-
-                // Fade in/out
-                const opacity = (1 - this.z / width);
-
-                ctx.beginPath();
-                ctx.moveTo(px, py);
-                ctx.lineTo(sx, sy);
-
-                // Create gradient for the trail
-                const gradient = ctx.createLinearGradient(px, py, sx, sy);
-                gradient.addColorStop(0, `rgba(124, 58, 237, 0)`); // Fade tail
-                if (this.color === '#ffffff') {
-                    gradient.addColorStop(1, `rgba(255, 255, 255, ${opacity})`);
-                } else {
-                    gradient.addColorStop(1, `rgba(124, 58, 237, ${opacity})`);
+                if (px >= 0 && px <= width && py >= 0 && py <= height) {
+                    const size = (1 - this.z / 1000) * 2;
+                    const opacity = (1 - this.z / 1000);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                    ctx.fillRect(px, py, size, size);
                 }
-
-                ctx.strokeStyle = gradient;
-                ctx.lineWidth = size;
-                ctx.lineCap = 'round';
-                ctx.stroke();
             }
         }
 
         function initStars() {
-            resize();
-            // Clear existing if re-init
             stars.length = 0;
             for (let i = 0; i < starCount; i++) stars.push(new Star());
             PerformanceCore.registerAnimation(canvas, animate);
         }
 
         function animate() {
-            // Dark Void Background with slight trail retention for motion blur feel
             ctx.fillStyle = 'rgba(2, 2, 2, 0.4)';
             ctx.fillRect(0, 0, width, height);
-
             stars.forEach(star => {
                 star.update();
                 star.draw();
             });
         }
 
-        window.addEventListener('resize', resize);
-        const init_all = () => {
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
             initStars();
-            hydrate(); // Call hydration on load
+        });
+
+        const init_all = () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initStars();
+            hydrate();
         };
-window.addEventListener("load", init_all); if(document.readyState==="complete")init_all();
+        window.addEventListener("load", init_all); if(document.readyState==="complete")init_all();
 
         async function hydrate() {
+            console.log("💎 QUARRY // INITIALIZING HYDRATION ENGINE...");
             try {
-                // 1. Data Source Selection (Prioritize global object, fallback to fetch)
-                let stats = window.QUARRY_STATS;
-                if (!stats) {
-                    const response = await fetch('stats.json');
-                    stats = await response.json();
-                }
-
-                // 2. Resolve Model Data
-                const v = stats.models.obsidian;
-                if (!v) return;
-
-                // 3. KPI Mapping
-                const mappings = {
-                    'stat-net': v.net,
-                    'stat-roi': v.roi,
-                    'stat-winrate': v.win_rate !== undefined ? v.win_rate : v.winrate,
-                    'stat-record': v.record,
-                    'stat-sample': v.sample
-                };
-
-                for (const [id, val] of Object.entries(mappings)) {
-                    const el = document.getElementById(id);
-                    if (!el || val === undefined) continue;
-                    if (id.includes('roi')) el.textContent = (val >= 0 ? '+' : '') + val.toFixed(1) + '%';
-                    else if (id.includes('net')) el.textContent = (val >= 0 ? '+' : '') + val.toFixed(2) + 'u';
-                    else if (id.includes('record')) el.textContent = String(val).replace(/\//g, '-');
-                    else el.textContent = val;
-                }
-
-                if (v.yesterday) {
-                    const y = v.yesterday;
-                    const d = document.getElementById('y-date-v3');
-                    if (d) d.textContent = y.date || 'N/A';
-                    const r = document.getElementById('y-record-v3');
-                    if (r) r.textContent = y.record || '--';
-                    const ro = document.getElementById('y-roi-v3');
-                    if (ro) ro.textContent = (y.roi >= 0 ? '+' : '') + y.roi.toFixed(1) + '%';
-                    const n = document.getElementById('y-net-v3');
-                    if (n) n.textContent = (y.net >= 0 ? '+' : '') + y.net.toFixed(2) + 'u';
-
-                    const body = document.getElementById('ledger-body-v3');
-                    const ledgerData = y.ledger || y.history || [];
-                    if (body && ledgerData) {
-                        body.innerHTML = ledgerData.map(row => {
-                            const pDate = row.pick_date || row.date || 'N/A';
-                            const lName = row.league_name || row.league || 'N/A';
-                            const pNorm = row.pick_norm || row.selection || 'N/A';
-                            const odds = row.decimal_odds || (row.odds > 0 ? (row.odds/100)+1 : (100/Math.abs(row.odds))+1) || 0;
-                            const wager = row.wager_unit || row.wager || row.units || 0;
-                            const res = row.result || 'N/A';
-                            const profit = row.profit_actual !== undefined ? row.profit_actual : (row.profit !== undefined ? row.profit : 0);
-                            const edge = row.edge !== undefined ? row.edge : 0;
-                            return `<tr class="hover:bg-white/5 transition-colors border-b border-white/5">
-                                <td class="py-4 pl-8 text-zinc-500">${pDate}</td>
-                                <td class="py-4 text-white font-medium">${lName} // ${pNorm}</td>
-                                <td class="py-4 text-right text-zinc-500">${Number(odds).toFixed(2)}</td>
-                                <td class="py-4 text-right text-zinc-500">${(edge * 100).toFixed(1)}%</td>
-                                <td class="py-4 text-right text-zinc-300 font-mono">${Number(wager).toFixed(1)}u</td>
-                                <td class="py-4 text-right">
-                                    <span class="px-2 py-0.5 rounded-sm text-[9px] font-bold ${res === 'WIN' ? 'bg-green-500/10 text-green-400' : (res === 'LOSS' ? 'bg-red-500/10 text-red-400' : 'bg-zinc-800 text-zinc-400')}">${res}</span>
-                                </td>
-                                <td class="py-4 text-right pr-8 font-bold ${profit >= 0 ? 'text-obsidian-glow' : 'text-red-400'}">${profit >= 0 ? '+' : ''}${Number(profit).toFixed(2)}</td>
-                            </tr>`;
-                        }).join('');
+                // 1. Resolve Institutional Source
+                let source = "NONE";
+                let v = null;
+                
+                if (typeof DATA !== 'undefined' && DATA.stats) {
+                    source = "INJECTED_DATA";
+                    v = {
+                        ...DATA.stats,
+                        yesterday: DATA.yesterday,
+                        history: DATA.history,
+                        status: DATA.meta ? DATA.meta.status : "ADVANCED"
+                    };
+                } else {
+                    console.warn("⚠️ INJECTED DATA MISSING. FALLING BACK TO CLOUD LINK.");
+                    let stats = window.QUARRY_STATS;
+                    if (!stats) {
+                        try {
+                            const response = await fetch('stats.json');
+                            stats = await response.json();
+                            source = "CLOUD_LINK (stats.json)";
+                        } catch(e) { source = "ERROR"; }
+                    } else { source = "GLOBAL_CONTEXT"; }
+                    
+                    if (stats) {
+                        v = stats.v3 || (stats.models && stats.models.obsidian);
                     }
                 }
-                const roiBar = document.getElementById('roi-bar');
-                if (roiBar && v.roi !== undefined) roiBar.style.width = Math.min(Math.max(v.roi, 0), 100) + '%';
+
+                console.log(`📡 HYDRATION_SOURCE: ${source}`);
+                if (!v) {
+                    console.error("❌ CRITICAL: NO MODEL DATA FOUND IN SOURCE.");
+                    return;
+                }
+
+                // 2. Direct KPI Assignment (Institutional Hardening)
+                const net = v.net_units !== undefined ? v.net_units : (v.net !== undefined ? v.net : 0);
+                const roi = v.roi !== undefined ? v.roi : 0;
+                const wr = v.win_pct !== undefined ? v.win_pct : (v.win_rate !== undefined ? v.win_rate : (v.winrate || 0));
+                const rec = v.record || "0-0-0";
+                const sample = v.sample || 0;
+
+                const nodes = {
+                    'stat-net': (net >= 0 ? '+' : '') + Number(net).toFixed(2) + 'u',
+                    'stat-roi': (roi >= 0 ? '+' : '') + Number(roi).toFixed(1) + '%',
+                    'stat-winrate': Number(wr).toFixed(1) + '%',
+                    'stat-record': String(rec).replace(/\//g, '-'),
+                    'stat-sample': sample
+                };
+
+                for (const [id, val] of Object.entries(nodes)) {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.textContent = val;
+                        console.log(`  ✅ [${id}] -> ${val}`);
+                    } else {
+                        console.warn(`  ⚠️ ELEMENT NOT FOUND: ${id}`);
+                    }
+                }
+
+                if (v.roi !== undefined) {
+                    const bar = document.getElementById('roi-bar');
+                    if (bar) bar.style.width = Math.min(Math.max(v.roi, 0), 100) + '%';
+                }
+
+                // 3. Yesterday's Tactical Ledger
+                const y = v.yesterday;
+                if (y) {
+                    const yNodes = {
+                        'y-date-v3': y.date || 'N/A',
+                        'y-record-v3': y.record || '--',
+                        'y-roi-v3': (y.roi >= 0 ? '+' : '') + Number(y.roi || 0).toFixed(1) + '%'
+                    };
+                    for (const [id, val] of Object.entries(yNodes)) {
+                        const el = document.getElementById(id);
+                        if (el) el.textContent = val;
+                    }
+                    
+                    const n = document.getElementById('y-net-v3');
+                    if (n) {
+                        const netVal = y.net !== undefined ? y.net : (y.net_units !== undefined ? y.net_units : 0);
+                        n.textContent = (netVal >= 0 ? '+' : '') + Number(netVal).toFixed(2) + 'u';
+                    }
+
+                    const body = document.getElementById('ledger-body-v3');
+                    const ledgerData = v.history || y.ledger || y.history || [];
+                    if (body && ledgerData) {
+                        if (ledgerData.length === 0) {
+                            body.innerHTML = '<tr><td colspan="7" class="py-12 text-center text-zinc-800 font-mono text-[10px] uppercase tracking-widest italic border-none">No active sessions found for this period.</td></tr>';
+                        } else {
+                            body.innerHTML = ledgerData.map(row => {
+                                const pDate = row.pick_date || row.date || 'N/A';
+                                const lName = row.league_name || row.league || 'N/A';
+                                const pNorm = row.pick_norm || row.selection || 'N/A';
+                                const odds = row.decimal_odds || (row.odds > 0 ? (row.odds/100)+1 : (100/Math.abs(row.odds))+1) || 0;
+                                const wager = row.wager_unit || row.wager || row.units || 0;
+                                const res = row.result || 'N/A';
+                                const profit = row.profit_actual !== undefined ? row.profit_actual : (row.profit !== undefined ? row.profit : 0);
+                                const edge = row.edge !== undefined ? row.edge : 0;
+                                return `<tr class="hover:bg-white/5 transition-colors border-b border-white/5">
+                                    <td class="py-4 pl-8 text-zinc-500">${pDate}</td>
+                                    <td class="py-4 text-white font-medium">${lName} // ${pNorm}</td>
+                                    <td class="py-4 text-right text-zinc-500">${Number(odds).toFixed(2)}</td>
+                                    <td class="py-4 text-right text-zinc-500">${(edge * 100).toFixed(1)}%</td>
+                                    <td class="py-4 text-right text-zinc-300 font-mono">${Number(wager).toFixed(1)}u</td>
+                                    <td class="py-4 text-right">
+                                        <span class="px-2 py-0.5 rounded-sm text-[9px] font-bold ${res === 'WIN' ? 'bg-green-500/10 text-green-400' : (res === 'LOSS' ? 'bg-red-500/10 text-red-400' : 'bg-zinc-800 text-zinc-400')}">${res}</span>
+                                    </td>
+                                    <td class="py-4 text-right pr-8 font-bold ${profit >= 0 ? 'text-obsidian-glow' : 'text-red-400'}">${profit >= 0 ? '+' : ''}${Number(profit).toFixed(2)}</td>
+                                </tr>`;
+                            }).join('');
+                        }
+                    }
+                }
+                console.log("✨ HYDRATION COMPLETE.");
             } catch (e) {
-                console.error("Institutional Link Failure:", e);
+                console.error("❌ CRITICAL HYDRATION ENGINE FAILURE:", e);
             }
         }
     </script>

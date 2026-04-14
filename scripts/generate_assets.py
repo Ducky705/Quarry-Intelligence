@@ -427,19 +427,52 @@ def generate_live_assets(since_days=None):
         }
 
     
-    # Obsidian (V3)
+    v3_yesterday = get_yesterday_stats(v3)    # --- INSTITUTIONAL STATS SYNC ---
+    def get_stats(df):
+        if df.empty: return {"roi": 0, "net": 0, "record": "0-0-0", "win_rate": 0, "sample": 0}
+        settled = df[df['outcome'].isin([0.0, 1.0])].copy()
+        if settled.empty: return {"roi": 0, "net": 0, "record": "0-0-0", "win_rate": 0, "sample": 1} # sample is total bets
+        
+        net = settled['profit_actual'].sum()
+        wager = settled['wager_unit'].sum()
+        roi = (net / wager * 100) if wager > 0 else 0
+        
+        wins = len(settled[settled['outcome'] == 1])
+        losses = len(settled[settled['outcome'] == 0])
+        pushes = len(df[df['outcome'] == 0.5])
+        
+        wr = (wins / len(settled) * 100) if len(settled) > 0 else 0
+        
+        return {
+            "roi": round(roi, 1),
+            "net": round(net, 2),
+            "record": f"{wins}-{losses}-{pushes}",
+            "win_rate": round(wr, 1),
+            "sample": len(df)
+        }
+
+    v3_stats = get_stats(v3)
     obsidian_data = {
-        "v3": {
-            "roi": float(v3_roi),
-            "winrate": float((len(v3[v3['outcome']==1])/len(v3)*100) if not v3.empty and len(v3)>0 else 0),
-            "sample": int(len(v3)),
-            "record": f"{len(v3[v3['outcome']==1])}/{len(v3[v3['outcome']==0])}/{len(v3[v3['outcome']==0.5])}" if not v3.empty else "0/0/0",
-            "bets_day": round(len(v3) / v3['pick_date'].nunique() if not v3.empty else 0, 1),
-            "net": float(v3['profit_actual'].sum()) if not v3.empty else 0.0
+        "meta": {"last_update": pd.Timestamp.now().strftime('%Y-%m-%d %H:%M UTC'), "status": "ADVANCED"},
+        "stats": {
+            "roi": v3_stats['roi'],
+            "net_units": v3_stats['net'],
+            "record": v3_stats['record'],
+            "win_pct": v3_stats['win_rate'],
+            "sample": v3_stats['sample']
         },
-        "v2": {"roi": float(v2_roi)},
-        "v1": {"roi": float(v1_roi)},
-        "yesterday_v3": get_yesterday_stats(v3)
+        "benchmarks": {
+            "v1_roi": round((v1['profit_actual'].sum() / v1['wager_unit'].sum() * 100) if not v1.empty else 0, 1),
+            "v2_roi": round((v2['profit_actual'].sum() / v2['wager_unit'].sum() * 100) if not v2.empty else 0, 1)
+        },
+        "yesterday": {
+            "record": v3_yesterday['record'] if v3_yesterday else "0-0-0",
+            "win_pct": v3_yesterday['winrate'] if v3_yesterday else 0,
+            "roi": v3_yesterday['roi'] if v3_yesterday else 0,
+            "net": v3_yesterday['net'] if v3_yesterday else 0,
+            "date": v3_yesterday['date'] if v3_yesterday else "N/A"
+        },
+        "history": v3_yesterday['history'] if v3_yesterday else []
     }
     
     # Injection helper
@@ -464,13 +497,14 @@ def generate_live_assets(since_days=None):
     
     # Diamond (V2)
     v2_yesterday = get_yesterday_stats(v2, sort_mode='diamond')
+    v2_stats = get_stats(v2)
     diamond_page_data = {
         "meta": {"last_update": pd.Timestamp.now().strftime('%Y-%m-%d %H:%M UTC'), "status": "NOMINAL"},
         "stats": {
-            "roi": round(v2_roi, 1),
-            "net_units": round(v2['profit_actual'].sum(), 2) if not v2.empty else 0,
-            "record": f"{len(v2[v2['outcome']==1])}-{len(v2[v2['outcome']==0])}-{len(v2[v2['outcome']==0.5])}" if not v2.empty else "0-0-0",
-            "win_rate": round((len(v2[v2['outcome']==1])/len(v2[v2['outcome'].isin([0,1])])*100) if not v2.empty and len(v2[v2['outcome'].isin([0,1])])>0 else 0, 1)
+            "roi": v2_stats['roi'],
+            "net_units": v2_stats['net'],
+            "record": v2_stats['record'],
+            "win_rate": v2_stats['win_rate']
         },
         "volume": {
             "v1_avg": round(len(v1) / v1['pick_date'].nunique() if not v1.empty else 0, 1),
@@ -490,13 +524,14 @@ def generate_live_assets(since_days=None):
 
     # Pyrite (V1)
     v1_yesterday = get_yesterday_stats(v1, sort_mode='diamond') # Use profit sort for Pyrite too
+    v1_stats = get_stats(v1)
     pyrite_page_data = {
         "meta": {"last_update": pd.Timestamp.now().strftime('%Y-%m-%d %H:%M UTC'), "status": "LEGACY"},
         "stats": {
-            "roi": round(v1_roi, 1),
-            "net_units": round(v1['profit_actual'].sum(), 2) if not v1.empty else 0,
-            "record": f"{len(v1[v1['outcome']==1])}-{len(v1[v1['outcome']==0])}-{len(v1[v1['outcome']==0.5])}" if not v1.empty else "0-0-0",
-            "win_rate": round((len(v1[v1['outcome']==1])/len(v1[v1['outcome'].isin([0,1])])*100) if not v1.empty and len(v1[v1['outcome'].isin([0,1])])>0 else 0, 1)
+            "roi": v1_stats['roi'],
+            "net_units": v1_stats['net'],
+            "record": v1_stats['record'],
+            "win_rate": v1_stats['win_rate']
         },
         "volume": {
             "v1_avg": round(len(v1) / v1['pick_date'].nunique() if not v1.empty else 0, 1),
@@ -516,14 +551,15 @@ def generate_live_assets(since_days=None):
 
     # Quartz (V4)
     v4_yesterday = get_yesterday_stats(v4, sort_mode='diamond')
+    v4_stats = get_stats(v4)
     quartz_page_data = {
         "meta": {"last_update": pd.Timestamp.now().strftime('%Y-%m-%d %H:%M UTC'), "status": "FLAGSHIP"},
         "stats": {
-            "roi": round((v4['profit_actual'].sum() / v4['wager_unit'].sum() * 100) if not v4.empty and v4['wager_unit'].sum() > 0 else 0, 1),
-            "net_units": round(v4['profit_actual'].sum(), 2) if not v4.empty else 0,
-            "record": f"{len(v4[v4['outcome']==1])}-{len(v4[v4['outcome']==0])}-{len(v4[v4['outcome']==0.5])}" if not v4.empty else "0-0-0",
-            "win_rate": round((len(v4[v4['outcome']==1])/len(v4[v4['outcome'].isin([0,1])])*100) if not v4.empty and len(v4[v4['outcome'].isin([0,1])])>0 else 0, 1),
-            "sample": len(v4)
+            "roi": v4_stats['roi'],
+            "net_units": v4_stats['net'],
+            "record": v4_stats['record'],
+            "win_rate": v4_stats['win_rate'],
+            "sample": v4_stats['sample']
         },
         "volume": {
             "v4_avg": round(len(v4) / v4['pick_date'].nunique() if not v4.empty else 0, 1),
@@ -547,10 +583,12 @@ def generate_live_assets(since_days=None):
         return "BALANCED"
 
     selector_data = {
-        "pyrite": get_risk_profile(pyrite_page_data['volume']['v1_avg']),
-        "diamond": get_risk_profile(diamond_page_data['volume']['v2_avg']),
-        "obsidian": get_risk_profile(obsidian_data['v3']['bets_day']),
-        "quartz": get_risk_profile(quartz_page_data['volume']['v4_avg'])
+        "models": {
+            "pyrite": {"roi": pyrite_page_data['stats']['roi'], "status": get_risk_profile(pyrite_page_data['volume']['v1_avg'])},
+            "diamond": {"roi": diamond_page_data['stats']['roi'], "status": get_risk_profile(diamond_page_data['volume']['v2_avg'])},
+            "obsidian": {"roi": obsidian_data['stats']['roi'], "status": get_risk_profile(obsidian_data['stats']['sample'] / 100)}, # Approx vol
+            "quartz": {"roi": quartz_page_data['stats']['roi'], "status": get_risk_profile(quartz_page_data['volume']['v4_avg'])}
+        }
     }
     
     inject_json('docs/selector.html', selector_data)

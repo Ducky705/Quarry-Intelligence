@@ -603,98 +603,243 @@
             if (panel._isVisible) createSparkle(panel);
         }, 800);
 
+        // --- DATA INJECTION POINT (AUTOMATED) ---
+        const DATA = {
+            "meta": {
+                        "last_update": "2026-04-14 13:56 UTC",
+                        "status": "NOMINAL"
+            },
+            "stats": {
+                        "roi": 7.3,
+                        "net_units": 83.58,
+                        "record": "1235-1092-0",
+                        "win_rate": 53.1
+            },
+            "volume": {
+                        "v1_avg": 26.4,
+                        "v2_avg": 17.6,
+                        "v1_label": "High",
+                        "v2_label": "Medium"
+            },
+            "yesterday": {
+                        "record": "0-7-0",
+                        "win_pct": 0.0,
+                        "roi": -100.0,
+                        "net": -8.0,
+                        "date": "Apr 13, 2026"
+            },
+            "history": [
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "edmonton oilers ml",
+                                    "odds": -106,
+                                    "edge": 0.0502537456145179,
+                                    "units": 0.8,
+                                    "wager": 0.8,
+                                    "profit": -0.8,
+                                    "result": "LOSS",
+                                    "match": "edmonton oilers ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "edmonton oilers ml",
+                                    "odds": -106,
+                                    "edge": 0.0502537456145179,
+                                    "units": 0.8,
+                                    "wager": 0.8,
+                                    "profit": -0.8,
+                                    "result": "LOSS",
+                                    "match": "edmonton oilers ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "edmonton oilers ml",
+                                    "odds": -106,
+                                    "edge": 0.0502537456145179,
+                                    "units": 0.8,
+                                    "wager": 0.8,
+                                    "profit": -0.8,
+                                    "result": "LOSS",
+                                    "match": "edmonton oilers ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "as ml",
+                                    "odds": 115,
+                                    "edge": 0.09148313925247781,
+                                    "units": 1.4,
+                                    "wager": 1.4,
+                                    "profit": -1.4,
+                                    "result": "LOSS",
+                                    "match": "as ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "as ml",
+                                    "odds": 115,
+                                    "edge": 0.09148313925247781,
+                                    "units": 1.4,
+                                    "wager": 1.4,
+                                    "profit": -1.4,
+                                    "result": "LOSS",
+                                    "match": "as ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "as ml",
+                                    "odds": 115,
+                                    "edge": 0.09148313925247781,
+                                    "units": 1.4,
+                                    "wager": 1.4,
+                                    "profit": -1.4,
+                                    "result": "LOSS",
+                                    "match": "as ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "as ml",
+                                    "odds": 115,
+                                    "edge": 0.09148313925247781,
+                                    "units": 1.4,
+                                    "wager": 1.4,
+                                    "profit": -1.4,
+                                    "result": "LOSS",
+                                    "match": "as ml"
+                        }
+            ]
+};
+
         // --- DATA HYDRATION (DIAMOND V2) ---
         async function hydrate() {
+            console.log("💎 QUARRY // INITIALIZING HYDRATION ENGINE...");
             try {
-                // 1. Data Source Selection (Prioritize global object, fallback to fetch)
-                let stats = window.QUARRY_STATS;
-                if (!stats) {
-                    const response = await fetch('stats.json');
-                    stats = await response.json();
-                }
-
-                // 2. Resolve Model Data
-                const v = stats.models.diamond;
-                if (!v) return;
-
-                // 3. KPI Mapping
-                const mappings = {
-                    'stat-net': v.net,
-                    'stat-roi': v.roi,
-                    'stat-winrate': v.win_rate !== undefined ? v.win_rate : v.winrate,
-                    'stat-record': v.record,
-                    'stat-sample': v.sample
-                };
-
-                for (const [id, val] of Object.entries(mappings)) {
-                    const el = document.getElementById(id);
-                    if (!el || val === undefined) continue;
-
-                    if (id.includes('roi')) {
-                        el.textContent = (val >= 0 ? '+' : '') + val.toFixed(1) + '%';
-                    } else if (id.includes('net')) {
-                        el.textContent = (val >= 0 ? '+' : '') + val.toFixed(2) + 'u';
-                    } else if (id.includes('record')) {
-                        el.textContent = String(val).replace(/\//g, '-');
-                    } else {
-                        el.textContent = val;
+                // 1. Resolve Institutional Source
+                let source = "NONE";
+                let v = null;
+                
+                if (typeof DATA !== 'undefined' && DATA.stats) {
+                    source = "INJECTED_DATA";
+                    v = {
+                        ...DATA.stats,
+                        yesterday: DATA.yesterday,
+                        history: DATA.history,
+                        status: DATA.meta ? DATA.meta.status : "NOMINAL"
+                    };
+                } else {
+                    console.warn("⚠️ INJECTED DATA MISSING. FALLING BACK TO CLOUD LINK.");
+                    let stats = window.QUARRY_STATS;
+                    if (!stats) {
+                        try {
+                            const response = await fetch('stats.json');
+                            stats = await response.json();
+                            source = "CLOUD_LINK (stats.json)";
+                        } catch(e) { source = "ERROR"; }
+                    } else { source = "GLOBAL_CONTEXT"; }
+                    
+                    if (stats) {
+                        v = stats.models ? stats.models.diamond : stats.stats;
                     }
                 }
 
-                // 4. Yesterday's Summary
-                const yesterday = v.yesterday;
-                if (yesterday) {
-                    const yDate = document.getElementById('y-date-label');
-                    if (yDate) yDate.textContent = yesterday.date || '--';
+                console.log(`📡 HYDRATION_SOURCE: ${source}`);
+                if (!v) {
+                    console.error("❌ CRITICAL: NO MODEL DATA FOUND IN SOURCE.");
+                    return;
+                }
 
-                    const yRec = document.getElementById('y-record');
-                    if (yRec) yRec.textContent = yesterday.record || '--';
+                // 2. Direct KPI Assignment (Institutional Hardening)
+                const net = v.net_units !== undefined ? v.net_units : (v.net !== undefined ? v.net : 0);
+                const roi = v.roi !== undefined ? v.roi : 0;
+                const wr = v.win_pct !== undefined ? v.win_pct : (v.win_rate !== undefined ? v.win_rate : (v.winrate || 0));
+                const rec = v.record || "0-0-0";
+                const sample = v.sample || 0;
 
-                    const yRoi = document.getElementById('y-roi');
-                    if (yRoi) yRoi.textContent = (yesterday.roi >= 0 ? '+' : '') + yesterday.roi.toFixed(1) + '%';
+                const nodes = {
+                    'stat-net': (net >= 0 ? '+' : '') + Number(net).toFixed(2) + 'u',
+                    'stat-roi': (roi >= 0 ? '+' : '') + Number(roi).toFixed(1) + '%',
+                    'stat-winrate': Number(wr).toFixed(1) + '%',
+                    'stat-record': String(rec).replace(/\//g, '-'),
+                    'stat-sample': sample
+                };
 
-                    const yNet = document.getElementById('y-net');
-                    if (yNet) yNet.textContent = (yesterday.net >= 0 ? '+' : '') + yesterday.net.toFixed(2) + 'u';
+                for (const [id, val] of Object.entries(nodes)) {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.textContent = val;
+                        console.log(`  ✅ [${id}] -> ${val}`);
+                    } else {
+                        console.warn(`  ⚠️ ELEMENT NOT FOUND: ${id}`);
+                    }
+                }
+
+                // 3. Yesterday's Tactical Summary
+                const y = v.yesterday;
+                if (y) {
+                    const yNodes = {
+                        'y-date-label': y.date || '--',
+                        'y-record': y.record || '--',
+                        'y-roi': (y.roi >= 0 ? '+' : '') + Number(y.roi || 0).toFixed(1) + '%'
+                    };
+                    for (const [id, val] of Object.entries(yNodes)) {
+                        const el = document.getElementById(id);
+                        if (el) el.textContent = val;
+                    }
 
                     const yWin = document.getElementById('y-winpct');
-                    if (yWin && yesterday.win_rate !== undefined) yWin.textContent = yesterday.win_rate.toFixed(1) + '%';
-                }
+                    if (yWin && (y.win_pct !== undefined || y.win_rate !== undefined)) {
+                        const wrVal = y.win_pct !== undefined ? y.win_pct : y.win_rate;
+                        yWin.textContent = Number(wrVal).toFixed(1) + '%';
+                    }
+                    
+                    const n = document.getElementById('y-net');
+                    if (n) {
+                        const netVal = y.net !== undefined ? y.net : (y.net_units !== undefined ? y.net_units : 0);
+                        n.textContent = (netVal >= 0 ? '+' : '') + Number(netVal).toFixed(2) + 'u';
+                    }
 
-                // 5. Ledger Table
-                const body = document.getElementById('ledger-body');
-                const ledgerData = (v.yesterday && v.yesterday.ledger) || v.history || [];
-                if (body && ledgerData) {
-                    body.innerHTML = ledgerData.map(row => {
-                        const pickDate = row.pick_date || row.date || 'N/A';
-                        const leagueName = row.league_name || row.league || 'N/A';
-                        const pickNorm = row.pick_norm || row.selection || 'N/A';
-                        const decimalOdds = row.decimal_odds || (row.odds > 0 ? (row.odds/100)+1 : (100/Math.abs(row.odds))+1) || 0;
-                        const wagerUnit = row.wager_unit || row.wager || row.units || 0;
-                        const result = row.result || 'N/A';
-                        const profitActual = row.profit_actual !== undefined ? row.profit_actual : (row.profit !== undefined ? row.profit : 0);
-
-                        const edge = row.edge !== undefined ? row.edge : 0;
-                        return `
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="py-4 pl-8 text-zinc-500">${pickDate}</td>
-                                <td class="py-4 text-white font-medium">${leagueName} // ${pickNorm}</td>
-                                <td class="py-4 text-right text-zinc-500">${Number(decimalOdds).toFixed(2)}</td>
-                                <td class="py-4 text-right text-zinc-500">${(edge * 100).toFixed(1)}%</td>
-                                <td class="py-4 text-right text-zinc-300">${Number(wagerUnit).toFixed(1)}u</td>
-                                <td class="py-4 text-right">
-                                    <span class="px-2 py-0.5 rounded-sm text-[9px] font-bold ${result === 'WIN' ? 'bg-green-500/10 text-green-400' : (result === 'LOSS' ? 'bg-red-500/10 text-red-400' : 'bg-zinc-800 text-zinc-400')}">
-                                        ${result}
-                                    </span>
-                                </td>
-                                <td class="py-4 text-right pr-8 font-bold ${profitActual >= 0 ? 'text-green-400' : 'text-red-400'}">
-                                    ${profitActual >= 0 ? '+' : ''}${Number(profitActual).toFixed(2)}
-                                </td>
-                            </tr>
-                        `;
-                    }).join('');
+                    const body = document.getElementById('ledger-body');
+                    const ledgerData = v.history || y.ledger || y.history || [];
+                    if (body && ledgerData) {
+                        if (ledgerData.length === 0) {
+                            body.innerHTML = '<tr><td colspan="7" class="py-12 text-center text-zinc-800 font-mono text-[10px] uppercase tracking-widest italic border-none">No active sessions found for this period.</td></tr>';
+                        } else {
+                            body.innerHTML = ledgerData.map(row => {
+                                const pDate = row.pick_date || row.date || 'N/A';
+                                const lName = row.league_name || row.league || 'N/A';
+                                const pNorm = row.pick_norm || row.selection || 'N/A';
+                                const odds = row.decimal_odds || (row.odds > 0 ? (row.odds/100)+1 : (100/Math.abs(row.odds))+1) || 0;
+                                const wager = row.wager_unit || row.wager || row.units || 0;
+                                const res = row.result || 'N/A';
+                                const profit = row.profit_actual !== undefined ? row.profit_actual : (row.profit !== undefined ? row.profit : 0);
+                                const edge = row.edge !== undefined ? row.edge : 0;
+                                
+                                return `<tr class="hover:bg-[#1a1c24] transition-colors border-b border-[#2a2d3a]">
+                                    <td class="py-4 pl-8 text-zinc-500 font-mono">${pDate}</td>
+                                    <td class="py-4 text-white font-medium">${lName} // ${pNorm}</td>
+                                    <td class="py-4 text-right text-zinc-500 font-mono">${Number(odds).toFixed(2)}</td>
+                                    <td class="py-4 text-right text-zinc-500 font-mono">${(edge*100).toFixed(1)}%</td>
+                                    <td class="py-4 text-right text-zinc-300 font-mono">${Number(wager).toFixed(1)}u</td>
+                                    <td class="py-4 text-right">
+                                        <span class="px-2 py-0.5 rounded-sm text-[9px] font-bold ${res === 'WIN' ? 'bg-green-500/10 text-green-400' : (res === 'LOSS' ? 'bg-red-500/10 text-red-400' : 'bg-zinc-800 text-zinc-400')}">${res}</span>
+                                    </td>
+                                    <td class="py-4 text-right pr-8 font-bold font-mono ${profit >= 0 ? 'text-diamond' : 'text-red-400'}">
+                                        ${profit >= 0 ? '+' : ''}${Number(profit).toFixed(2)}
+                                    </td>
+                                </tr>`;
+                            }).sort((a,b) => b.edge - a.edge).join('');
+                        }
+                    }
                 }
+                console.log("✨ HYDRATION COMPLETE.");
             } catch (e) {
-                console.error("Institutional Link Failure:", e);
+                console.error("❌ CRITICAL HYDRATION ENGINE FAILURE:", e);
             }
         }
 

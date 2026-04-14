@@ -356,75 +356,99 @@
         // --- DATA INJECTION POINT (AUTOMATED) ---
         const DATA = {
             "meta": {
-                        "last_update": "2026-04-13 22:15 UTC",
+                        "last_update": "2026-04-14 13:56 UTC",
                         "status": "FLAGSHIP"
             },
             "stats": {
-                        "roi": 5.0,
-                        "net_units": 2.11,
-                        "record": "10-13-0",
-                        "win_rate": 43.5,
-                        "sample": 23
+                        "roi": 17.8,
+                        "net_units": 12.09,
+                        "record": "26-25-0",
+                        "win_rate": 51.0,
+                        "sample": 51
             },
             "volume": {
-                        "v4_avg": 3.8,
+                        "v4_avg": 7.3,
                         "v4_label": "High"
             },
             "yesterday": {
-                        "record": "1-3-0",
-                        "win_pct": 25.0,
-                        "roi": -39.2,
-                        "net": -3.91,
-                        "date": "Apr 12, 2026"
+                        "record": "3-3-0",
+                        "win_pct": 50.0,
+                        "roi": -1.6,
+                        "net": -0.16,
+                        "date": "Apr 13, 2026"
             },
             "history": [
                         {
-                                    "date": "04/12",
+                                    "date": "04/13",
                                     "league": "MLB",
-                                    "selection": "arizona diamondbacks ml",
-                                    "odds": 117,
-                                    "edge": 0.07057938950284826,
-                                    "units": 2.8,
-                                    "wager": 2.8,
-                                    "profit": 3.29,
+                                    "selection": "miami ml",
+                                    "odds": 129,
+                                    "edge": 0.06129661399398462,
+                                    "units": 1.6,
+                                    "wager": 1.6,
+                                    "profit": 2.12,
                                     "result": "WIN",
-                                    "match": "arizona diamondbacks ml"
+                                    "match": "miami ml"
                         },
                         {
-                                    "date": "04/12",
-                                    "league": "Combat",
-                                    "selection": "alexander romonac ml / viviane arujo ml / charles radke ml",
-                                    "odds": 150,
-                                    "edge": 0.05496858170282831,
-                                    "units": 1.7,
-                                    "wager": 1.7,
-                                    "profit": -1.71,
-                                    "result": "LOSS",
-                                    "match": "alexander romonac ml / viviane arujo ml / charles radke ml"
-                        },
-                        {
-                                    "date": "04/12",
-                                    "league": "Other",
-                                    "selection": "dustin johnson prop over 72.5",
+                                    "date": "04/13",
+                                    "league": "MLB",
+                                    "selection": "astros vs mariners over 7.5",
                                     "odds": -109,
-                                    "edge": 0.06910064732833943,
-                                    "units": 2.7,
-                                    "wager": 2.7,
-                                    "profit": -2.7,
-                                    "result": "LOSS",
-                                    "match": "dustin johnson prop over 72.5"
+                                    "edge": 0.050358181437875404,
+                                    "units": 1.6,
+                                    "wager": 1.6,
+                                    "profit": 1.45,
+                                    "result": "WIN",
+                                    "match": "astros vs mariners over 7.5"
                         },
                         {
-                                    "date": "04/12",
-                                    "league": "Combat",
-                                    "selection": "paula costa ml",
-                                    "odds": 195,
-                                    "edge": 0.10037182284702056,
-                                    "units": 2.8,
-                                    "wager": 2.8,
-                                    "profit": -2.79,
+                                    "date": "04/13",
+                                    "league": "MLB",
+                                    "selection": "cubs vs phillies over 8",
+                                    "odds": -109,
+                                    "edge": 0.05022601929552295,
+                                    "units": 1.6,
+                                    "wager": 1.6,
+                                    "profit": 1.45,
+                                    "result": "WIN",
+                                    "match": "cubs vs phillies over 8"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "MLB",
+                                    "selection": "chicago cubs ml",
+                                    "odds": 160,
+                                    "edge": 0.05126872315014186,
+                                    "units": 1.2,
+                                    "wager": 1.2,
+                                    "profit": -1.25,
                                     "result": "LOSS",
-                                    "match": "paula costa ml"
+                                    "match": "chicago cubs ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "NHL",
+                                    "selection": "winnipeg jets ml",
+                                    "odds": 152,
+                                    "edge": 0.09053903190717677,
+                                    "units": 2.0,
+                                    "wager": 2.0,
+                                    "profit": -1.96,
+                                    "result": "LOSS",
+                                    "match": "winnipeg jets ml"
+                        },
+                        {
+                                    "date": "04/13",
+                                    "league": "MLB",
+                                    "selection": "braves ml",
+                                    "odds": -111,
+                                    "edge": 0.07143793211372906,
+                                    "units": 2.0,
+                                    "wager": 2.0,
+                                    "profit": -1.96,
+                                    "result": "LOSS",
+                                    "match": "braves ml"
                         }
             ]
 };
@@ -528,70 +552,87 @@
 
         // --- DATA HYDRATION ---
         async function hydrate() {
+            console.log("💎 QUARRY // INITIALIZING HYDRATION ENGINE...");
             try {
-                // Prioritize injected DATA if available
+                // 1. Resolve Institutional Source
+                let source = "NONE";
                 let v = null;
+                
                 if (typeof DATA !== 'undefined' && DATA.stats) {
-                    console.log("⚡ Internal Data Link Established");
-                    // Map injected DATA structure to internal 'v'
+                    source = "INJECTED_DATA";
                     v = {
                         ...DATA.stats,
                         yesterday: DATA.yesterday,
                         history: DATA.history,
-                        status: DATA.meta ? DATA.meta.status : "NOMINAL"
+                        status: DATA.meta ? DATA.meta.status : "FLAGSHIP"
                     };
                 } else {
+                    console.warn("⚠️ INJECTED DATA MISSING. FALLING BACK TO CLOUD LINK.");
                     let stats = window.QUARRY_STATS;
                     if (!stats) {
-                        const response = await fetch(`stats.json?t=${Date.now()}`);
-                        stats = await response.json();
+                        try {
+                            const response = await fetch(`stats.json?t=${Date.now()}`);
+                            stats = await response.json();
+                            source = "CLOUD_LINK (stats.json)";
+                        } catch(e) { source = "ERROR"; }
+                    } else { source = "GLOBAL_CONTEXT"; }
+                    
+                    if (stats) {
+                        v = stats.models ? stats.models.quartz : stats.stats;
                     }
-                    v = stats.models.quartz;
                 }
 
-                if (!v) return;
+                console.log(`📡 HYDRATION_SOURCE: ${source}`);
+                if (!v) {
+                    console.error("❌ CRITICAL: NO MODEL DATA FOUND IN SOURCE.");
+                    return;
+                }
 
-                // KPI Mapping
-                const mappings = {
-                    'stat-net': v.net,
-                    'stat-roi': v.roi,
-                    'stat-winrate': v.win_rate !== undefined ? v.win_rate : v.winrate,
-                    'stat-record': v.record
+                // 2. Direct KPI Assignment (Institutional Hardening)
+                const net = v.net_units !== undefined ? v.net_units : (v.net !== undefined ? v.net : 0);
+                const roi = v.roi !== undefined ? v.roi : 0;
+                const wr = v.win_pct !== undefined ? v.win_pct : (v.win_rate !== undefined ? v.win_rate : (v.winrate || 0));
+                const rec = v.record || "0-0-0";
+
+                const nodes = {
+                    'stat-net': (net >= 0 ? '+' : '') + Number(net).toFixed(2) + 'u',
+                    'stat-roi': (roi >= 0 ? '+' : '') + Number(roi).toFixed(1) + '%',
+                    'stat-winrate': Number(wr).toFixed(1) + '%',
+                    'stat-record': String(rec).replace(/\//g, '-')
                 };
 
-                for (const [id, val] of Object.entries(mappings)) {
+                for (const [id, val] of Object.entries(nodes)) {
                     const el = document.getElementById(id);
-                    if (!el || val === undefined) continue;
-
-                    if (id.includes('roi')) {
-                        el.textContent = (val >= 0 ? '+' : '') + val.toFixed(1) + '%';
-                    } else if (id.includes('net')) {
-                        el.textContent = (val >= 0 ? '+' : '') + val.toFixed(2) + 'u';
-                    } else if (id.includes('winrate')) {
-                        el.textContent = val.toFixed(1) + '%';
-                    } else if (id.includes('record')) {
-                        el.textContent = String(val).replace(/\//g, '-');
-                    } else {
+                    if (el) {
                         el.textContent = val;
+                        console.log(`  ✅ [${id}] -> ${val}`);
+                    } else {
+                        console.warn(`  ⚠️ ELEMENT NOT FOUND: ${id}`);
                     }
                 }
 
-                if (v.yesterday) {
-                    const y = v.yesterday;
-                    const d = document.getElementById('y-date-label');
-                    if (d) d.textContent = y.date || '--';
-                    const r = document.getElementById('y-record');
-                    if (r) r.textContent = y.record || '--';
-                    const ro = document.getElementById('y-roi');
-                    if (ro) ro.textContent = (y.roi >= 0 ? '+' : '') + y.roi.toFixed(1) + '%';
+                // 3. Yesterday's Tactical Summary
+                const y = v.yesterday;
+                if (y) {
+                    const yNodes = {
+                        'y-date-label': y.date || '--',
+                        'y-record': y.record || '--',
+                        'y-roi': (y.roi >= 0 ? '+' : '') + Number(y.roi || 0).toFixed(1) + '%'
+                    };
+                    for (const [id, val] of Object.entries(yNodes)) {
+                        const el = document.getElementById(id);
+                        if (el) el.textContent = val;
+                    }
+                    
                     const n = document.getElementById('y-net');
                     if (n) {
-                        n.textContent = (y.net >= 0 ? '+' : '') + y.net.toFixed(2) + 'u';
-                        n.className = `text-xl font-bold ${y.net >= 0 ? 'text-ice-blue' : 'text-red-400'}`;
+                        const netVal = y.net !== undefined ? y.net : (y.net_units !== undefined ? y.net_units : 0);
+                        n.textContent = (netVal >= 0 ? '+' : '') + Number(netVal).toFixed(2) + 'u';
+                        n.className = `text-xl font-bold ${netVal >= 0 ? 'text-ice-blue' : 'text-red-400'}`;
                     }
 
                     const body = document.getElementById('ledger-body');
-                    const ledgerData = y.ledger || v.history || [];
+                    const ledgerData = v.history || y.ledger || y.history || [];
                     if (body && ledgerData) {
                         if (ledgerData.length === 0) {
                             body.innerHTML = '<tr><td colspan="7" class="py-12 text-center text-white/5 font-mono text-[10px] uppercase tracking-widest italic border-none">No active sessions found for this period.</td></tr>';
@@ -605,30 +646,27 @@
                                 const odds = row.decimal_odds || (row.odds > 0 ? (row.odds/100)+1 : (100/Math.abs(row.odds))+1) || 0;
                                 const res = row.result || 'N/A';
                                 const edge = row.edge !== undefined ? row.edge : 0;
-
-                                return `
-                                    <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
-                                        <td class="py-5 pl-8 text-white/40">${pDate}</td>
-                                        <td class="py-5 text-white font-medium">${lName} // ${pNorm}</td>
-                                        <td class="py-5 text-right text-white/50">${Number(odds).toFixed(2)}</td>
-                                        <td class="py-5 text-right text-white/50">${(edge * 100).toFixed(1)}%</td>
-                                        <td class="py-5 text-right text-white/50 font-mono">${Number(wager).toFixed(1)}u</td>
-                                        <td class="py-5 text-right">
-                                            <span class="px-2 py-0.5 rounded-sm text-[9px] font-bold ${res === 'WIN' ? 'bg-ice-blue/10 text-ice-blue' : (res === 'LOSS' ? 'bg-red-500/10 text-red-400' : 'bg-zinc-800 text-zinc-400')}">
-                                                ${res}
-                                            </span>
-                                        </td>
-                                        <td class="py-5 text-right pr-8 font-bold ${profit >= 0 ? 'text-ice-blue' : 'text-red-400'}">
-                                            ${profit >= 0 ? '+' : ''}${Number(profit).toFixed(2)}
-                                        </td>
-                                    </tr>
-                                `;
+                                return `<tr class="hover:bg-white/5 transition-all duration-300 border-b border-white/5 group">
+                                    <td class="py-4 pl-4 text-xs text-white/30 font-mono group-hover:text-ice-blue/50">${pDate}</td>
+                                    <td class="py-4">
+                                        <div class="text-[11px] font-bold text-white tracking-tight uppercase">${lName}</div>
+                                        <div class="text-[10px] text-white/40 font-mono uppercase">${pNorm}</div>
+                                    </td>
+                                    <td class="py-4 text-right text-[11px] text-white/40 font-mono italic">${Number(odds).toFixed(2)}</td>
+                                    <td class="py-4 text-right text-[11px] text-white/40 font-mono">${(edge*100).toFixed(1)}%</td>
+                                    <td class="py-4 text-right text-[11px] text-white/60 font-mono">${Number(wager).toFixed(1)}u</td>
+                                    <td class="py-4 text-right">
+                                        <span class="px-2 py-0.5 rounded-[2px] text-[9px] font-bold tracking-tighter ${res === 'WIN' ? 'bg-ice-blue/10 text-ice-blue' : (res === 'LOSS' ? 'bg-red-500/10 text-red-400' : 'bg-white/5 text-white/30')}">${res}</span>
+                                    </td>
+                                    <td class="py-4 text-right pr-4 font-bold text-xs font-mono ${profit >= 0 ? 'text-ice-blue' : 'text-red-400'}">${profit >= 0 ? '+' : ''}${Number(profit).toFixed(2)}</td>
+                                </tr>`;
                             }).join('');
                         }
                     }
                 }
+                console.log("✨ HYDRATION COMPLETE.");
             } catch (e) {
-                console.error("Institutional Link Failure:", e);
+                console.error("❌ CRITICAL HYDRATION ENGINE FAILURE:", e);
             }
         }
 

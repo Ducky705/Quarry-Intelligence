@@ -11,32 +11,39 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 's
 from pipeline import SportsDataPipeline, FeatureEngineer
 from models import ModelSimulator
 
-def generate_comparison_chart():
+def generate_comparison_chart(models=None):
     print("🚀 Generating Comparative Alpha Graphs...")
     
-    # Initialize Pipeline & Hydrate Features
-    pipeline = SportsDataPipeline()
-    raw_df = pipeline.fetch_data_cached() # Uses cache
-    
-    fe = FeatureEngineer(raw_df)
-    df = fe.process() # Fully hydrated with v4 (shifted) and v3 (leaked) features
-    
-    simulator = ModelSimulator(df)
+    if models is None:
+        # Initialize Pipeline & Hydrate Features
+        pipeline = SportsDataPipeline()
+        raw_df = pipeline.fetch_data_cached() # Uses cache
+        
+        fe = FeatureEngineer(raw_df)
+        df = fe.process() # Fully hydrated with v4 (shifted) and v3 (leaked) features
+        
+        simulator = ModelSimulator(df)
 
-    # Run Simulations
-    print("🌌 Simulating Quartz (Backtest Alpha)...")
-    quartz_res = simulator.run_backtest_all() # Use full history for graph
-    
-    print("🌋 Simulating Obsidian...")
-    obsidian_res = simulator.run_v3_obsidian()
-    
-    # For Pyrite and Diamond, if simulator doesn't have specific methods, 
-    # we'll simulate them via edge filters (as they are usually based on Min_Edge)
-    print("💎 Simulating Diamond (Surgical)...")
-    diamond_res = simulator.run_v2_diamond() # Assuming it exists or fallback
-    
-    print("☄️ Simulating Pyrite (Aggressive)...")
-    pyrite_res = simulator.run_v1_pyrite() # Assuming it exists or fallback
+        # Run Simulations
+        print("🌌 Simulating Quartz (Backtest Alpha)...")
+        quartz_res = simulator.run_backtest_all() # Use full history for graph
+        
+        print("🌋 Simulating Obsidian...")
+        obsidian_res = simulator.run_v3_obsidian()
+        
+        # For Pyrite and Diamond, if simulator doesn't have specific methods, 
+        # we'll simulate them via edge filters (as they are usually based on Min_Edge)
+        print("💎 Simulating Diamond (Surgical)...")
+        diamond_res = simulator.run_v2_diamond() # Assuming it exists or fallback
+        
+        print("☄️ Simulating Pyrite (Aggressive)...")
+        pyrite_res = simulator.run_v1_pyrite() # Assuming it exists or fallback
+    else:
+        print("📦 Using provided model results from primary pipeline...")
+        quartz_res = models.get("quartz", pd.DataFrame())
+        obsidian_res = models.get("obsidian", pd.DataFrame())
+        diamond_res = models.get("diamond", pd.DataFrame())
+        pyrite_res = models.get("pyrite", pd.DataFrame())
 
     # Extract Cumulative Series
     def get_series(res_df, label):

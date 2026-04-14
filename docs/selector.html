@@ -425,6 +425,28 @@
     </footer>
 
     <script>
+        // --- DATA INJECTION POINT (AUTOMATED) ---
+        const DATA = {
+            "models": {
+                        "pyrite": {
+                                    "roi": -4.1,
+                                    "status": "AGGRESSIVE"
+                        },
+                        "diamond": {
+                                    "roi": 7.3,
+                                    "status": "BALANCED"
+                        },
+                        "obsidian": {
+                                    "roi": 6.5,
+                                    "status": "BALANCED"
+                        },
+                        "quartz": {
+                                    "roi": 17.8,
+                                    "status": "BALANCED"
+                        }
+            }
+};
+
         // --- 1. STARS & SHOOTING STARS BACKGROUND ---
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
@@ -576,29 +598,60 @@
 
         window.addEventListener('resize', resize);
 
-        // --- 2. DATA HYDRATION ---
         async function hydrate() {
+            console.log("💎 QUARRY // INITIALIZING SELECTOR HYDRATION...");
             try {
-                // Prioritize global window object (resolves CORS issues for local files)
-                let stats = window.QUARRY_STATS;
-                if (!stats) {
-                    const response = await fetch('stats.json');
-                    stats = await response.json();
+                // 1. Resolve Institutional Source
+                let source = "NONE";
+                let modelsData = null;
+                
+                if (typeof DATA !== 'undefined' && DATA.models) {
+                    source = "INJECTED_DATA";
+                    modelsData = DATA.models;
+                } else {
+                    console.warn("⚠️ INJECTED SELECTOR DATA MISSING. FALLING BACK.");
+                    let stats = window.QUARRY_STATS;
+                    if (!stats) {
+                        try {
+                            const response = await fetch('stats.json');
+                            stats = await response.json();
+                            source = "CLOUD_LINK (stats.json)";
+                        } catch(e) { source = "ERROR"; }
+                    } else { source = "GLOBAL_CONTEXT"; }
+                    
+                    if (stats) modelsData = stats.models;
+                }
+
+                console.log(`📡 HYDRATION_SOURCE: ${source}`);
+                if (!modelsData) {
+                    console.error("❌ CRITICAL: NO SELECTOR DATA FOUND.");
+                    return;
                 }
 
                 const models = ['pyrite', 'diamond', 'obsidian', 'quartz'];
                 models.forEach(m => {
-                    const data = stats.models[m];
+                    const data = modelsData[m];
                     if (data) {
+                        const status = data.status || data.risk || 'NOMINAL';
                         const riskEl = document.getElementById(`risk-${m}`);
-                        if (riskEl) riskEl.textContent = (data.status || 'NOMINAL').toUpperCase();
+                        if (riskEl) {
+                            riskEl.textContent = status.toUpperCase();
+                            console.log(`  ✅ [${m}] RISK -> ${status}`);
+                        }
 
                         const roiEl = document.getElementById(`roi-${m}`);
-                        if (roiEl) roiEl.textContent = (data.roi >= 0 ? '+' : '') + data.roi.toFixed(1) + '%';
+                        if (roiEl) {
+                            const val = data.roi || 0;
+                            roiEl.textContent = (val >= 0 ? '+' : '') + Number(val).toFixed(1) + '%';
+                            console.log(`  ✅ [${m}] ROI -> ${val}%`);
+                        }
+                    } else {
+                        console.warn(`  ⚠️ MODEL DATA MISSING FOR: ${m}`);
                     }
                 });
+                console.log("✨ SELECTOR HYDRATION COMPLETE.");
             } catch (e) {
-                console.error("Institutional Link Failure:", e);
+                console.error("❌ CRITICAL HYDRATION ENGINE FAILURE:", e);
             }
         }
 

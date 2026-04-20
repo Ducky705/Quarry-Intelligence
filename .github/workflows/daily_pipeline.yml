@@ -18,10 +18,12 @@ jobs:
       contents: write
     
     steps:
+      - name: Configure Git for Private Submodules
+        run: git config --global url."https://x-access-token:${{ secrets.GH_PAT }}@github.com/".insteadOf "https://github.com/"
+
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
-          token: ${{ secrets.GH_PAT }}
           submodules: 'recursive'
           fetch-depth: 0
 

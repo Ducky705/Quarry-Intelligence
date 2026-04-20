@@ -18,20 +18,18 @@ jobs:
       contents: write
     
     steps:
-      - name: Configure Git for Private Submodules
-        run: git config --global url."https://x-access-token:${{ secrets.GH_PAT }}@github.com/".insteadOf "https://github.com/"
-
       - name: Checkout Repo
         uses: actions/checkout@v5
         with:
-          submodules: 'recursive'
+          submodules: false # 👈 We handle this manually to prevent auth overrides
           fetch-depth: 0
 
-      - name: Update Submodules to Latest
+      - name: Submodule Force-Auth
         run: |
+          git submodule set-url models https://x-access-token:${{ secrets.GH_PAT }}@github.com/Ducky705/XGBoost-Sniper-Models.git
           git submodule sync
-          git submodule update --init --recursive --remote --merge
-          echo "✅ Submodules updated to latest remote commits."
+          git submodule update --init --recursive
+          echo "✅ Submodules force-authenticated and updated."
 
       - name: Setup Python
         uses: actions/setup-python@v5

@@ -27,6 +27,7 @@ jobs:
 
       - name: Update Submodules to Latest
         run: |
+          git submodule sync
           git submodule update --init --recursive --remote --merge
           echo "✅ Submodules updated to latest remote commits."
 

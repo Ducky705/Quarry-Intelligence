@@ -113,3 +113,7 @@ model_logs/
 # Data Caches (Managed via CI caching or locally)
 data/
 *.parquet
+
+# Temporary and Scratch
+catboost_info/
+scratch/

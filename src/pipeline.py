@@ -132,6 +132,8 @@ class SportsDataPipeline:
         if use_parquet and not existing_df.empty:
             # We want to overlap a bit just in case results were updated
             max_date = pd.to_datetime(existing_df['pick_date']).max()
+            print(f"📊 Data Lake Head: {max_date.strftime('%Y-%m-%d')}")
+            
             # Fetch last 3 days to catch any late-reported results/corrections
             since_days = (pd.Timestamp.now() - (max_date - pd.Timedelta(days=3))).days
             if since_days < 1: since_days = 3 
